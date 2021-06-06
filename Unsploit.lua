@@ -244,7 +244,7 @@ function Library.new(name, theme)
 			end
 		end
 		
-		Functions.TabBtn = TabBtn.MouseButton1Click:Connect(function()
+		Functions.TabBtnConnection = TabBtn.MouseButton1Click:Connect(function()
 			for i,v in next, PageContainer:GetChildren() do
 				if v.Name == text then
 					v.Visible = true
@@ -376,9 +376,11 @@ Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(func
 		if (Functions.UnsploitLeaving) then
 			child:Destroy()
 			Functions.UnsploitLeaving:Disconnect();
-			Functions.TabBtn:Disconnect()
+			Functions.TabBtnConnection:Disconnect()
 			Functions.ButtonOptionConnection:Disconnect()
 			Functions.UnsploitExitConnection:Disconnect()
+
+			print(Functions.UnsploitLeaving, Functions.ButtonOptionConnection, Functions.TabBtnConnection, Functions.UnsploitExitConnection)
 		end
 	end
 end)

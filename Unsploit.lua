@@ -316,6 +316,79 @@ function Library.new(name, theme)
 			Label.Text = text or "Label"
 			return Label
 		end
+
+		function Options:AddToggle(text: string, callback, default)
+			local actions = {}
+			local enabled = default or false
+			text = text
+
+			local Toggle = Instance.new("Frame")
+			local Label = Instance.new("TextLabel")
+			local ToggleFrame = Instance.new("Frame")
+			local Bool = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local UICorner_2 = Instance.new("UICorner")
+			local ToggleBtn = Instance.new("TextButton")
+
+			Toggle.Name = "Toggle"
+			Toggle.Parent = Container2
+			Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Toggle.BackgroundTransparency = 1.000
+			Toggle.BorderSizePixel = 0
+			Toggle.Size = UDim2.new(0, 100, 0, 100)
+
+			Label.Name = "Label"
+			Label.Parent = Toggle
+			Label.BackgroundColor3 = chosenTheme.TextColor
+			Label.BackgroundTransparency = 1.000
+			Label.BorderSizePixel = 0
+			Label.Size = UDim2.new(0.76296705, 0, 1, 0)
+			Label.Font = Enum.Font.SourceSans
+			Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Label.TextSize = 14.000
+			Label.TextXAlignment = Enum.TextXAlignment.Left
+
+			ToggleFrame.Name = "ToggleFrame"
+			ToggleFrame.Parent = Toggle
+			ToggleFrame.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+			ToggleFrame.Position = UDim2.new(0.779999971, 0, 0.0359999985, 0)
+			ToggleFrame.Size = UDim2.new(0.165000007, 0, 0.850000024, 0)
+
+			Bool.Name = "Bool"
+			Bool.Parent = ToggleFrame
+			Bool.BackgroundColor3 = chosenTheme.Button
+			Bool.Size = UDim2.new(0.5, 0, 1, 0)
+
+			UICorner.CornerRadius = UDim.new(0, 6)
+			UICorner.Parent = Bool
+
+			UICorner_2.CornerRadius = UDim.new(0, 6)
+			UICorner_2.Parent = ToggleFrame
+
+			ToggleBtn.Name = "ToggleBtn"
+			ToggleBtn.Parent = Toggle
+			ToggleBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ToggleBtn.BackgroundTransparency = 1.000
+			ToggleBtn.Size = UDim2.new(1, 0, 1, 0)
+			ToggleBtn.Font = Enum.Font.SourceSans
+			ToggleBtn.Text = ""
+			ToggleBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+			ToggleBtn.TextSize = 14.000
+
+			local function Fire()
+				enabled = not enabled
+				Bool:TweenPosition(enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(0, 0, 0, 0), "In", "Linear")
+				pcall(callback, enabled)
+			end
+
+			Functions.ToggleBtnConnection = ToggleBtn.MouseButton1Click:Connect(Fire)
+			
+			function actions:Set(args)
+				ool:TweenPosition(enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(0, 0, 0, 0), "In", "Linear")
+				pcall(callback, args)
+			end
+		end
+
 		return Options
 	end
 

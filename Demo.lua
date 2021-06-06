@@ -1,11 +1,11 @@
 local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Unsploit.lua"))()
 local name = "web.roblox.com"
 
-local window = Unsploit.new(name, "Dark")
+local Window = Unsploit.new(name, "Dark")
 
-local tab1 = window:AddTab("Tab 1")
-local tab2 = window:AddTab("Tab 2")
-local tab3 = window:AddTab("Tab 3")
+local tab1 = Window:AddTab("Tab 1")
+local tab2 = Window:AddTab("Tab 2")
+local tab3 = Window:AddTab("Tab 3")
 local gId = Window:AddLabel("Version: v0.1.2")
 
 tab1:AddLabel("HELP")

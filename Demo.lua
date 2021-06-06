@@ -11,6 +11,10 @@ local tabs = {}
 local functions = {}
 local connections = {}
 
+functions.General = {}
+functions.Autofarm = {}
+functions.Settings = {}
+
 tabs.General = Window:AddTab("General")
 tabs.Autofarm = Window:AddTab("Autofarm")
 tabs.Settings = Window:AddTab("Settings")

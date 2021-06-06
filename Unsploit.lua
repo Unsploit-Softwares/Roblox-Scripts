@@ -1,5 +1,4 @@
 local Modules = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/init.lua"))()
-local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
 
 local RGB = Color3.fromRGB
 local HSV = Color3.fromHSV
@@ -43,7 +42,14 @@ local toHSV = Color3.toHSV
             (DISABLED) Utility:Create(class: string, properties: table) --> Creates a new instance class with properties
 ]]
 
-local Library: Unsploit = {}
+local Library: Unsploit = {
+	Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))(),
+	Version = {
+		maj = 0,
+		min = 1,
+		submin = 12
+	}
+}
 
 local Utility: Utility = {
     CharSets = {};
@@ -173,11 +179,13 @@ function Library.new(name, theme)
 	PageContainer.Name = "PageContainer"
 	PageContainer.Parent = Main
 
-	exitBtn.MouseButton1Click:Connect(function()
+	local connection = exitBtn.MouseButton1Click:Connect(function()
 		if (Library._instance) then
 			Functions:ExitUI()
 		end
 	end)
+
+	connection:Disconnect()
 
 	local TabLibrary = {}
 	-- Tab Stuff
@@ -238,7 +246,7 @@ function Library.new(name, theme)
 			end
 		end
 		
-		TabBtn.MouseButton1Click:Connect(function()
+		Functions.TabBtn = TabBtn.MouseButton1Click:Connect(function()
 			for i,v in next, PageContainer:GetChildren() do
 				if v.Name == text then
 					v.Visible = true
@@ -290,11 +298,11 @@ function Library.new(name, theme)
 
 			UICorner.Parent = Button
 
-			function OnFire()
+			local function OnFire()
 				Functions:Execute(callback)
 			end
 
-			Button.MouseButton1Click:Connect(OnFire)
+			Functions.ButtonOptionConnection = Button.MouseButton1Click:Connect(OnFire)
 			return Button
 		end
 
@@ -330,12 +338,14 @@ function Library.new(name, theme)
 		return Label
 	end
 
-	Notification.Notify("Unsploit UI Library", "Unsploit UI Library has successfully loaded!", "rbxassetid://4914902889")
+	Library.Notification.Notify("Unsploit UI Library", "Unsploit UI Library has successfully loaded!", "rbxassetid://4914902889")
 	return TabLibrary
 end
 
 function Library:Destroy()
 	self._instance:Destroy()
+	Functions.ButtonOptionConnection:Disconnect()
+	Functions.TabBtn:Disconnect();
 end
 
 function Utility:GenerateName(...)
@@ -356,11 +366,19 @@ end
 end ]]
 
 function Functions:ExitUI()
-	Library._instance:Destroy()
+	Library:Destroy();
 end
 
 function Functions:Execute(callback)
 	return pcall(callback)
 end
+
+game:GetService("CoreGui").ChildRemoved:Connect(function(child)
+	if child.Name == Library._instance.Name then
+		child:Destroy()
+		Functions.ButtonOptionConnection:Disconnect()
+		Functions.TabBtn:Disconnect()
+	end
+end)
 
 return Library, Utility

@@ -164,7 +164,7 @@ function Library.new(name, theme)
 
 	exitBtn.MouseButton1Click:Connect(function()
 		if (Library._instance) then
-			Library._instance:Destroy()
+			Functions:ExitUI()
 		end
 	end)
 
@@ -330,7 +330,7 @@ function Library.new(name, theme)
 		return Label
 	end
 	
-	Notification.Notify("Unsploit UI Library", "Unsploit UI Library has successfully loaded!", "rbxassetid://4914902889")
+	--Notification.Notify("Unsploit UI Library", "Unsploit UI Library has successfully loaded!", "rbxassetid://4914902889")
 	return TabLibrary
 end
 

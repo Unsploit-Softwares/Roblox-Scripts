@@ -378,14 +378,14 @@ function Library.new(name, theme)
 
 			local function Fire()
 				enabled = not enabled
-				Bool:TweenPosition(enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(0, 0, 0, 0), "In", "Linear")
+				Bool:TweenPosition(enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(0, 0, 0, 0), "In", "Linear", 0.1)
 				pcall(callback, enabled)
 			end
 
 			Functions.ToggleBtnConnection = ToggleBtn.MouseButton1Click:Connect(Fire)
 			
 			function actions:Set(args)
-				ool:TweenPosition(enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(0, 0, 0, 0), "In", "Linear")
+				ool:TweenPosition(enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(0, 0, 0, 0), "In", "Linear", 0.1)
 				pcall(callback, args)
 			end
 		end

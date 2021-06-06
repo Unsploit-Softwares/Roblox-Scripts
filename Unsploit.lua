@@ -1,6 +1,5 @@
 local Modules = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/init.lua"))()
 local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
-local Version: Version = Modules:Load("Version")
 
 local RGB = Color3.fromRGB
 local HSV = Color3.fromHSV
@@ -44,13 +43,9 @@ local toHSV = Color3.toHSV
             (DISABLED) Utility:Create(class: string, properties: table) --> Creates a new instance class with properties
 ]]
 
-local Library = {
-	Version = Version:SetVersion({
-		Major = 0;
-		Minor = 0
-	})
-}
-local Utility = {
+local Library: Unsploit = {}
+
+local Utility: Utility = {
     CharSets = {};
 	--LoadModule = function(moduleName: string)
 	--	Modules:Load(moduleName)

@@ -19,7 +19,7 @@ tabs.General = Window:AddTab("General")
 tabs.Autofarm = Window:AddTab("Autofarm")
 tabs.Settings = Window:AddTab("Settings")
 
-tabs.Autofarm:AddToggle("Swing Katana", function(state)
+tabs.Autofarm:AddToggle("Autoclick", function(state)
 	getgenv().AutoClick = state
 end, false)
 

@@ -347,6 +347,7 @@ function Library.new(name, theme)
 			Label.TextColor3 = Color3.fromRGB(255, 255, 255)
 			Label.TextSize = 14.000
 			Label.TextXAlignment = Enum.TextXAlignment.Left
+			Label.Text = text
 
 			ToggleFrame.Name = "ToggleFrame"
 			ToggleFrame.Parent = Toggle

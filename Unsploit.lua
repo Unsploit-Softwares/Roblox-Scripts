@@ -343,7 +343,7 @@ end
 function Library:Destroy()
 	self._instance:Destroy()
 	Functions.ButtonOptionConnection:Disconnect()
-	Functions.TabBtn:Disconnect();
+	Functions.TabBtnConnection:Disconnect();
 end
 
 function Utility:GenerateName(...)

@@ -2,38 +2,17 @@ local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsp
 local name = "web.roblox.com"
 local version = {major = 0; minor = 1; subminor = 12; build = 27;}
 
-local Window = Unsploit.new(name, "Light")
+local Window = Unsploit.new(name, "Dark")
 
 local tabs = {}
 local pages = {}
 local functions = {}
 local connections = {}
 
--- Format Tabs: tabs.NAME = ...
--- Format Pages: pages.NAME = ...
--- Format Functions: functions.Name/functions:FUNCTION_NAME()  ... end)
-
--- #region Tabs
 tabs.General = Window:AddTab("General")
-tabs.Players = Window:AddTab("Players")
 tabs.Settings = Window:AddTab("Settings")
--- #endregion
 
--- #region Pages
---#region Home
-tabs.General:AddButton("Test", function()
-	print("Hello world")
-end)
-
---#endregion
--- #endregion
-
---#region Functions
---#region Home
-
---#endregion
---#endregion
-
---#region Signals
-
---#endregion
+tabs.Settings:AddLabel("Developers")
+tabs.Settings:AddLabel("UI Library - Unsploit")
+tabs.Settings:AddLabel("Unsploit Hub - IHoldOnI & Unsploit")
+tabs.Settings:AddLabel("Copyright(c) 2021 Unsploit Softwares.")

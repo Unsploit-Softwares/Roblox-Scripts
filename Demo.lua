@@ -16,10 +16,7 @@ tabs.Autofarm = Window:AddTab("Autofarm")
 tabs.Settings = Window:AddTab("Settings")
 
 tabs.Autofarm:AddButton("Swing Katana", function()
-	local A_1 = "swingKatana"
-	local Event = game:GetService("Players").LocalPlayer.ninjaEvent
-	Event:FireServer(A_1)
-
+	functions.Autofarm._autoClick()
 end)
 
 tabs.Settings:AddLabel("Developers")
@@ -29,9 +26,7 @@ tabs.Settings:AddLabel("Copyright(c) 2021 Unsploit Softwares.")
 
 
 functions.Autofarm._autoClick = function()
-	while getgenv().autoClick do
-		local A_1 = "swingKatana"
-		local Event = game:GetService("Players").LocalPlayer.ninjaEvent
-		Event:FireServer(A_1)
-	end
+	local A_1 = "swingKatana"
+	local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+	Event:FireServer(A_1)
 end

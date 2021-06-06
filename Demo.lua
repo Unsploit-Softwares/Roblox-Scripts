@@ -39,8 +39,8 @@ end
 
 game:GetService("RunService").RenderStepped:Connect(function()
 	if _G.AutoClick == true then
-		Unsploit.Notify("Autoclick Engaged", "Autoclick has started!")
+		Unsploit.Notification.Notify("Autoclick Engaged", "Autoclick has started!")
 	else
-		Unsploit.Notify("Autoclick Disengaged", "Autoclick has stopped!")
+		Unsploit.Notification.Notify("Autoclick Disengaged", "Autoclick has stopped!")
 	end
 end)

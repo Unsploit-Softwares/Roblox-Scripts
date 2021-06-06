@@ -228,17 +228,6 @@ function Library.new(name, theme)
 		UIPadding_2.PaddingTop = UDim.new(0, 5)
 		
 		table.insert(Utility.Pages, text)
-
-		local Label = Instance.new("TextLabel")
-		Label.Name = "Label"
-		Label.Parent = Container2
-		Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Label.BackgroundTransparency = 1.000
-		Label.Size = UDim2.new(0, 200, 0, 50)
-		Label.Font = Enum.Font.SourceSans
-		Label.TextColor3 = chosenTheme.TextColor
-		Label.TextSize = 14.000
-		Label.Text = text
 		
 		for _,v in pairs(PageContainer:GetChildren()) do
 			if v.Name == Utility.Pages[1] then

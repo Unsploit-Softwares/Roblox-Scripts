@@ -228,12 +228,12 @@ function Library.new(name, theme)
 			if v.Name == Utility.Pages[1] then
 				v.Visible = true
 				game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-					BackgroundColor3 = chosenTheme.ButtonActive
+					BackgroundColor3 = chosenTheme.Button
 				}):Play()
 			else
 				v.Visible = false
 				game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-					BackgroundColor3 = chosenTheme.Button
+					BackgroundColor3 = chosenTheme.ButtonActive
 				}):Play()
 			end
 		end
@@ -250,13 +250,13 @@ function Library.new(name, theme)
 			for i,v in next, TabContainer:GetChildren() do
 				if v:IsA("TextButton") then
 					game.TweenService:Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-						BackgroundColor3 = chosenTheme.Button
+						BackgroundColor3 = chosenTheme.ButtonActive
 					}):Play()
 				end
 			end
 
 			game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-				BackgroundColor3 = chosenTheme.ButtonActive
+				BackgroundColor3 = chosenTheme.Button
 			}):Play()
 		end)
 
@@ -329,7 +329,7 @@ function Library.new(name, theme)
 		Label.TextSize = 14.000
 		return Label
 	end
-	
+
 	Notification.Notify("Unsploit UI Library", "Unsploit UI Library has successfully loaded!", "rbxassetid://4914902889")
 	return TabLibrary
 end

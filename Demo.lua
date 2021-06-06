@@ -16,7 +16,9 @@ tabs.Autofarm = Window:AddTab("Autofarm")
 tabs.Settings = Window:AddTab("Settings")
 
 tabs.Autofarm:AddButton("Swing Katana", function()
-	functions.Autofarm._autoClick()
+	local A_1 = "swingKatana"
+	local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+	Event:FireServer(A_1)
 end)
 
 tabs.Settings:AddLabel("Developers")

@@ -1,6 +1,7 @@
 local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Unsploit.lua"))()
+local name = "web.roblox.com"
 
-local window = Unsploit.new("web.roblox.com", "Unsploit")
+local window = Unsploit.new(name, "Dark")
 
 local tab1 = window:AddTab("Tab 1")
 local tab2 = window:AddTab("Tab 2")
@@ -20,4 +21,10 @@ end)
 tab3:AddLabel("I beg you")
 tab3:AddButton("Just help me please.", function()
 	print("Tab 3")
+end)
+
+game:GetService("CoreGui").ChildRemoved:Connect(function(child)
+    if (child.Name == name) then
+        child:Destroy()
+    end
 end)

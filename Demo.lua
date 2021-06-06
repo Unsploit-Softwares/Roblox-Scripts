@@ -1,7 +1,7 @@
 local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Unsploit.lua"))()
 local name = "web.roblox.com"
 
-local Window = Unsploit.new(name, "Dark")
+local Window = Unsploit.new(name, "Light")
 
 local tab1 = Window:AddTab("Tab 1")
 local tab2 = Window:AddTab("Tab 2")
@@ -23,8 +23,8 @@ tab3:AddButton("Just help me please.", function()
 	print("Tab 3")
 end)
 
-game:GetService("CoreGui").ChildRemoved:Connect(function(child)
-    if (child.Name == name) then
-        child:Destroy()
-    end
-end)
+for _,v in next, game:GetService("CoreGui"):GetChildren() do
+	if v:IsA("ScreenGui") and v.Name == name then
+		v:Destroy()
+	end
+end

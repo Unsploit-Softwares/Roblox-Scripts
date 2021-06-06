@@ -14,7 +14,7 @@ local toHSV = Color3.toHSV
 
     Library
 		Constructors: 
-			Library.new(name: string) -- > Creates a new UI Window
+			Library.new(name: string, theme: string) -- > Creates a new UI Window
 		
 		Functions:
 			-- Tabs
@@ -27,7 +27,13 @@ local toHSV = Color3.toHSV
 			Options:AddToggle(text: string, callback: function) --> Creates a new Toggle
 			Options:AddDropdown(text: string) --> Creates a new Dropdown
 			Options:AddSlider(text: string, min: number, default: number, max: number, callback: function) --> Creates a new Slider
-		
+
+		Themes:
+			Default,
+			Dark,
+			Light,
+			Unsploit
+
 		Methods: 
 			Library:Destroy() --> Destroys the UI Object
 
@@ -36,33 +42,6 @@ local toHSV = Color3.toHSV
             Utility:GenerateName(length: number) --> Generates a random string character
             (DISABLED) Utility:Create(class: string, properties: table) --> Creates a new instance class with properties
 ]]
-
-local themes = {
-	Default = {
-		["Background"] = RGB(59, 59, 59),
-		["Accent"] =  RGB(117, 117, 117),
-		["Button"] = RGB(15, 15, 15),
-		["TextColor"] = RGB(255, 255, 255)
-	},
-	Dark = {
-		["Background"] = RGB(0, 0, 0),
-		["Accent"] =  RGB(86, 86, 86),
-		["Button"] = RGB(194, 57, 57),
-		["TextColor"] = RGB(255, 255, 255)
-	},
-	Light = {
-		["Background"] = RGB(0, 0, 0),
-		["Accent"] =  RGB(86, 86, 86),
-		["Button"] = RGB(127, 127, 127),
-		["TextColor"] = RGB(18, 18, 18)
-	},
-	Unsploit = {
-		["Background"] = RGB(152, 44, 44),
-		["Accent"] =  RGB(111, 0, 0),
-		["Button"] = RGB(197, 62, 62),
-		["TextColor"] = RGB(255, 255, 255)
-	}
-}
 
 local Library = {}
 local Utility = {
@@ -74,19 +53,50 @@ local Utility = {
 }
 local Functions = {}
 
+Library.Themes = {
+	Default = {
+		["Background"] = RGB(59, 59, 59),
+		["Accent"] =  RGB(117, 117, 117),
+		["Button"] = RGB(15, 15, 15),
+		["ButtonActive"] = RGB(84, 84, 84),
+		["TextColor"] = RGB(255, 255, 255)
+	},
+	Dark = {
+		["Background"] = RGB(0, 0, 0),
+		["Accent"] =  RGB(86, 86, 86),
+		["Button"] = RGB(194, 57, 57),
+		["ButtonActive"] = Color3.fromRGB(114, 33, 33),
+		["TextColor"] = RGB(255, 255, 255)
+	},
+	Light = {
+		["Background"] = RGB(0, 0, 0),
+		["Accent"] =  RGB(86, 86, 86),
+		["Button"] = RGB(127, 127, 127),
+		["ButtonActive"] = RGB(),
+		["TextColor"] = RGB(18, 18, 18)
+	},
+	Unsploit = {
+		["Background"] = RGB(152, 44, 44),
+		["Accent"] =  RGB(111, 0, 0),
+		["Button"] = RGB(197, 62, 62),
+		["ButtonActive"] = RGB(104, 34, 34),
+		["TextColor"] = RGB(255, 255, 255)
+	}
+}
+
 function Library.new(name, theme)
 	theme = theme or "Default"
 
 	local chosenTheme
 
 	if theme == "Default" then
-		chosenTheme = themes.Default
+		chosenTheme = Library.Themes.Default
 	elseif theme == "Light" then
-		chosenTheme = themes.Light
+		chosenTheme = Library.Themes.Light
 	elseif theme == "Dark" then
-		chosenTheme = themes.Dark
+		chosenTheme = Library.Themes.Dark
 	elseif theme == "Unsploit" then
-		chosenTheme = themes.Unsploit
+		chosenTheme = Library.Themes.Unsploit
 	end
 
 	-- Core Stuff
@@ -228,12 +238,12 @@ function Library.new(name, theme)
 			if v.Name == Utility.Pages[1] then
 				v.Visible = true
 				game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-					BackgroundColor3 = Color3.fromRGB(255, 85, 60)
+					BackgroundColor3 = chosenTheme.ButtonActive
 				}):Play()
 			else
 				v.Visible = false
 				game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-					BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+					BackgroundColor3 = chosenTheme.Button
 				}):Play()
 			end
 		end
@@ -256,7 +266,7 @@ function Library.new(name, theme)
 			end
 
 			game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-				BackgroundColor3 = Color3.fromRGB(255, 85, 60)
+				BackgroundColor3 = chosenTheme.ButtonActive
 			}):Play()
 		end)
 
@@ -330,7 +340,7 @@ function Library.new(name, theme)
 		return Label
 	end
 	
-	--Notification.Notify("Unsploit UI Library", "Unsploit UI Library has successfully loaded!", "rbxassetid://4914902889")
+	Notification.Notify("Unsploit UI Library", "Unsploit UI Library has successfully loaded!", "rbxassetid://4914902889")
 	return TabLibrary
 end
 

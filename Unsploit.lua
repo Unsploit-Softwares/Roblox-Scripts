@@ -1,5 +1,6 @@
---local Modules = require(loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/init.lua")))
+local Modules = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/init.lua"))()
 local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
+local Version: Version = Modules:Load("Version")
 
 local RGB = Color3.fromRGB
 local HSV = Color3.fromHSV
@@ -43,7 +44,12 @@ local toHSV = Color3.toHSV
             (DISABLED) Utility:Create(class: string, properties: table) --> Creates a new instance class with properties
 ]]
 
-local Library = {}
+local Library = {
+	Version = Version:SetVersion({
+		Major = 0;
+		Minor = 0
+	})
+}
 local Utility = {
     CharSets = {};
 	--LoadModule = function(moduleName: string)
@@ -65,7 +71,7 @@ Library.Themes = {
 		["Background"] = RGB(0, 0, 0),
 		["Accent"] =  RGB(86, 86, 86),
 		["Button"] = RGB(194, 57, 57),
-		["ButtonActive"] = Color3.fromRGB(114, 33, 33),
+		["ButtonActive"] = RGB(114, 33, 33),
 		["TextColor"] = RGB(255, 255, 255)
 	},
 	Light = {

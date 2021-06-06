@@ -30,7 +30,7 @@ tabs.Settings:AddLabel("Copyright(c) 2021 Unsploit Softwares.")
 
 
 functions.Autofarm._autoClick = function()
-	while _G.AutoClick == true do
+	while _G.AutoClick do
 		local A_1 = "swingKatana"
 		local Event = game:GetService("Players").LocalPlayer.ninjaEvent
 		Event:FireServer(A_1)
@@ -38,9 +38,11 @@ functions.Autofarm._autoClick = function()
 end
 
 game:GetService("RunService").RenderStepped:Connect(function()
-	if _G.AutoClick == true then
-		Unsploit.Notification.Notify("Autoclick Engaged", "Autoclick has started!", "")
-	else
-		Unsploit.Notification.Notify("Autoclick Disengaged", "Autoclick has stopped!", "")
-	end
+	
 end)
+
+if _G.AutoClick == true then
+	Unsploit.Notification.Notify("Autoclick Engaged", "Autoclick has started!", "")
+else
+	Unsploit.Notification.Notify("Autoclick Disengaged", "Autoclick has stopped!", "")
+end

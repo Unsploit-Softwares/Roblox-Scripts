@@ -1,4 +1,4 @@
-getgenv().autoClick = false
+local AutoClick = false
 
 
 local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Unsploit.lua"))()
@@ -16,11 +16,11 @@ tabs.Autofarm = Window:AddTab("Autofarm")
 tabs.Settings = Window:AddTab("Settings")
 
 tabs.Autofarm:AddButton("Swing Katana", function()
-	getgenv().autoClick = true
+	AutoClick = true
 	local A_1 = "swingKatana"
 	local Event = game:GetService("Players").LocalPlayer.ninjaEvent
 	Event:FireServer(A_1)
-	getgenv().autoClick = false
+	AutoClick = false
 end)
 
 tabs.Settings:AddLabel("Developers")
@@ -36,7 +36,7 @@ functions.Autofarm._autoClick = function()
 end
 
 game:GetService("RunService").RenderStepped:Connect(function()
-	if getgenv().autoClick == true then
+	if AutoClick == true then
 		Unsploit.Notify("Autoclick Engaged", "Autoclick has started!")
 	else
 		Unsploit.Notify("Autoclick Disengaged", "Autoclick has stopped!")

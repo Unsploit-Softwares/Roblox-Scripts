@@ -179,13 +179,11 @@ function Library.new(name, theme)
 	PageContainer.Name = "PageContainer"
 	PageContainer.Parent = Main
 
-	local connection = exitBtn.MouseButton1Click:Connect(function()
+	Functions.UnsploitExitConnection = exitBtn.MouseButton1Click:Connect(function()
 		if (Library._instance) then
 			Functions:ExitUI()
 		end
 	end)
-
-	connection:Disconnect()
 
 	local TabLibrary = {}
 	-- Tab Stuff
@@ -380,6 +378,7 @@ Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(func
 			Functions.UnsploitLeaving:Disconnect();
 			Functions.TabBtn:Disconnect()
 			Functions.ButtonOptionConnection:Disconnect()
+			Functions.UnsploitExitConnection:Disconnect()
 		end
 	end
 end)

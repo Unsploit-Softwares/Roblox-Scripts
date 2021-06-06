@@ -4,28 +4,36 @@ local version = {major = 0; minor = 1; subminor = 12; build = 27;}
 
 local Window = Unsploit.new(name, "Light")
 
-local tab1 = Window:AddTab("Tab 1")
-local tab2 = Window:AddTab("Tab 2")
-local tab3 = Window:AddTab("Tab 3")
-local menuVersion = Window:AddLabel(string.format("Version: v%s.%s.%s", version.major, version.minor, version.subminor))
-local menuBuildIndex = Window:AddLabel(string.format("Menu Build: %s", version.build))
+local tabs = {}
+local pages = {}
+local functions = {}
+local connections = {}
 
-tab1:AddLabel("HELP")
-tab1:AddButton("Me", function()
-	print("Tab 1")
+-- Format Tabs: tabs.NAME = ...
+-- Format Pages: pages.NAME = ...
+-- Format Functions: functions.Name/functions:FUNCTION_NAME()  ... end)
+
+-- #region Tabs
+tabs.General = Window:AddTab("General")
+tabs.Players = Window:AddTab("Players")
+tabs.Settings = Window:AddTab("Settings")
+-- #endregion
+
+-- #region Pages
+--#region Home
+tabs.General:AddButton("Test", function()
+	print("Hello world")
 end)
 
-tab2:AddLabel("PLEASE")
-tab2:AddButton("HELP", function()
-	print("Tab 2")
-end)
+--#endregion
+-- #endregion
 
-tab3:AddLabel("I beg you")
-tab3:AddButton("Just help me please.", function()
-	print("Tab 3")
-end)
+--#region Functions
+--#region Home
 
+--#endregion
+--#endregion
 
-if game:GetService("CoreGui"):FindFirstChild(name) then
-	game:GetService("CoreGui"):FindFirstChild(name):Destroy()
-end
+--#region Signals
+
+--#endregion

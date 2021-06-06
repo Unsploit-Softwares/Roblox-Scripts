@@ -296,11 +296,9 @@ function Library.new(name, theme)
 
 			UICorner.Parent = Button
 
-			local function OnFire()
+			Functions.ButtonOptionConnection = Button.MouseButton1Click:Connect(function()
 				Functions:Execute(callback)
-			end
-
-			Functions.ButtonOptionConnection = Button.MouseButton1Click:Connect(OnFire)
+			end)
 			return Button
 		end
 
@@ -335,7 +333,6 @@ function Library.new(name, theme)
 		Label.TextSize = 14.000
 		return Label
 	end
-
 	Library.Notification.Notify("Unsploit UI Library", "Unsploit UI Library has successfully loaded!", "rbxassetid://4914902889")
 	return TabLibrary
 end
@@ -379,6 +376,7 @@ Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(func
 			Functions.UnsploitExitConnection:Disconnect()
 		end
 	end
+	Library.Notification.Notify("Unsploit UI Library", "Unsploit UI has exited!")
 end)
 
 return Library, Utility

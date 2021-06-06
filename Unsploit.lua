@@ -162,7 +162,6 @@ function Library.new(name, theme)
 	PageContainer.Name = "PageContainer"
 	PageContainer.Parent = Main
 
-	Functions:ExitUI()
 	exitBtn.MouseButton1Click:Connect(function()
 		if (Library._instance) then
 			Library._instance:Destroy()

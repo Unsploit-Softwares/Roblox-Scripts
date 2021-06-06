@@ -356,18 +356,8 @@ end
 	return inst
 end ]]
 
-function Functions:ExitUI(delete_all)
-	delete_all = delete_all or true
-
-	if delete_all then
-		for _,v in pairs(UIFolder:GetChildren()) do
-			if (Library._instance.Name ~= UIFolder:GetChildren(v.Name)) then
-				v:Destroy();
-			end
-		end
-	else
-		Library._instance:Destroy()
-	end
+function Functions:ExitUI()
+	Library._instance:Destroy()
 end
 
 function Functions:Execute(callback)

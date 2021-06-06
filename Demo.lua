@@ -1,4 +1,4 @@
-local Unsploit = loadstring(game:HttpGet("https://www.roblox.com/"))()
+local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Unsploit.lua"))()
 
 local window = Unsploit.new("web.roblox.com", "Unsploit")
 

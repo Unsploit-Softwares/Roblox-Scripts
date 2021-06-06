@@ -16,9 +16,11 @@ tabs.Autofarm = Window:AddTab("Autofarm")
 tabs.Settings = Window:AddTab("Settings")
 
 tabs.Autofarm:AddButton("Swing Katana", function()
+	getgenv().autoClick = true
 	local A_1 = "swingKatana"
 	local Event = game:GetService("Players").LocalPlayer.ninjaEvent
 	Event:FireServer(A_1)
+	getgenv().autoClick = false
 end)
 
 tabs.Settings:AddLabel("Developers")
@@ -32,3 +34,11 @@ functions.Autofarm._autoClick = function()
 	local Event = game:GetService("Players").LocalPlayer.ninjaEvent
 	Event:FireServer(A_1)
 end
+
+game:GetService("RunService").RenderStepped:Connect(function()
+	if getgenv().autoClick == true then
+		Unsploit.Notify("Autoclick Engaged", "Autoclick has started!")
+	else
+		Unsploit.Notify("Autoclick Disengaged", "Autoclick has stopped!")
+	end
+end)

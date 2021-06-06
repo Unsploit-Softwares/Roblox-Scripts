@@ -373,11 +373,14 @@ function Functions:Execute(callback)
 	return pcall(callback)
 end
 
-game:GetService("CoreGui").ChildRemoved:Connect(function(child)
+Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(function(child)
 	if child.Name == Library._instance.Name then
-		child:Destroy()
-		Functions.ButtonOptionConnection:Disconnect()
-		Functions.TabBtn:Disconnect()
+		if (Functions.UnsploitLeaving) then
+			child:Destroy()
+			Functions.UnsploitLeaving:Disconnect();
+			Functions.TabBtn:Disconnect()
+			Functions.ButtonOptionConnection:Disconnect()
+		end
 	end
 end)
 

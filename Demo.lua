@@ -21,6 +21,7 @@ tabs.Settings = Window:AddTab("Settings")
 
 tabs.Autofarm:AddToggle("Autoclick", function(state)
 	_G.AutoClick = not state
+	functions.Autofarm._autoClick();
 
 	print(state)
 end)

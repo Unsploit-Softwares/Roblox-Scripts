@@ -91,7 +91,7 @@ if game.PlaceId == Games[game.PlaceId] then
 		end
 	end)
 elseif game.PlaceId == Games[2] then
-	--[[ local tabs = {}
+	local tabs = {}
 	local variables = {}
 	local functions = {
 		General = {};
@@ -133,7 +133,7 @@ elseif game.PlaceId == Games[2] then
 				connections.UnsploitExitConnection:Disconnect()
 			end
 		end
-	end) ]]
+	end)
 else
 	Unsploit.Notification.Notify("Unsploit Game Detection", "Unsploit could not identify " .. game.Name .. " in database.", "rbxassetid://5107154082")
 end

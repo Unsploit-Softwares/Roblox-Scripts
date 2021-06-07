@@ -16,7 +16,7 @@ local Games = {
 	};
 }
 
-if game.PlaceId == Games[1] then
+if game.PlaceId == Games[game.PlaceId] then
 	getgenv().Autoclick = false
 
 	local name = "Unsploit - " .. game:GetFullName()

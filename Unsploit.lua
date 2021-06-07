@@ -1,4 +1,5 @@
 local Modules = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/init.lua"))()
+local Draggify = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/Draggify.lua"))();
 
 local RGB = Color3.fromRGB
 local HSV = Color3.fromHSV
@@ -44,8 +45,6 @@ local toHSV = Color3.toHSV
 
 local Library: Unsploit = {
 	Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))();
-	Draggify = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/Draggify.lua"))()
-	;
 	Version = {
 		maj = 0,
 		min = 1,
@@ -132,6 +131,8 @@ function Library.new(name, theme)
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 	Main.Size = UDim2.new(0, 500, 0, 300)
 
+	Draggify(Library._instance:FindFirstChild("Main"))
+
 	TopBar.Name = "TopBar"
 	TopBar.Parent = Main
 	TopBar.BackgroundColor3 = chosenTheme.Background
@@ -181,8 +182,6 @@ function Library.new(name, theme)
 
 	PageContainer.Name = "PageContainer"
 	PageContainer.Parent = Main
-
-	Library.Draggify(Main)
 
 	Functions.UnsploitExitConnection = exitBtn.MouseButton1Click:Connect(function()
 		if (Library._instance) then

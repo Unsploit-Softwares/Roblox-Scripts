@@ -555,13 +555,13 @@ Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(func
 			if Functions.TabBtnConnection then
 				Functions.TabBtnConnection:Disconnect();
 			end
-			if Functions.TabBtnConnection then
+			if Functions.ToggleBtnConnection then
 				Functions.ToggleBtnConnection:Disconnect();
 			end
-			if Functions.TabBtnConnection then
+			if Functions.ButtonOptionConnection then
 				Functions.ButtonOptionConnection:Disconnect();
 			end
-			if Functions.TabBtnConnection then
+			if Functions.UnsploitExitConnection then
 				Functions.UnsploitExitConnection:Disconnect();
 			end
 			if Functions.ReleaseConnection and Functions.MoveConnection then

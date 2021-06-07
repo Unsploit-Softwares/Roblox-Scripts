@@ -432,7 +432,7 @@ function Library.new(name, theme)
 		end
 
 		function Options:AddSlider(text: string, callback, options: table)
-			text = text
+			text = text or "Slider"
 			options.min = options.min or 0
 			options.max = options.max or 100
 

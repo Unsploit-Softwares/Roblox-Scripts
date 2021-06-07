@@ -20,7 +20,7 @@ tabs.Autofarm = Window:AddTab("Autofarm")
 tabs.Settings = Window:AddTab("Settings")
 
 tabs.Autofarm:AddToggle("Autoclick", function(state)
-	_G.AutoClick = not state
+	_G.AutoClick = state
 	functions.Autofarm._autoClick();
 
 	print(state)

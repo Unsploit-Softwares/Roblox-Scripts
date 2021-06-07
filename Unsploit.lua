@@ -511,7 +511,7 @@ function Library.new(name, theme)
 			end)
 			sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
 			Functions.MoveConnection = mouse.Move:Connect(function()
-				valueText.Text = val
+				valueText.Text = string.format("%s / %s", val, options.max)
 				val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
 				pcall(function()
 					callback(val)

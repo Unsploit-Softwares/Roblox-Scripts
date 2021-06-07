@@ -105,13 +105,16 @@ elseif game.PlaceId == Games[game.GameId] then
 	tabs.Setting = Window:AddTab("Setting")
 	tabs.Credits = Window:AddTab("Credits")
 
-	tabs.General:AddToggle("Fast Run", function(state)
+	tabs.General:AddSlider("Fast Run", function(val)
 		local player = game:GetService("Players").LocalPlayer
 		local character = player.Character
 		local human = character:WaitForChild("Humanoid")
 
-		variables.walkspeed = state and 16 or 50
-	end)
+		variables.walkspeed = val
+	end, {
+		min = 16;
+		max = 12;
+	})
 
 	connections.renderStepped = game:GetService("RunService").RenderStepped:Connect(function()
 		if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then

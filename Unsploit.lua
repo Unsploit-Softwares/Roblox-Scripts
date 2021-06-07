@@ -390,6 +390,107 @@ function Library.new(name, theme)
 			end
 		end
 
+		function Options:AddSlider(text: string, callback, options: table)
+			options.min = options.min or 0
+			options.max = options.max or 100
+
+			local callback = callback or function () end
+
+			local mouse = game:GetService("Players").LocalPlayer:GetMouse ()
+			local uis = game:GetService("UserInputService")
+			local val;
+
+			local Slider = Instance.new("TextButton")
+			local OptionText = Instance.new("TextLabel")
+			local SliderFrame = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local sliderImg = Instance.new("Frame")
+			local UICorner_2 = Instance.new("UICorner")
+			local valueText = Instance.new("TextLabel")
+
+			Slider.Name = "Slider"
+			Slider.Parent = Container2
+			Slider.Active = false
+			Slider.BackgroundColor3 = Color3.fromRGB(110, 110, 110)
+			Slider.BackgroundTransparency = 1.000
+			Slider.BorderColor3 = Color3.fromRGB(27, 42, 53)
+			Slider.BorderSizePixel = 0
+			Slider.Selectable = false
+			Slider.Size = UDim2.new(0, 519, 0, 34)
+			Slider.Text = ""
+			Slider.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+			OptionText.Name = "OptionText"
+			OptionText.Parent = Slider
+			OptionText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			OptionText.BackgroundTransparency = 1.000
+			OptionText.Size = UDim2.new(0.300000012, 0, 1, 0)
+			OptionText.Font = Enum.Font.SourceSans
+			OptionText.Text = " Slider Option"
+			OptionText.TextColor3 = Color3.fromRGB(255, 255, 255)
+			OptionText.TextSize = 15.000
+			OptionText.TextXAlignment = Enum.TextXAlignment.Left
+
+			SliderFrame.Name = "SliderFrame"
+			SliderFrame.Parent = Slider
+			SliderFrame.BackgroundColor3 = Color3.fromRGB(112, 112, 112)
+			SliderFrame.Position = UDim2.new(0.600000024, 0, 0.349999994, 2)
+			SliderFrame.Size = UDim2.new(0.349999994, 0, 0.25, 0)
+
+			UICorner.CornerRadius = UDim.new(0, 6)
+			UICorner.Parent = SliderFrame
+
+			sliderImg.Name = "sliderImg"
+			sliderImg.Parent = SliderFrame
+			sliderImg.Active = false
+			sliderImg.BackgroundColor3 = Color3.fromRGB(220, 20, 20)
+			sliderImg.BorderSizePixel = 0
+			sliderImg.Selectable = false
+			sliderImg.Size = UDim2.new(0.100000001, 0, 1, 0)
+
+			UICorner_2.CornerRadius = UDim.new(0, 6)
+			UICorner_2.Parent = sliderImg
+
+			valueText.Name = "valueText"
+			valueText.Parent = Slider
+			valueText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			valueText.BackgroundTransparency = 1.000
+			valueText.Position = UDim2.new(0.5, 95, 0.25, -10)
+			valueText.Size = UDim2.new(0.179670483, 0, 0.5, 0)
+			valueText.Font = Enum.Font.Roboto
+			valueText.Text = ""
+			valueText.TextColor3 = Color3.fromRGB(255, 255, 255)
+			valueText.TextSize = 14.000
+			valueText.TextXAlignment = Enum.TextXAlignment.Right
+
+			Slider.MouseButton1Down:Connect(function()
+			val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 318) * sliderImg.AbsolutePosition.X) + tonumber(options.min)) or 0
+			pcall(function()
+				callback(val)
+			end)
+			sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 318), 0, 16)
+			Functions.MoveConnection = mouse.Move:Connect(function()
+				valueText.Text = val
+				val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 318) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
+				pcall(function()
+					callback(val)
+				end)
+				Slider.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 318), 0, 16)
+			end)
+			Functions.ReleaseConnection = uis.InputEnded:Connect(function(Mouse)
+				if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+					val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 318) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
+					pcall(function()
+						callback(val)
+					end)
+					Slider.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 318), 0, 16)
+					Functions.ReleaseConnection:Disconnect()
+					Functions.MoveConnection:Disconnect()
+				end
+			end)
+		end)
+		end
+
 		return Options
 	end
 
@@ -445,10 +546,10 @@ Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(func
 		if (Functions.UnsploitLeaving) then
 			child:Destroy()
 			Functions.UnsploitLeaving:Disconnect();
-			Functions.TabBtnConnection:Disconnect()
-			Functions.ToggleBtnConnection:Disconnect()
-			Functions.ButtonOptionConnection:Disconnect()
-			Functions.UnsploitExitConnection:Disconnect()
+			Functions.TabBtnConnection:Disconnect();
+			Functions.ToggleBtnConnection:Disconnect();
+			Functions.ButtonOptionConnection:Disconnect();
+			Functions.UnsploitExitConnection:Disconnect();
 		end
 	end
 end)

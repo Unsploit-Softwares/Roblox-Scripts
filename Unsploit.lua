@@ -44,7 +44,8 @@ local toHSV = Color3.toHSV
 
 local Library: Unsploit = {
 	Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))();
-	Draggify = Modules:Load("Draggify")();
+	Draggify = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/Draggify.lua"))()
+	;
 	Version = {
 		maj = 0,
 		min = 1,

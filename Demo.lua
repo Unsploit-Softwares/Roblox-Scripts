@@ -44,7 +44,7 @@ if game.PlaceId == Games[1] then
 		functions.Autofarm._autoClick();
 	end)
 
-	tabs.Settings:AddButton("Unload " .. name .. "!", function()
+	tabs.Settings:AddButton("Unload Unsploit!", function()
 		 if game:GetService("CoreGui"):FindFirstChild(name) then
 			game:GetService("CoreGui"):FindFirstChild(name):Destroy()
 		 end

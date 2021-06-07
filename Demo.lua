@@ -34,12 +34,12 @@ if game.PlaceId == Games[1] then
 	local connections = {}
 	
 	local Window = Unsploit.new(name, "Dark")
-	
+
 	tabs.General = Window:AddTab("General")
 	tabs.Autofarm = Window:AddTab("Autofarm")
 	tabs.Settings = Window:AddTab("Settings")
-	tabs.GameVersion = Window:AddLabel("Game Version: v" .. game.PlaceVersion)
-	tabs.MenuVersion = Window:AddLabel("Menu Version: v".. version)
+	tabs.GameVersion = Window:AddLabel(string.format("Game Version: v%s",  game.PlaceVersion))
+	tabs.MenuVersion = Window:AddLabel(string.format("Menu Version: v%s.%s.%s", version.major, version.minor, version.subminor))
 
 	tabs.Autofarm:AddToggle("Autoclick", function(state)
 		getgenv().Autoclick = state

@@ -441,11 +441,11 @@ function Library.new(name, theme)
 			local uis = game:GetService("UserInputService")
 			local val;
 
-			local Slider = Instance.new("TextButton")
+			local Slider = Instance.new("Frame")
 			local OptionText = Instance.new("TextLabel")
 			local SliderFrame = Instance.new("Frame")
 			local UICorner = Instance.new("UICorner")
-			local sliderImg = Instance.new("Frame")
+			local sliderImg = Instance.new("TextButton")
 			local UICorner_2 = Instance.new("UICorner")
 			local valueText = Instance.new("TextLabel")
 
@@ -504,27 +504,27 @@ function Library.new(name, theme)
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Right
 
-			Slider.MouseButton1Down:Connect(function()
-			val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 318) * sliderImg.AbsolutePosition.X) + tonumber(options.min)) or 0
+			sliderImg.MouseButton1Down:Connect(function()
+			val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderImg.AbsolutePosition.X) + tonumber(options.min)) or 0
 			pcall(function()
 				callback(val)
 			end)
-			sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 318), 1, 0)
+			sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
 			Functions.MoveConnection = mouse.Move:Connect(function()
 				valueText.Text = val
-				val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 318) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
+				val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
 				pcall(function()
 					callback(val)
 				end)
-				Slider.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 318), 1, 0)
+				Slider.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
 			end)
 			Functions.ReleaseConnection = uis.InputEnded:Connect(function(Mouse)
 				if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-					val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 318) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
+					val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
 					pcall(function()
 						callback(val)
 					end)
-					Slider.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 318), 0, 16)
+					sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
 					Functions.ReleaseConnection:Disconnect()
 					Functions.MoveConnection:Disconnect()
 				end

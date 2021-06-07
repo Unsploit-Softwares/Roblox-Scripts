@@ -1,5 +1,5 @@
 local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Unsploit.lua"))()
-
+local name
 local Games = {
 	3956818381;
 	137877687;
@@ -9,7 +9,7 @@ local Games = {
 if game.PlaceId == Games[1] then
 	getgenv().Autoclick = false
 
-	local name = "Unsploit - Ninja Legends"
+	name = "Unsploit - Ninja Legends"
 	local version = {major = 0; minor = 1; subminor = 12; build = 27;}
 	
 	Unsploit.Notification.Notify("Unsploit Game Detection", "Unsploit has detected " .. game.Name .. "! Loading UI", "rbxassetid://4914902889")
@@ -132,7 +132,6 @@ elseif game.PlaceId == Games[2] then
 				variables.walkspeed = 16;
 				variables.jumppower = 50;
 				
-				Unsploit.Notification.Notify ("Unsploit", "Unsploit disconnected!", "")
 				connections.renderStepped:Disconnect();
 				connections.UnsploitExitConnection:Disconnect()
 			end
@@ -140,4 +139,9 @@ elseif game.PlaceId == Games[2] then
 	end)
 else
 	Unsploit.Notification.Notify("Unsploit Game Detection", "Unsploit could not identify " .. game.Name .. " in database.", "rbxassetid://5107154082")
+end
+
+if game:GetService("CoreGui"):FindFirstChild(name) then
+	Unsploit.Notification.Notify ("Unsploit", "Unsploit disconnected!", "")
+	game:GetService("CoreGui"):FindFirstChild(name):Destroy()
 end

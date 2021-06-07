@@ -21,7 +21,9 @@ tabs.Settings = Window:AddTab("Settings")
 
 tabs.Autofarm:AddToggle("Autoclick", function(state)
 	_G.AutoClick = state
-end, false)
+
+	print(state)
+end)
 
 tabs.Settings:AddLabel("Developers")
 tabs.Settings:AddLabel("UI Library - Unsploit")

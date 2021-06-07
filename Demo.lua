@@ -22,8 +22,6 @@ tabs.Settings = Window:AddTab("Settings")
 tabs.Autofarm:AddToggle("Autoclick", function(state)
 	getgenv().Autoclick = state
 	functions.Autofarm._autoClick();
-
-	Unsploit.Notification.Notify(state and "Autoclick Engaged" or "Autoclick Disengaged", state and "Autoclick has started!" or "Autoclick has stopped!", "")
 end)
 
 tabs.Settings:AddLabel("Developers")
@@ -49,6 +47,8 @@ connections.guiQuitConnection = game:GetService("CoreGui").ChildRemoved:Connect(
 	if child.Name == name then
 		if (connections.guiQuitConnection) then
 			getgenv().Autoclick = false;
+
+			Unsploit.Notification.Notify ("Unsploit", "Unsploit disconnected!", "")
 			connections.guiQuitConnection:Disconnect()
 		end
 	end

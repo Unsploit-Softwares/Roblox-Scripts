@@ -20,9 +20,8 @@ if game.PlaceId == Games[1] then
 	getgenv().Autoclick = false
 
 	local name = "Unsploit - " .. game:GetFullName()
-	local Window = Unsploit.new(name, "Dark")
 	local version = {major = 0; minor = 1; subminor = 12; build = 27;}
-
+	
 	Unsploit.Notification.Notify("Unsploit Game Detection", "Unsploit has detected " .. game.Name .. "! Loading UI", "rbxassetid://4914902889")
 	
 	local variables = {}
@@ -33,6 +32,8 @@ if game.PlaceId == Games[1] then
 		Settings = {};
 	}
 	local connections = {}
+	
+	local Window = Unsploit.new(name, "Dark")
 	
 	tabs.General = Window:AddTab("General")
 	tabs.Autofarm = Window:AddTab("Autofarm")

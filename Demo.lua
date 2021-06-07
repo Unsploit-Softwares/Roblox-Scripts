@@ -1,11 +1,19 @@
+local NotificationService = game:GetService("NotificationService")
+
 local Games = {
 	[3956818381] = {
 		Title = "Ninja Legends 2";
 		JobId = game.JobId;
 
 	};
-	137877687;
-	155615604;
+	[137877687] = {
+		Title = "Ro-Citizens";
+		JobId = game.JobId;
+	};
+	[155615604] = {
+		Title = "Prison Life";
+		JobId = game.JobId;
+	};
 }
 
 if game.PlaceId == Games[1] then
@@ -84,7 +92,7 @@ if game.PlaceId == Games[1] then
 		end
 	end)
 elseif game.PlaceId == Games[2] then
-	local tabs = {}
+	--[[ local tabs = {}
 	local variables = {}
 	local functions = {
 		General = {};
@@ -126,7 +134,7 @@ elseif game.PlaceId == Games[2] then
 				connections.UnsploitExitConnection:Disconnect()
 			end
 		end
-	end)
+	end) ]]
 else
 	Unsploit.Notification.Notify("Unsploit Game Detection", "Unsploit could not identify " .. game.Name .. " in database.", "rbxassetid://5107154082")
 end

@@ -2,11 +2,9 @@ local Modules = {}
 
 function Modules:Load(moduleName)
     local module;
-    for _,v in pairs(script:GetChildren()) do
-        if (v.Name == moduleName and v:IsA("ModuleScript")) then
-            module = require(v)
-        end
-    end
+    
+    module = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/" .. moduleName .. ".lua"))
+
     return module
 end
 

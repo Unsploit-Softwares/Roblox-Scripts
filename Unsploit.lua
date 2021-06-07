@@ -94,6 +94,7 @@ Library.Themes = {
 
 function Library.new(name, theme)
 	theme = theme or "Default"
+	Library.Title = name or "Unsploit"
 
 	local chosenTheme
 
@@ -545,7 +546,7 @@ function Functions:Execute(callback)
 end
 
 Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(function(child)
-	if child.Name == Library._instance.Name then
+	if child.Name == Library.Title then
 		if (Functions.UnsploitLeaving) then
 			child:Destroy()
 			if Functions.UnsploitLeaving then

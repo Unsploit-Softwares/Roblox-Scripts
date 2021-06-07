@@ -28,6 +28,7 @@ if game.PlaceId == Games[1] then
 	tabs.General = Window:AddTab("General")
 	tabs.Autofarm = Window:AddTab("Autofarm")
 	tabs.Settings = Window:AddTab("Settings")
+	tabs.Credits = Window:AddTab("Credits")
 	tabs.GameVersion = Window:AddLabel(string.format("Game Version: v%s",  game.PlaceVersion))
 	tabs.MenuVersion = Window:AddLabel(string.format("Menu Version: v%s.%s.%s", version.major, version.minor, version.subminor))
 
@@ -43,10 +44,16 @@ if game.PlaceId == Games[1] then
 		functions.Autofarm._autoClick();
 	end)
 
-	local devTitle = tabs.Settings:AddLabel("Developers")
-	local dev1 = tabs.Settings:AddLabel("UI Library - Unsploit")
-	local dev2 tabs.Settings:AddLabel("Unsploit Hub - IHoldOnI & Unsploit")
-	local trademrk = tabs.Settings:AddLabel("Copyright(c) 2021 Unsploit Softwares.")
+	tabs.Settings:AddButton("Unload " .. name .. "!", function()
+		 if game:GetService("CoreGui"):FindFirstChild(name) then
+			game:GetService("CoreGui"):FindFirstChild(name):Destroy()
+		 end
+	end)
+
+	local devTitle = tabs.Credits:AddLabel("Developers")
+	local dev1 = tabs.Credits:AddLabel("UI Library - Unsploit")
+	local dev2 = tabs.Credits:AddLabel("Unsploit Hub - IHoldOnI & Unsploit")
+	local trademrk = tabs.Credits:AddLabel("Copyright(c) 2021 Unsploit Softwares.")
 
 	devTitle.BackgroundTransparency = 0;
 	devTitle.BackgroundColor3 = Unsploit.Themes.Dark.Button

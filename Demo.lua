@@ -1,22 +1,12 @@
 local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Unsploit.lua"))()
 
 local Games = {
-	[3956818381] = {
-		Title = "Ninja Legends 2";
-		JobId = game.JobId;
-
-	};
-	[137877687] = {
-		Title = "Ro-Citizens";
-		JobId = game.JobId;
-	};
-	[155615604] = {
-		Title = "Prison Life";
-		JobId = game.JobId;
-	};
+	3956818381;
+	137877687;
+	155615604;
 }
 
-if game.PlaceId == Games[game.PlaceId] then
+if game.PlaceId == Games[1] then
 	getgenv().Autoclick = false
 
 	local name = "Unsploit - " .. game:GetFullName()
@@ -90,7 +80,7 @@ if game.PlaceId == Games[game.PlaceId] then
 			end
 		end
 	end)
-elseif game.PlaceId == Games[game.GameId] then
+elseif game.PlaceId == Games[2] then
 	local tabs = {}
 	local variables = {}
 	local functions = {

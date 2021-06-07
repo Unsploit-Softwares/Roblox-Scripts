@@ -1,4 +1,4 @@
-local Unsploit
+local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Unsploit.lua"))()
 
 local Games = {
 	[3956818381] = {
@@ -19,7 +19,6 @@ local Games = {
 if game.PlaceId == Games[1] then
 	getgenv().Autoclick = false
 
-	Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Unsploit.lua"))()
 	local name = "Unsploit - " .. game:GetFullName()
 	local Window = Unsploit.new(name, "Dark")
 	local version = {major = 0; minor = 1; subminor = 12; build = 27;}

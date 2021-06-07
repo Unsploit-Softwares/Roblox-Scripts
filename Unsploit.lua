@@ -451,7 +451,6 @@ Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(func
 			Functions.UnsploitExitConnection:Disconnect()
 		end
 	end
-	Library.Notification.Notify("Unsploit UI Library", "Unsploit UI has exited!")
 end)
 
 return Library, Utility

@@ -1,8 +1,8 @@
 local gameId = game.PlaceId
 local Games = {
 	3956818381;
-	155615604;
 	137877687;
+	155615604;
 }
 
 local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Unsploit.lua"))()
@@ -107,4 +107,6 @@ elseif gameId == Games[2] then
 			end
 		end
 	end)
+else
+	Unsploit.Notification.Notify("Unsploit Game Detection", "Unsploit could not identify " .. game.Name .. " in database.", "rbxassetid://5107154082")
 end

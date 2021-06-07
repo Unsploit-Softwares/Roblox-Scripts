@@ -20,7 +20,7 @@ tabs.Autofarm = Window:AddTab("Autofarm")
 tabs.Settings = Window:AddTab("Settings")
 
 tabs.Autofarm:AddToggle("Autoclick", function(state)
-	_G.AutoClick = state
+	_G.AutoClick = not state
 
 	print(state)
 end)
@@ -32,7 +32,7 @@ tabs.Settings:AddLabel("Copyright(c) 2021 Unsploit Softwares.")
 
 
 functions.Autofarm._autoClick = function()
-	while _G.AutoClick do
+	while _G.AutoClick == true do
 		local A_1 = "swingKatana"
 		local Event = game:GetService("Players").LocalPlayer.ninjaEvent
 		Event:FireServer(A_1)

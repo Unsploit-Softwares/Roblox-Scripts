@@ -8,12 +8,12 @@ local version = {major = 0; minor = 1; subminor = 12; build = 27;}
 local Window = Unsploit.new(name, "Dark")
 
 local tabs = {}
-local functions = {}
+local functions = {
+	General = {};
+	Autofarm = {};
+	Settings = {};
+}
 local connections = {}
-
-functions.General = {}
-functions.Autofarm = {}
-functions.Settings = {}
 
 tabs.General = Window:AddTab("General")
 tabs.Autofarm = Window:AddTab("Autofarm")

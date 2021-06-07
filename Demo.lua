@@ -9,7 +9,7 @@ local Games = {
 if game.PlaceId == Games[1] then
 	getgenv().Autoclick = false
 
-	local name = "Unsploit - " .. game:GetFullName()
+	local name = "Unsploit - Ninja Legends"
 	local version = {major = 0; minor = 1; subminor = 12; build = 27;}
 	
 	Unsploit.Notification.Notify("Unsploit Game Detection", "Unsploit has detected " .. game.Name .. "! Loading UI", "rbxassetid://4914902889")
@@ -30,6 +30,13 @@ if game.PlaceId == Games[1] then
 	tabs.Settings = Window:AddTab("Settings")
 	tabs.GameVersion = Window:AddLabel(string.format("Game Version: v%s",  game.PlaceVersion))
 	tabs.MenuVersion = Window:AddLabel(string.format("Menu Version: v%s.%s.%s", version.major, version.minor, version.subminor))
+
+	tabs.General:AddSlider("Walkspeed", function(value)
+		variables.walkspeed = value
+	end, {
+		min = 16;
+		max = 24;
+	})
 
 	tabs.Autofarm:AddToggle("Autoclick", function(state)
 		getgenv().Autoclick = state
@@ -67,7 +74,11 @@ if game.PlaceId == Games[1] then
 	end
 
 	game:GetService("RunService").RenderStepped:Connect(function()
-		
+		if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+			if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed == 0 then
+				game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = variables.walkspeed;
+			end
+		end
 	end)
 
 	connections.guiQuitConnection = game:GetService("CoreGui").ChildRemoved:Connect(function(child)

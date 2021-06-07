@@ -90,7 +90,7 @@ if game.PlaceId == Games[game.PlaceId] then
 			end
 		end
 	end)
-elseif game.PlaceId == Games[2] then
+elseif game.PlaceId == Games[game.GameId] then
 	local tabs = {}
 	local variables = {}
 	local functions = {

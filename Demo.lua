@@ -1,15 +1,19 @@
 local Games = {
-	3956818381;
+	[3956818381] = {
+		Title = "Ninja Legends 2";
+		JobId = game.JobId;
+
+	};
 	137877687;
 	155615604;
 }
-
 
 if game.PlaceId == Games[1] then
 	getgenv().Autoclick = false
 	
 	local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Unsploit.lua"))()
-	local name = "Unsploit - " .. game.Name
+
+	local name = "Unsploit - " .. game:GetFullName()
 	local Window = Unsploit.new(name, "Dark")
 	local version = {major = 0; minor = 1; subminor = 12; build = 27;}
 
@@ -35,10 +39,25 @@ if game.PlaceId == Games[1] then
 		functions.Autofarm._autoClick();
 	end)
 
-	tabs.Settings:AddLabel("Developers")
-	tabs.Settings:AddLabel("UI Library - Unsploit")
-	tabs.Settings:AddLabel("Unsploit Hub - IHoldOnI & Unsploit")
-	tabs.Settings:AddLabel("Copyright(c) 2021 Unsploit Softwares.")
+	local devTitle = tabs.Settings:AddLabel("Developers")
+	local dev1 = tabs.Settings:AddLabel("UI Library - Unsploit")
+	local dev2 tabs.Settings:AddLabel("Unsploit Hub - IHoldOnI & Unsploit")
+	local trademrk = tabs.Settings:AddLabel("Copyright(c) 2021 Unsploit Softwares.")
+
+	devTitle.BackgroundTransparency = 0;
+	devTitle.BackgroundColor3 = Unsploit.Themes.Dark.Button
+
+	dev1.BackgroundTransparency = 0;
+	dev1.BackgroundColor3 = Unsploit.Themes.Dark.Button
+
+	dev2.BackgroundTransparency = 0;
+	dev2.BackgroundColor3 = Unsploit.Themes.Dark.Button
+
+	dev2.BackgroundTransparency = 0;
+	dev2.BackgroundColor3 = Unsploit.Themes.Dark.Button
+
+	trademrk.BackgroundTransparency = 0;
+	trademrk.BackgroundColor3 = Unsploit.Themes.Dark.Button
 
 
 	functions.Autofarm._autoClick = function()

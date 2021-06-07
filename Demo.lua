@@ -118,7 +118,7 @@ elseif game.PlaceId == Games[game.GameId] then
 
 	connections.renderStepped = game:GetService("RunService").RenderStepped:Connect(function()
 		if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
-			if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = 0 then
+			if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed == 0 then
 				game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = variables.walkspeed;
 			end
 		end

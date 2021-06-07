@@ -44,7 +44,7 @@ local toHSV = Color3.toHSV
 
 local Library: Unsploit = {
 	Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))();
-	Draggify = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/UI-Librarys/main/For%20UI%20makers/Drag"))();
+	Draggify = Modules("Draggify");
 	Version = {
 		maj = 0,
 		min = 1,
@@ -548,11 +548,25 @@ Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(func
 	if child.Name == Library._instance.Name then
 		if (Functions.UnsploitLeaving) then
 			child:Destroy()
-			Functions.UnsploitLeaving:Disconnect();
-			Functions.TabBtnConnection:Disconnect();
-			Functions.ToggleBtnConnection:Disconnect();
-			Functions.ButtonOptionConnection:Disconnect();
-			Functions.UnsploitExitConnection:Disconnect();
+			if Functions.UnsploitLeaving then
+				Functions.UnsploitLeaving:Disconnect();
+			end
+			if Functions.TabBtnConnection then
+				Functions.TabBtnConnection:Disconnect();
+			end
+			if Functions.TabBtnConnection then
+				Functions.ToggleBtnConnection:Disconnect();
+			end
+			if Functions.TabBtnConnection then
+				Functions.ButtonOptionConnection:Disconnect();
+			end
+			if Functions.TabBtnConnection then
+				Functions.UnsploitExitConnection:Disconnect();
+			end
+			if Functions.ReleaseConnection and Functions.MoveConnection then
+				Functions.ReleaseConnection:Disconnect();
+				Functions.MoveConnection:Disconnect();
+			end
 		end
 	end
 end)

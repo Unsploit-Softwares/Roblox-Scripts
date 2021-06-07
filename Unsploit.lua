@@ -44,7 +44,7 @@ local toHSV = Color3.toHSV
 
 local Library: Unsploit = {
 	Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))();
-	Draggify = Modules:Load("Draggify");
+	Draggify = Modules:Load("Draggify")();
 	Version = {
 		maj = 0,
 		min = 1,

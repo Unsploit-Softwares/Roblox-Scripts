@@ -487,6 +487,7 @@ function Library.new(name, theme)
 			sliderImg.BackgroundColor3 = Color3.fromRGB(220, 20, 20)
 			sliderImg.BorderSizePixel = 0
 			sliderImg.Selectable = false
+			sliderImg.Text = ""
 			sliderImg.Size = UDim2.new(0.100000001, 0, 1, 0)
 
 			UICorner_2.CornerRadius = UDim.new(0, 6)

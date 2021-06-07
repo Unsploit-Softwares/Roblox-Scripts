@@ -44,3 +44,12 @@ end
 game:GetService("RunService").RenderStepped:Connect(function()
 	
 end)
+
+connections.guiQuitConnection = game:GetService("CoreGui").ChildRemoved:Connect(function(child)
+	if child.Name == name then
+		if (connections.guiQuitConnection) then
+			getgenv().Autoclick = false;
+			connections.guiQuitConnection:Disconnect()
+		end
+	end
+end)

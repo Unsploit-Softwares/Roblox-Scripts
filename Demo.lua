@@ -1,4 +1,3 @@
-local gameId = game.PlaceId
 local Games = {
 	3956818381;
 	137877687;
@@ -9,7 +8,7 @@ local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsp
 local name = "Unsploit - " .. game.Name
 local Window = Unsploit.new(name, "Dark")
 
-if gameId == Games[1] then
+if game.PlaceId == Games[1] then
 	getgenv().Autoclick = false
 
 	local version = {major = 0; minor = 1; subminor = 12; build = 27;}
@@ -63,7 +62,7 @@ if gameId == Games[1] then
 			end
 		end
 	end)
-elseif gameId == Games[2] then
+elseif game.PlaceId == Games[2] then
 	local tabs = {}
 	local variables = {}
 	local functions = {

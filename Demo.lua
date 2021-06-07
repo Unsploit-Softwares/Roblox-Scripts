@@ -147,8 +147,3 @@ elseif game.PlaceId == Games[2] then
 else
 	Unsploit.Notification.Notify("Unsploit Game Detection", "Unsploit could not identify " .. game.Name .. " in database.", "rbxassetid://5107154082")
 end
-
-if game:GetService("CoreGui"):FindFirstChild(name) then
-	Unsploit.Notification.Notify ("Unsploit", "Unsploit disconnected!", "")
-	game:GetService("CoreGui"):FindFirstChild(name):Destroy()
-end

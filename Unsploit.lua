@@ -458,8 +458,6 @@ function Library.new(name, theme)
 			Slider.BorderSizePixel = 0
 			Slider.Selectable = false
 			Slider.Size = UDim2.new(0, 519, 0, 34)
-			Slider.Text = ""
-			Slider.TextColor3 = Color3.fromRGB(255, 255, 255)
 
 			OptionText.Name = "OptionText"
 			OptionText.Parent = Slider
@@ -467,7 +465,7 @@ function Library.new(name, theme)
 			OptionText.BackgroundTransparency = 1.000
 			OptionText.Size = UDim2.new(0.300000012, 0, 1, 0)
 			OptionText.Font = Enum.Font.SourceSans
-			OptionText.Text = " Slider Option"
+			OptionText.Text = "Slider Option"
 			OptionText.TextColor3 = Color3.fromRGB(255, 255, 255)
 			OptionText.TextSize = 15.000
 			OptionText.TextXAlignment = Enum.TextXAlignment.Left

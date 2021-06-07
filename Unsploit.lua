@@ -43,12 +43,13 @@ local toHSV = Color3.toHSV
 ]]
 
 local Library: Unsploit = {
-	Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))(),
+	Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))();
+	Draggify = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/UI-Librarys/main/For%20UI%20makers/Drag"))();
 	Version = {
 		maj = 0,
 		min = 1,
 		submin = 12
-	}
+	};
 }
 
 local Utility: Utility = {
@@ -178,6 +179,8 @@ function Library.new(name, theme)
 
 	PageContainer.Name = "PageContainer"
 	PageContainer.Parent = Main
+
+	Library.Draggify(Main)
 
 	Functions.UnsploitExitConnection = exitBtn.MouseButton1Click:Connect(function()
 		if (Library._instance) then

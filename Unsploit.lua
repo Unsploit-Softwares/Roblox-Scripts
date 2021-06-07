@@ -432,6 +432,7 @@ function Library.new(name, theme)
 		end
 
 		function Options:AddSlider(text: string, callback, options: table)
+			text = text
 			options.min = options.min or 0
 			options.max = options.max or 100
 
@@ -465,8 +466,8 @@ function Library.new(name, theme)
 			OptionText.BackgroundTransparency = 1.000
 			OptionText.Size = UDim2.new(0.300000012, 0, 1, 0)
 			OptionText.Font = Enum.Font.SourceSans
-			OptionText.Text = "Slider Option"
-			OptionText.TextColor3 = Color3.fromRGB(255, 255, 255)
+			OptionText.Text = text
+			OptionText.TextColor3 = chosenTheme.TextColor
 			OptionText.TextSize = 15.000
 			OptionText.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -482,7 +483,7 @@ function Library.new(name, theme)
 			sliderImg.Name = "sliderImg"
 			sliderImg.Parent = SliderFrame
 			sliderImg.Active = false
-			sliderImg.BackgroundColor3 = Color3.fromRGB(220, 20, 20)
+			sliderImg.BackgroundColor3 = chosenTheme.Button
 			sliderImg.BorderSizePixel = 0
 			sliderImg.Selectable = false
 			sliderImg.Text = ""
@@ -499,7 +500,7 @@ function Library.new(name, theme)
 			valueText.Size = UDim2.new(0.179670483, 0, 0.5, 0)
 			valueText.Font = Enum.Font.Roboto
 			valueText.Text = ""
-			valueText.TextColor3 = Color3.fromRGB(255, 255, 255)
+			valueText.TextColor3 = chosenTheme.TextColor
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Right
 

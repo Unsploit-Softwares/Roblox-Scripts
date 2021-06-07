@@ -23,11 +23,7 @@ tabs.Autofarm:AddToggle("Autoclick", function(state)
 	getgenv().Autoclick = state
 	functions.Autofarm._autoClick();
 
-	if getgenv().Autoclick == true then
-		Unsploit.Notification.Notify("Autoclick Engaged", "Autoclick has started!", "")
-	else
-		Unsploit.Notification.Notify("Autoclick Disengaged", "Autoclick has stopped!", "")
-	end
+	Unsploit.Notification.Notify(state and "Autoclick Engaged" or "Autoclick Disengaged", state and "Autoclick has started!" or "Autoclick has stopped!", "")
 end)
 
 tabs.Settings:AddLabel("Developers")

@@ -4,15 +4,17 @@ local Games = {
 	155615604;
 }
 
-local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Unsploit.lua"))()
-local name = "Unsploit - " .. game.Name
-local Window = Unsploit.new(name, "Dark")
 
 if game.PlaceId == Games[1] then
 	getgenv().Autoclick = false
-
+	
+	local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Unsploit.lua"))()
+	local name = "Unsploit - " .. game.Name
+	local Window = Unsploit.new(name, "Dark")
 	local version = {major = 0; minor = 1; subminor = 12; build = 27;}
 
+	Unsploit.Notification.Notify("Unsploit Game Detection", "Unsploit has detected " .. game.Name .. "! Loading UI", "rbxassetid://4914902889")
+	
 	local variables = {}
 	local tabs = {}
 	local functions = {
@@ -21,7 +23,7 @@ if game.PlaceId == Games[1] then
 		Settings = {};
 	}
 	local connections = {}
-
+	
 	tabs.General = Window:AddTab("General")
 	tabs.Autofarm = Window:AddTab("Autofarm")
 	tabs.Settings = Window:AddTab("Settings")

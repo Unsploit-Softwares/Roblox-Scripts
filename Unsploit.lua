@@ -450,8 +450,8 @@ function Library.new(name, theme)
 			local SliderButton = Instance.new("TextButton")
 
 			Slider.Name = "Slider"
-			Slider.Parent = game.StarterGui.Unsploit.Frame["Container2"]
-			Slider.BackgroundColor3 = Color3.fromRGB(194, 57, 57)
+			Slider.Parent = Container2
+			Slider.BackgroundColor3 = chosenTheme.Button
 			Slider.BorderColor3 = Color3.fromRGB(27, 42, 53)
 			Slider.BorderSizePixel = 0
 			Slider.Size = UDim2.new(0, 519, 0, 34)
@@ -463,8 +463,8 @@ function Library.new(name, theme)
 			OptionText.Position = UDim2.new(0.0192307699, 0, 0, 0)
 			OptionText.Size = UDim2.new(0.440769225, 0, 1, 0)
 			OptionText.Font = Enum.Font.SourceSans
-			OptionText.Text = "Slider Option"
-			OptionText.TextColor3 = Color3.fromRGB(255, 255, 255)
+			OptionText.Text = text
+			OptionText.TextColor3 = chosenTheme.TextColor
 			OptionText.TextSize = 15.000
 			OptionText.TextXAlignment = Enum.TextXAlignment.Left
 

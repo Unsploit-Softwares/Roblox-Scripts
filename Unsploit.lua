@@ -232,6 +232,9 @@ function Library.new(name, theme)
 		-- Tabs Stuff
 		local TabBtn = Instance.new("TextButton")
 		local UICorner = Instance.new("UICorner")
+		local Container2 = Instance.new("ScrollingFrame")
+		local UIGridLayout = Instance.new("UIGridLayout")
+		local UIPadding_2 = Instance.new("UIPadding")
 
 		TabBtn.Name = "TabBtn"
 		TabBtn.BackgroundColor3 = chosenTheme.Button
@@ -244,11 +247,6 @@ function Library.new(name, theme)
 
 		UICorner.CornerRadius = UDim.new(0, 5)
 		UICorner.Parent = TabBtn
-		
-		-- Pages Stuff
-		local Container2 = Instance.new("ScrollingFrame")
-		local UIGridLayout = Instance.new("UIGridLayout")
-		local UIPadding_2 = Instance.new("UIPadding")
 
 		Container2.Name = text
 		Container2.Parent = PageContainer

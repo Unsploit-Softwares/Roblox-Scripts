@@ -516,9 +516,10 @@ function Library.new(name, theme)
 				sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 170), 1, 0)
 				Functions.MoveConnection = mouse.Move:Connect(function()
 					val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsolutePosition.X) + tonumber(options.min))
+					valueText.Text = val
+
 					pcall(function()
 						callback(val)
-						valueText.Text = val
 					end)
 					sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 170), 1, 0)
 				end)

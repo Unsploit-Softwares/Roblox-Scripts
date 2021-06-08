@@ -509,26 +509,26 @@ function Library.new(name, theme)
 			SliderButton.TextSize = 14.000
 
 			SliderButton.MouseButton1Down:Connect(function()
-				val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderInner.AbsolutePosition.X) + tonumber(options.min)) or 0
+				val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsolutePosition.X) + tonumber(options.min)) or 0
 				pcall(function()
 					callback(val)
 				end)
-				sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 127), 1, 0)
+				sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 170), 1, 0)
 				Functions.MoveConnection = mouse.Move:Connect(function()
-					val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderInner.AbsolutePosition.X) + tonumber(options.min))
+					val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsolutePosition.X) + tonumber(options.min))
 					pcall(function()
 						callback(val)
 						valueText.Text = val
 					end)
-					sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 127), 1, 0)
+					sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 170), 1, 0)
 				end)
 				Functions.ReleaseConnection = uis.InputEnded:Connect(function(Mouse)
 					if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-						val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderInner.AbsolutePosition.X) + tonumber(options.min))
+						val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsolutePosition.X) + tonumber(options.min))
 						pcall(function()
 							callback(val)
 						end)
-						sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 127), 1, 0)
+						sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 170), 1, 0)
 						Functions.ReleaseConnection:Disconnect()
 						Functions.MoveConnection:Disconnect()
 					end

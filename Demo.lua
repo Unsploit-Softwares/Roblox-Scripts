@@ -88,7 +88,7 @@ if game.PlaceId == Games[1] then
 		end
 	end
 
-	game:GetService("RunService").RenderStepped:Connect(function()
+	connections.renderStepped = game:GetService("RunService").RenderStepped:Connect(function()
 		if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
 			if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed == 0 then
 				game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = variables.walkspeed;
@@ -103,7 +103,11 @@ if game.PlaceId == Games[1] then
 				getgenv().Autoclick = false;
 
 				Unsploit.Notification.Notify ("Unsploit", "Unsploit disconnected!", "")
+				
 				variables.walkspeed = 16;
+				variables.jumppower = 50;
+				
+				connections.renderStepped:Disconnect()
 				connections.guiQuitConnection:Disconnect()
 			end
 		end

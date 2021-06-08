@@ -514,7 +514,7 @@ function Library.new(name, theme)
 					pcall(function()
 						callback(val)
 					end)
-					Slider.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
+					sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
 				end)
 				Functions.ReleaseConnection = uis.InputEnded:Connect(function(Mouse)
 					if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then

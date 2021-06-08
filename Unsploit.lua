@@ -518,7 +518,7 @@ function Library.new(name, theme)
 					val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderInner.AbsolutePosition.X) + tonumber(options.min))
 					pcall(function()
 						callback(val)
-						valueText.Text = string.format("%s / %s", val, options.max)
+						valueText.Text = val
 					end)
 					sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 127), 1, 0)
 				end)

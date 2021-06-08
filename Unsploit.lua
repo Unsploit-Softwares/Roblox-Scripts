@@ -133,16 +133,16 @@ function Library.new(name, theme)
 	theme = theme or "Default"
 	Library.Title = name or "Unsploit"
 
-	local chosenTheme
+	local Library.chosenTheme
 
 	if theme == "Default" then
-		chosenTheme = Library.Themes.Default
+		Library.chosenTheme = Library.Themes.Default
 	elseif theme == "Light" then
-		chosenTheme = Library.Themes.Light
+		Library.chosenTheme = Library.Themes.Light
 	elseif theme == "Dark" then
-		chosenTheme = Library.Themes.Dark
+		Library.chosenTheme = Library.Themes.Dark
 	elseif theme == "Unsploit" then
-		chosenTheme = Library.Themes.Unsploit
+		Library.chosenTheme = Library.Themes.Unsploit
 	end
 
 	-- Core Stuff
@@ -163,7 +163,7 @@ function Library.new(name, theme)
 	Main.Name = "Main"
 	Main.Parent = Library._instance
 	Main.AnchorPoint = Vector2.new(0.5, 0.5)
-	Main.BackgroundColor3 = chosenTheme.Accent
+	Main.BackgroundColor3 = Library.chosenTheme.Accent
 	Main.BorderSizePixel = 0
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 	Main.Size = UDim2.new(0, 500, 0, 300)
@@ -172,7 +172,7 @@ function Library.new(name, theme)
 
 	TopBar.Name = "TopBar"
 	TopBar.Parent = Main
-	TopBar.BackgroundColor3 = chosenTheme.Background
+	TopBar.BackgroundColor3 = Library.chosenTheme.Background
 	TopBar.BorderSizePixel = 0
 	TopBar.Position = UDim2.new(0, 0, 0, -19)
 	TopBar.Size = UDim2.new(1, 0, 0.0649999976, 0)
@@ -203,7 +203,7 @@ function Library.new(name, theme)
 
 	TabContainer.Name = "TabContainer"
 	TabContainer.Parent = Main
-	TabContainer.BackgroundColor3 = chosenTheme.Background
+	TabContainer.BackgroundColor3 = Library.chosenTheme.Background
 	TabContainer.BorderSizePixel = 0
 	TabContainer.LayoutOrder = 1
 	TabContainer.Size = UDim2.new(0, 124, 0, 300)
@@ -237,10 +237,10 @@ function Library.new(name, theme)
 		local UIPadding_2 = Instance.new("UIPadding")
 
 		TabBtn.Name = "TabBtn"
-		TabBtn.BackgroundColor3 = chosenTheme.Button
+		TabBtn.BackgroundColor3 = Library.chosenTheme.Button
 		TabBtn.Size = UDim2.new(0.899999976, 0, 0.100000001, 0)
 		TabBtn.Font = Enum.Font.SourceSans
-		TabBtn.TextColor3 = chosenTheme.TextColor
+		TabBtn.TextColor3 = Library.chosenTheme.TextColor
 		TabBtn.TextSize = 14.000
 		TabBtn.Text = text or "Tab"
 		TabBtn.Parent = TabContainer
@@ -273,12 +273,12 @@ function Library.new(name, theme)
 			if v.Name == Utility.Pages[1] then
 				v.Visible = true
 				game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-					BackgroundColor3 = chosenTheme.Button
+					BackgroundColor3 = Library.chosenTheme.Button
 				}):Play()
 			else
 				v.Visible = false
 				game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-					BackgroundColor3 = chosenTheme.ButtonActive
+					BackgroundColor3 = Library.chosenTheme.ButtonActive
 				}):Play()
 			end
 		end
@@ -295,13 +295,13 @@ function Library.new(name, theme)
 			for i,v in next, TabContainer:GetChildren() do
 				if v:IsA("TextButton") then
 					game.TweenService:Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-						BackgroundColor3 = chosenTheme.ButtonActive
+						BackgroundColor3 = Library.chosenTheme.ButtonActive
 					}):Play()
 				end
 			end
 
 			game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-				BackgroundColor3 = chosenTheme.Button
+				BackgroundColor3 = Library.chosenTheme.Button
 			}):Play()
 		end)
 
@@ -316,13 +316,13 @@ function Library.new(name, theme)
 
 			Button.Name = "Button"
 			Button.Parent = Container2
-			Button.BackgroundColor3 = chosenTheme.Button
+			Button.BackgroundColor3 = Library.chosenTheme.Button
 			Button.BorderSizePixel = 0
 			Button.Position = UDim2.new(0.782999992, 0, 0.0599999987, 0)
 			Button.Size = UDim2.new(0.200000003, 0, 0.899999976, 0)
 			Button.Font = Enum.Font.SourceSans
 			Button.Text = text or "Button"
-			Button.TextColor3 = chosenTheme.TextColor
+			Button.TextColor3 = Library.chosenTheme.TextColor
 			Button.TextSize = 14.000
 			Button.TextXAlignment = Enum.TextXAlignment.Left
 			Button.AutoButtonColor = false
@@ -350,7 +350,7 @@ function Library.new(name, theme)
 			Label.BackgroundTransparency = 1.000
 			Label.Size = UDim2.new(0, 200, 0, 50)
 			Label.Font = Enum.Font.SourceSans
-			Label.TextColor3 = chosenTheme.TextColor
+			Label.TextColor3 = Library.chosenTheme.TextColor
 			Label.TextSize = 14.000
 			Label.Text = text or "Label"
 			return Label
@@ -378,7 +378,7 @@ function Library.new(name, theme)
 
 			Label.Name = "Label"
 			Label.Parent = Toggle
-			Label.BackgroundColor3 = chosenTheme.TextColor
+			Label.BackgroundColor3 = Library.chosenTheme.TextColor
 			Label.BackgroundTransparency = 1.000
 			Label.BorderSizePixel = 0
 			Label.Size = UDim2.new(0.76296705, 0, 1, 0)
@@ -396,7 +396,7 @@ function Library.new(name, theme)
 
 			Bool.Name = "Bool"
 			Bool.Parent = ToggleFrame
-			Bool.BackgroundColor3 = chosenTheme.Button
+			Bool.BackgroundColor3 = Library.chosenTheme.Button
 			Bool.Size = UDim2.new(0.5, 0, 1, 0)
 
 			UICorner.CornerRadius = UDim.new(0, 6)
@@ -451,7 +451,7 @@ function Library.new(name, theme)
 
 			Slider.Name = "Slider"
 			Slider.Parent = Container2
-			Slider.BackgroundColor3 = chosenTheme.Button
+			Slider.BackgroundColor3 = Library.chosenTheme.Button
 			Slider.BorderColor3 = Color3.fromRGB(27, 42, 53)
 			Slider.BorderSizePixel = 0
 			Slider.Size = UDim2.new(0, 519, 0, 34)
@@ -464,7 +464,7 @@ function Library.new(name, theme)
 			OptionText.Size = UDim2.new(0.440769225, 0, 1, 0)
 			OptionText.Font = Enum.Font.SourceSans
 			OptionText.Text = text
-			OptionText.TextColor3 = chosenTheme.TextColor
+			OptionText.TextColor3 = Library.chosenTheme.TextColor
 			OptionText.TextSize = 15.000
 			OptionText.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -550,7 +550,7 @@ function Library.new(name, theme)
 		Label.Size = UDim2.new(0.899999976, 0, 0.100000001, 0)
 		Label.Font = Enum.Font.SourceSans
 		Label.Text = text or "Label"
-		Label.TextColor3 = chosenTheme.TextColor
+		Label.TextColor3 = Library.chosenTheme.TextColor
 		Label.TextSize = 14.000
 		return Label
 	end

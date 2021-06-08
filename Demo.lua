@@ -57,19 +57,19 @@ if game.PlaceId == Games[1] then
 	local trademrk = tabs.Credits:AddLabel("Copyright(c) 2021 Unsploit Softwares.")
 
 	devTitle.BackgroundTransparency = 0;
-	devTitle.BackgroundColor3 = Unsploit.Themes.Dark.Button
+	devTitle.BackgroundColor3 = Unsploit.chosenTheme.Button
 
 	dev1.BackgroundTransparency = 0;
-	dev1.BackgroundColor3 = Unsploit.Themes.Dark.Button
+	dev1.BackgroundColor3 = Unsploit.chosenTheme.Button
 
 	dev2.BackgroundTransparency = 0;
-	dev2.BackgroundColor3 = Unsploit.Themes.Dark.Button
+	dev2.BackgroundColor3 = Unsploit.chosenTheme.Button
 
 	dev2.BackgroundTransparency = 0;
-	dev2.BackgroundColor3 = Unsploit.Themes.Dark.Button
+	dev2.BackgroundColor3 = Unsploit.chosenTheme.Button
 
 	trademrk.BackgroundTransparency = 0;
-	trademrk.BackgroundColor3 = Unsploit.Themes.Dark.Button
+	trademrk.BackgroundColor3 = Unsploit.chosenTheme.Button
 
 
 	functions.Autofarm._autoClick = function()

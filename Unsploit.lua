@@ -444,85 +444,92 @@ function Library.new(name, theme)
 			local OptionText = Instance.new("TextLabel")
 			local SliderFrame = Instance.new("Frame")
 			local UICorner = Instance.new("UICorner")
-			local sliderImg = Instance.new("TextButton")
+			local sliderInner = Instance.new("Frame")
 			local UICorner_2 = Instance.new("UICorner")
 			local valueText = Instance.new("TextLabel")
+			local SliderButton = Instance.new("TextButton")
 
 			Slider.Name = "Slider"
-			Slider.Parent = Container2
-			Slider.Active = false
-			Slider.BackgroundColor3 = Color3.fromRGB(110, 110, 110)
-			Slider.BackgroundTransparency = 1.000
+			Slider.Parent = game.StarterGui.Unsploit.Frame["Container2"]
+			Slider.BackgroundColor3 = Color3.fromRGB(194, 57, 57)
 			Slider.BorderColor3 = Color3.fromRGB(27, 42, 53)
 			Slider.BorderSizePixel = 0
-			Slider.Selectable = false
 			Slider.Size = UDim2.new(0, 519, 0, 34)
 
 			OptionText.Name = "OptionText"
 			OptionText.Parent = Slider
 			OptionText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			OptionText.BackgroundTransparency = 1.000
-			OptionText.Size = UDim2.new(0.300000012, 0, 1, 0)
+			OptionText.Position = UDim2.new(0.0192307699, 0, 0, 0)
+			OptionText.Size = UDim2.new(0.440769225, 0, 1, 0)
 			OptionText.Font = Enum.Font.SourceSans
-			OptionText.Text = text
-			OptionText.TextColor3 = chosenTheme.TextColor
+			OptionText.Text = "Slider Option"
+			OptionText.TextColor3 = Color3.fromRGB(255, 255, 255)
 			OptionText.TextSize = 15.000
 			OptionText.TextXAlignment = Enum.TextXAlignment.Left
 
 			SliderFrame.Name = "SliderFrame"
 			SliderFrame.Parent = Slider
-			SliderFrame.BackgroundColor3 = Color3.fromRGB(112, 112, 112)
-			SliderFrame.Position = UDim2.new(0.600000024, 0, 0.349999994, 2)
-			SliderFrame.Size = UDim2.new(0.349999994, 0, 0.25, 0)
+			SliderFrame.BackgroundColor3 = Color3.fromRGB(186, 186, 186)
+			SliderFrame.Position = UDim2.new(0.481318712, 0, 0.508474588, 0)
+			SliderFrame.Size = UDim2.new(0, 169, 0, 12)
 
-			UICorner.CornerRadius = UDim.new(0, 6)
+			UICorner.CornerRadius = UDim.new(0, 4)
 			UICorner.Parent = SliderFrame
 
-			sliderImg.Name = "sliderImg"
-			sliderImg.Parent = SliderFrame
-			sliderImg.Active = false
-			sliderImg.BackgroundColor3 = chosenTheme.Button
-			sliderImg.BorderSizePixel = 0
-			sliderImg.Selectable = false
-			sliderImg.Text = ""
-			sliderImg.Size = UDim2.new(0.100000001, 0, 1, 0)
+			sliderInner.Name = "sliderInner"
+			sliderInner.Parent = SliderFrame
+			sliderInner.BackgroundColor3 = Color3.fromRGB(220, 20, 20)
+			sliderInner.BorderSizePixel = 0
+			sliderInner.Size = UDim2.new(0, 0, 1, 0)
 
-			UICorner_2.CornerRadius = UDim.new(0, 6)
-			UICorner_2.Parent = sliderImg
+			UICorner_2.CornerRadius = UDim.new(0, 4)
+			UICorner_2.Parent = sliderInner
 
 			valueText.Name = "valueText"
 			valueText.Parent = Slider
 			valueText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			valueText.BackgroundTransparency = 1.000
-			valueText.Position = UDim2.new(0.5, 95, 0.25, -10)
-			valueText.Size = UDim2.new(0.179670483, 0, 0.5, 0)
+			valueText.Position = UDim2.new(0.501977921, 95, 0.338983059, -10)
+			valueText.Size = UDim2.new(0.179890037, 0, 0.508474529, 0)
 			valueText.Font = Enum.Font.Roboto
-			valueText.Text = options.min .. " / " .. options.max
-			valueText.TextColor3 = chosenTheme.TextColor
+			valueText.Text = "0"
+			valueText.TextColor3 = Color3.fromRGB(255, 255, 255)
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Right
 
-			sliderImg.MouseButton1Down:Connect(function()
-				val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderImg.AbsolutePosition.X) + tonumber(options.min)) or 0
+			SliderButton.Name = "SliderButton"
+			SliderButton.Parent = Slider
+			SliderButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			SliderButton.BackgroundTransparency = 1.000
+			SliderButton.Position = UDim2.new(0.480999947, 0, 0.507999718, 0)
+			SliderButton.Size = UDim2.new(0, 168, 0, 14)
+			SliderButton.Font = Enum.Font.SourceSans
+			SliderButton.Text = ""
+			SliderButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+			SliderButton.TextSize = 14.000
+
+			SliderButton.MouseButton1Down:Connect(function()
+				val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderInner.AbsolutePosition.X) + tonumber(options.min)) or 0
 				pcall(function()
 					callback(val)
 				end)
-				sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
+				sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 127), 1, 0)
 				Functions.MoveConnection = mouse.Move:Connect(function()
-					valueText.Text = string.format("%s / %s", val, options.max)
-					val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
+					val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderInner.AbsolutePosition.X) + tonumber(options.min))
 					pcall(function()
 						callback(val)
+						valueText.Text = string.format("%s / %s", val, options.max)
 					end)
-					sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
+					sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 127), 1, 0)
 				end)
 				Functions.ReleaseConnection = uis.InputEnded:Connect(function(Mouse)
 					if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-						val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
+						val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderInner.AbsolutePosition.X) + tonumber(options.min))
 						pcall(function()
 							callback(val)
 						end)
-						sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
+						sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 127), 1, 0)
 						Functions.ReleaseConnection:Disconnect()
 						Functions.MoveConnection:Disconnect()
 					end

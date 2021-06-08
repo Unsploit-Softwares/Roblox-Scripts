@@ -34,7 +34,11 @@ if game.PlaceId == Games[1] then
 	tabs.MenuVersion = Window:AddLabel(string.format("Menu Version: v%s.%s.%s", version.major, version.minor, version.subminor))
 
 	tabs.General:AddSlider("Walkspeed", function(value)
-		variables.walkspeed = value
+		if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+			if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed == 0 then
+				game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = value
+			end
+		end
 	end, {
 		min = 16;
 		max = 24;

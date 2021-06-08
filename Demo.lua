@@ -34,9 +34,7 @@ if game.PlaceId == Games[1] then
 	tabs.MenuVersion = Window:AddLabel(string.format("Menu Version: v%s.%s.%s", version.major, version.minor, version.subminor))
 
 	tabs.General:AddSlider("Walkspeed", function(value)
-		if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
-			game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = value
-		end
+		variables.walkspeed = value
 	end, {
 		min = 16;
 		max = 24;
@@ -97,6 +95,7 @@ if game.PlaceId == Games[1] then
 				getgenv().Autoclick = false;
 
 				Unsploit.Notification.Notify ("Unsploit", "Unsploit disconnected!", "")
+				variables.walkspeed = 16;
 				connections.guiQuitConnection:Disconnect()
 			end
 		end

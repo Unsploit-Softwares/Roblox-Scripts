@@ -87,6 +87,7 @@ local Library: Unsploit = {
 		min = 1,
 		submin = 12
 	};
+	chosenTheme = ""
 }
 
 local Utility: Utility = {
@@ -132,8 +133,6 @@ Library.Themes = {
 function Library.new(name, theme)
 	theme = theme or "Default"
 	Library.Title = name or "Unsploit"
-
-	local Library.chosenTheme
 
 	if theme == "Default" then
 		Library.chosenTheme = Library.Themes.Default

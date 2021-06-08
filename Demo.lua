@@ -35,9 +35,7 @@ if game.PlaceId == Games[1] then
 
 	tabs.General:AddSlider("Walkspeed", function(value)
 		if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
-			if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed == 0 then
-				game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = value
-			end
+			game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = value
 		end
 	end, {
 		min = 16;

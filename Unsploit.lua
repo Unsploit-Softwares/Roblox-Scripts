@@ -505,31 +505,31 @@ function Library.new(name, theme)
 			valueText.TextXAlignment = Enum.TextXAlignment.Right
 
 			sliderImg.MouseButton1Down:Connect(function()
-			val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderImg.AbsolutePosition.X) + tonumber(options.min)) or 0
-			pcall(function()
-				callback(val)
-			end)
-			sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
-			Functions.MoveConnection = mouse.Move:Connect(function()
-				valueText.Text = string.format("%s / %s", val, options.max)
-				val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
+				val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderImg.AbsolutePosition.X) + tonumber(options.min)) or 0
 				pcall(function()
 					callback(val)
 				end)
-				Slider.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
-			end)
-			Functions.ReleaseConnection = uis.InputEnded:Connect(function(Mouse)
-				if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+				sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
+				Functions.MoveConnection = mouse.Move:Connect(function()
+					valueText.Text = string.format("%s / %s", val, options.max)
 					val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
 					pcall(function()
 						callback(val)
 					end)
-					sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
-					Functions.ReleaseConnection:Disconnect()
-					Functions.MoveConnection:Disconnect()
-				end
+					Slider.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
+				end)
+				Functions.ReleaseConnection = uis.InputEnded:Connect(function(Mouse)
+					if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+						val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 127) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
+						pcall(function()
+							callback(val)
+						end)
+						sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 127), 1, 0)
+						Functions.ReleaseConnection:Disconnect()
+						Functions.MoveConnection:Disconnect()
+					end
+				end)
 			end)
-		end)
 		end
 
 		return Options
@@ -600,10 +600,6 @@ Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(func
 			end
 			if Functions.UnsploitExitConnection then
 				Functions.UnsploitExitConnection:Disconnect();
-			end
-			if Functions.ReleaseConnection and Functions.MoveConnection then
-				Functions.ReleaseConnection:Disconnect();
-				Functions.MoveConnection:Disconnect();
 			end
 		end
 	end

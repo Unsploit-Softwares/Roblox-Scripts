@@ -168,7 +168,7 @@ function Library.new(name, theme)
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 	Main.Size = UDim2.new(0, 500, 0, 300)
 
-	Library.Draggify(Main)
+	--Library.Draggify(Main)
 
 	TopBar.Name = "TopBar"
 	TopBar.Parent = Main

@@ -37,7 +37,14 @@ if game.PlaceId == Games[1] then
 		variables.walkspeed = value
 	end, {
 		min = 16;
-		max = 24;
+		max = 120;
+	})
+
+	tabs.General:AddSlider("Jumppower", function(value)
+		variables.jumppower = value
+	end, {
+		min = 50;
+		max = 500;
 	})
 
 	tabs.Autofarm:AddToggle("Autoclick", function(state)
@@ -86,6 +93,7 @@ if game.PlaceId == Games[1] then
 			if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed == 0 then
 				game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = variables.walkspeed;
 			end
+			game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").JumpPower = variables.jumppower;
 		end
 	end)
 

@@ -437,7 +437,7 @@ function Library.new(name, theme)
 
 			local mouse = game:GetService("Players").LocalPlayer:GetMouse ()
 			local uis = game:GetService("UserInputService")
-			local val;
+			local Value;
 
 			local Slider = Instance.new("Frame")
 			local OptionText = Instance.new("TextLabel")
@@ -509,34 +509,31 @@ function Library.new(name, theme)
 			SliderButton.TextSize = 14.000
 
 			SliderButton.MouseButton1Down:Connect(function()
-				val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsolutePosition.X) + tonumber(options.min)) or 0
+				Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsoluteSize.X) + tonumber(options.max)) or 0
 				pcall(function()
-					callback(val)
+					callback(Value)
 				end)
-				sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 170), 1, 0)
-				Functions.MoveConnection = mouse.Move:Connect(function()
-					val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsolutePosition.X) + tonumber(options.min))
-					valueText.Text = val
-					
+				sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 170), 0, 12)
+				Functions.moveconnection = mouse.Move:Connect(function()
+					valueText.Text = Value
+					Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsoluteSize.X) + tonumber(options.min))
 					pcall(function()
-						callback(val)
+						callback(Value)
 					end)
-					sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 170), 1, 0)
+					sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 170), 0, 12)
 				end)
-				Functions.ReleaseConnection = uis.InputEnded:Connect(function(Mouse)
+				Functions.releaseconnection = uis.InputEnded:Connect(function(Mouse)
 					if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-						val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsolutePosition.X) + tonumber(options.min))
+						Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsoluteSize.X) + tonumber(options.min))
 						pcall(function()
-							callback(val)
+							callback(Value)
 						end)
-						sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 170), 1, 0)
-						Functions.ReleaseConnection:Disconnect()
-						Functions.MoveConnection:Disconnect()
+						sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 170), 0, 12)
+						Functions.moveconnection:Disconnect()
+						Functions.releaseconnection:Disconnect()
 					end
 				end)
 			end)
-		end
-
 		return Options
 	end
 

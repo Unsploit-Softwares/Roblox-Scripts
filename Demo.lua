@@ -61,22 +61,8 @@ if game.PlaceId == Games[1] then
 	local devTitle = tabs.Credits:AddLabel("Developers")
 	local dev1 = tabs.Credits:AddLabel("UI Library - Unsploit")
 	local dev2 = tabs.Credits:AddLabel("Unsploit Hub - IHoldOnI & Unsploit")
+	local dev3 = tabs.Credits:AddLabel("Notification Library - Iris")
 	local trademrk = tabs.Credits:AddLabel("Copyright(c) 2021 Unsploit Softwares.")
-
-	devTitle.BackgroundTransparency = 0;
-	devTitle.BackgroundColor3 = Unsploit.chosenTheme.Button
-
-	dev1.BackgroundTransparency = 0;
-	dev1.BackgroundColor3 = Unsploit.chosenTheme.Button
-
-	dev2.BackgroundTransparency = 0;
-	dev2.BackgroundColor3 = Unsploit.chosenTheme.Button
-
-	dev2.BackgroundTransparency = 0;
-	dev2.BackgroundColor3 = Unsploit.chosenTheme.Button
-
-	trademrk.BackgroundTransparency = 0;
-	trademrk.BackgroundColor3 = Unsploit.chosenTheme.Button
 
 
 	functions.Autofarm._autoClick = function()

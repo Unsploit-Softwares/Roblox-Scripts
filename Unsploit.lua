@@ -499,7 +499,7 @@ function Library.new(name, theme)
 			valueText.Position = UDim2.new(0.5, 95, 0.25, -10)
 			valueText.Size = UDim2.new(0.179670483, 0, 0.5, 0)
 			valueText.Font = Enum.Font.Roboto
-			valueText.Text = ""
+			valueText.Text = options.min .. " / " .. options.max
 			valueText.TextColor3 = chosenTheme.TextColor
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Right

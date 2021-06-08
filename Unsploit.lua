@@ -1,4 +1,3 @@
-local Modules = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/init.lua"))()
 local Draggify = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/Draggify.lua"))();
 
 local RGB = Color3.fromRGB
@@ -600,10 +599,6 @@ Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(func
 			end
 			if Functions.UnsploitExitConnection then
 				Functions.UnsploitExitConnection:Disconnect();
-			end
-			if Functions.ReleaseConnection and Functions.MoveConnection then
-				Functions.ReleaseConnection:Disconnect();
-				Functions.MoveConnection:Disconnect();
 			end
 		end
 	end

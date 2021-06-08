@@ -425,7 +425,7 @@ function Library.new(name, theme)
 			Functions.ToggleBtnConnection = ToggleBtn.MouseButton1Click:Connect(Fire)
 			
 			function actions:Set(args)
-				ool:TweenPosition(enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(0, 0, 0, 0), "In", "Linear", 0.1)
+				Bool:TweenPosition(enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(0, 0, 0, 0), "In", "Linear", 0.1)
 				pcall(callback, args)
 			end
 		end
@@ -510,8 +510,9 @@ function Library.new(name, theme)
 			end)
 			sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 318), 0, 16)
 			Functions.MoveConnection = mouse.Move:Connect(function()
-				valueText.Text = val
 				val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 318) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
+				valueText.Text = val
+				
 				pcall(function()
 					callback(val)
 				end)

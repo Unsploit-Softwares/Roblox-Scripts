@@ -492,7 +492,7 @@ function Library.new(name, theme)
 			valueText.Position = UDim2.new(0.501977921, 95, 0.338983059, -10)
 			valueText.Size = UDim2.new(0.179890037, 0, 0.508474529, 0)
 			valueText.Font = Enum.Font.Roboto
-			valueText.Text = "0"
+			valueText.Text = string.format("%s / %s", tostring(options.min, options.max))
 			valueText.TextColor3 = Color3.fromRGB(255, 255, 255)
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Right
@@ -509,26 +509,26 @@ function Library.new(name, theme)
 			SliderButton.TextSize = 14.000
 
 			SliderButton.MouseButton1Down:Connect(function()
-				Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsoluteSize.X) + tonumber(options.min)) or 0
+				Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / SliderFrame.AbsoluteSize.X) * sliderInner.AbsoluteSize.X) + tonumber(options.min)) or 0
 				pcall(function()
 					callback(Value)
 				end)
-				sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 170), 0, 12)
+				sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, SliderFrame.AbsoluteSize.X), 0, 12)
 				Functions.moveconnection = mouse.Move:Connect(function()
-					valueText.Text = Value
-					Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsoluteSize.X) + tonumber(options.min))
+					valueText.Text = string.fromat("%s / %s", Value, options.max)
+					Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / SliderFrame.AbsoluteSize.X) * sliderInner.AbsoluteSize.X) + tonumber(options.min))
 					pcall(function()
 						callback(Value)
 					end)
-					sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 170), 0, 12)
+					sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, SliderFrame.AbsoluteSize.X), 0, 12)
 				end)
 				Functions.releaseconnection = uis.InputEnded:Connect(function(Mouse)
 					if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-						Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsoluteSize.X) + tonumber(options.min))
+						Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / SliderFrame.AbsoluteSize.X) * sliderInner.AbsoluteSize.X) + tonumber(options.min))
 						pcall(function()
 							callback(Value)
 						end)
-						sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, 170), 0, 12)
+						sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, SliderFrame.AbsoluteSize.X), 0, 12)
 						Functions.moveconnection:Disconnect()
 						Functions.releaseconnection:Disconnect()
 					end

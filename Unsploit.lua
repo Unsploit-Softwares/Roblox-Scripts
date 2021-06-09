@@ -1,4 +1,3 @@
-local Modules = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/init.lua"))()
 local Draggify = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/Draggify.lua"))();
 
 local RGB = Color3.fromRGB

@@ -1,4 +1,3 @@
-local Modules = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/init.lua"))()
 local Draggify = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Modules/Draggify.lua"))();
 
 local RGB = Color3.fromRGB
@@ -423,7 +422,7 @@ function Library.new(name, theme)
 			Functions.ToggleBtnConnection = ToggleBtn.MouseButton1Click:Connect(Fire)
 			
 			function actions:Set(args)
-				ool:TweenPosition(enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(0, 0, 0, 0), "In", "Linear", 0.1)
+				Bool:TweenPosition(enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(0, 0, 0, 0), "In", "Linear", 0.1)
 				pcall(callback, args)
 			end
 		end
@@ -534,6 +533,7 @@ function Library.new(name, theme)
 					end
 				end)
 			end)
+		end
 		return Options
 	end
 

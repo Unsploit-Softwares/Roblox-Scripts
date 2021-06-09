@@ -13,7 +13,7 @@ local toHSV = Color3.toHSV
 
     Library
 		Constructors: 
-			Library.new(name: string, theme: string) -- > Creates a new UI Window
+			Library.new(name: string, theme: string, themeData) -- > Creates a new UI Window. themeData should only be added if theme argument is set to "Custom"
 		
 		Functions:
 			-- Tabs
@@ -25,13 +25,14 @@ local toHSV = Color3.toHSV
 			Options:AddLabel(text: string) --> Creates a new label
 			Options:AddToggle(text: string, callback: function) --> Creates a new Toggle
 			Options:AddDropdown(text: string) --> Creates a new Dropdown
-			Options:AddSlider(text: string, min: number, default: number, max: number, callback: function) --> Creates a new Slider
+			Options:AddSlider(text: string, callback: function, options: table) --> Creates a new Slider, Options table includes "min" and "max" values.
 
 		Themes:
 			Default,
 			Dark,
 			Light,
-			Unsploit
+			Unsploit,
+			Custom
 
 		Methods: 
 			Library:Destroy() --> Destroys the UI Object
@@ -129,9 +130,11 @@ Library.Themes = {
 	}
 }
 
-function Library.new(name, theme)
+function Library.new(name, theme, themeData)
 	theme = theme or "Default"
 	Library.Title = name or "Unsploit"
+
+	if not themeData then return; end
 
 	if theme == "Default" then
 		Library.chosenTheme = Library.Themes.Default
@@ -141,6 +144,8 @@ function Library.new(name, theme)
 		Library.chosenTheme = Library.Themes.Dark
 	elseif theme == "Unsploit" then
 		Library.chosenTheme = Library.Themes.Unsploit
+	elseif theme == "Custom" then
+		Library.chosenTheme = themeData
 	end
 
 	-- Core Stuff

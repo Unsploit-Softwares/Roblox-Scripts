@@ -1,5 +1,6 @@
 local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/master/Unsploit.lua"))()
 local name
+
 local Games = {
 	3956818381;
 	137877687;
@@ -36,7 +37,14 @@ if game.PlaceId == Games[1] then
 		variables.walkspeed = value
 	end, {
 		min = 16;
-		max = 24;
+		max = 120;
+	})
+
+	tabs.General:AddSlider("Jumppower", function(value)
+		variables.jumppower = value
+	end, {
+		min = 50;
+		max = 500;
 	})
 
 	tabs.Autofarm:AddToggle("Autoclick", function(state)
@@ -44,7 +52,7 @@ if game.PlaceId == Games[1] then
 		functions.Autofarm._autoClick();
 	end)
 
-	tabs.Settings:AddButton("Unload " .. name .. "!", function()
+	tabs.Settings:AddButton("Unload Unsploit!", function()
 		 if game:GetService("CoreGui"):FindFirstChild(name) then
 			game:GetService("CoreGui"):FindFirstChild(name):Destroy()
 		 end
@@ -53,22 +61,8 @@ if game.PlaceId == Games[1] then
 	local devTitle = tabs.Credits:AddLabel("Developers")
 	local dev1 = tabs.Credits:AddLabel("UI Library - Unsploit")
 	local dev2 = tabs.Credits:AddLabel("Unsploit Hub - IHoldOnI & Unsploit")
+	local dev3 = tabs.Credits:AddLabel("Notification Library - Iris")
 	local trademrk = tabs.Credits:AddLabel("Copyright(c) 2021 Unsploit Softwares.")
-
-	devTitle.BackgroundTransparency = 0;
-	devTitle.BackgroundColor3 = Unsploit.Themes.Dark.Button
-
-	dev1.BackgroundTransparency = 0;
-	dev1.BackgroundColor3 = Unsploit.Themes.Dark.Button
-
-	dev2.BackgroundTransparency = 0;
-	dev2.BackgroundColor3 = Unsploit.Themes.Dark.Button
-
-	dev2.BackgroundTransparency = 0;
-	dev2.BackgroundColor3 = Unsploit.Themes.Dark.Button
-
-	trademrk.BackgroundTransparency = 0;
-	trademrk.BackgroundColor3 = Unsploit.Themes.Dark.Button
 
 
 	functions.Autofarm._autoClick = function()
@@ -80,11 +74,12 @@ if game.PlaceId == Games[1] then
 		end
 	end
 
-	game:GetService("RunService").RenderStepped:Connect(function()
+	connections.renderStepped = game:GetService("RunService").RenderStepped:Connect(function()
 		if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
 			if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed == 0 then
 				game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = variables.walkspeed;
 			end
+			game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").JumpPower = variables.jumppower;
 		end
 	end)
 
@@ -94,6 +89,11 @@ if game.PlaceId == Games[1] then
 				getgenv().Autoclick = false;
 
 				Unsploit.Notification.Notify ("Unsploit", "Unsploit disconnected!", "")
+				
+				variables.walkspeed = 16;
+				variables.jumppower = 50;
+				
+				connections.renderStepped:Disconnect()
 				connections.guiQuitConnection:Disconnect()
 			end
 		end
@@ -113,7 +113,7 @@ elseif game.PlaceId == Games[2] then
 	tabs.Setting = Window:AddTab("Setting")
 	tabs.Credits = Window:AddTab("Credits")
 
-	tabs.General:AddSlider("Fast Run", function(val)
+	tabs.General:AddSlider("Walkspeed", function(val)
 		local player = game:GetService("Players").LocalPlayer
 		local character = player.Character
 		local human = character:WaitForChild("Humanoid")
@@ -121,7 +121,7 @@ elseif game.PlaceId == Games[2] then
 		variables.walkspeed = val
 	end, {
 		min = 16;
-		max = 12;
+		max = 90;
 	})
 
 	connections.renderStepped = game:GetService("RunService").RenderStepped:Connect(function()

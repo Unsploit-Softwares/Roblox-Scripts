@@ -492,7 +492,7 @@ function Library.new(name, theme)
 			valueText.Position = UDim2.new(0.501977921, 95, 0.338983059, -10)
 			valueText.Size = UDim2.new(0.179890037, 0, 0.508474529, 0)
 			valueText.Font = Enum.Font.Roboto
-			valueText.Text = tostring(val)
+			valueText.Text = ""
 			valueText.TextColor3 = Color3.fromRGB(255, 255, 255)
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Right
@@ -509,7 +509,7 @@ function Library.new(name, theme)
 			SliderButton.TextSize = 14.000
 
 			SliderButton.MouseButton1Down:Connect(function()
-				Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsoluteSize.X) + tonumber(options.max)) or 0
+				Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / 170) * sliderInner.AbsoluteSize.X) + tonumber(options.min)) or 0
 				pcall(function()
 					callback(Value)
 				end)

@@ -539,6 +539,14 @@ function Library.new(name, theme, themeData)
 				end)
 			end)
 		end
+
+		function Options:AddDropdown(text, data, callback)
+			text = text or "Dropdown"
+			data = data or {}
+
+			callback = callback or function () end
+
+		end
 		return Options
 	end
 

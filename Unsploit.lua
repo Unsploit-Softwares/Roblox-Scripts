@@ -87,7 +87,6 @@ local Library: Unsploit = {
 		min = 1,
 		submin = 12
 	};
-	chosenTheme = ""
 }
 
 local Utility: Utility = {
@@ -134,14 +133,16 @@ function Library.new(name, theme)
 	theme = theme or "Default"
 	Library.Title = name or "Unsploit"
 
+	local chosenTheme
+
 	if theme == "Default" then
-		Library.chosenTheme = Library.Themes.Default
+		chosenTheme = Library.Themes.Default
 	elseif theme == "Light" then
-		Library.chosenTheme = Library.Themes.Light
+		chosenTheme = Library.Themes.Light
 	elseif theme == "Dark" then
-		Library.chosenTheme = Library.Themes.Dark
+		chosenTheme = Library.Themes.Dark
 	elseif theme == "Unsploit" then
-		Library.chosenTheme = Library.Themes.Unsploit
+		chosenTheme = Library.Themes.Unsploit
 	end
 
 	-- Core Stuff
@@ -162,16 +163,16 @@ function Library.new(name, theme)
 	Main.Name = "Main"
 	Main.Parent = Library._instance
 	Main.AnchorPoint = Vector2.new(0.5, 0.5)
-	Main.BackgroundColor3 = Library.chosenTheme.Accent
+	Main.BackgroundColor3 = chosenTheme.Accent
 	Main.BorderSizePixel = 0
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 	Main.Size = UDim2.new(0, 500, 0, 300)
 
-	--Library.Draggify(Main)
+	Library.Draggify(Main)
 
 	TopBar.Name = "TopBar"
 	TopBar.Parent = Main
-	TopBar.BackgroundColor3 = Library.chosenTheme.Background
+	TopBar.BackgroundColor3 = chosenTheme.Background
 	TopBar.BorderSizePixel = 0
 	TopBar.Position = UDim2.new(0, 0, 0, -19)
 	TopBar.Size = UDim2.new(1, 0, 0.0649999976, 0)
@@ -202,7 +203,7 @@ function Library.new(name, theme)
 
 	TabContainer.Name = "TabContainer"
 	TabContainer.Parent = Main
-	TabContainer.BackgroundColor3 = Library.chosenTheme.Background
+	TabContainer.BackgroundColor3 = chosenTheme.Background
 	TabContainer.BorderSizePixel = 0
 	TabContainer.LayoutOrder = 1
 	TabContainer.Size = UDim2.new(0, 124, 0, 300)
@@ -231,21 +232,23 @@ function Library.new(name, theme)
 		-- Tabs Stuff
 		local TabBtn = Instance.new("TextButton")
 		local UICorner = Instance.new("UICorner")
-		local Container2 = Instance.new("ScrollingFrame")
-		local UIGridLayout = Instance.new("UIGridLayout")
-		local UIPadding_2 = Instance.new("UIPadding")
 
 		TabBtn.Name = "TabBtn"
-		TabBtn.BackgroundColor3 = Library.chosenTheme.Button
+		TabBtn.BackgroundColor3 = chosenTheme.Button
 		TabBtn.Size = UDim2.new(0.899999976, 0, 0.100000001, 0)
 		TabBtn.Font = Enum.Font.SourceSans
-		TabBtn.TextColor3 = Library.chosenTheme.TextColor
+		TabBtn.TextColor3 = chosenTheme.TextColor
 		TabBtn.TextSize = 14.000
 		TabBtn.Text = text or "Tab"
 		TabBtn.Parent = TabContainer
 
 		UICorner.CornerRadius = UDim.new(0, 5)
 		UICorner.Parent = TabBtn
+		
+		-- Pages Stuff
+		local Container2 = Instance.new("ScrollingFrame")
+		local UIGridLayout = Instance.new("UIGridLayout")
+		local UIPadding_2 = Instance.new("UIPadding")
 
 		Container2.Name = text
 		Container2.Parent = PageContainer
@@ -272,12 +275,12 @@ function Library.new(name, theme)
 			if v.Name == Utility.Pages[1] then
 				v.Visible = true
 				game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-					BackgroundColor3 = Library.chosenTheme.Button
+					BackgroundColor3 = chosenTheme.Button
 				}):Play()
 			else
 				v.Visible = false
 				game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-					BackgroundColor3 = Library.chosenTheme.ButtonActive
+					BackgroundColor3 = chosenTheme.ButtonActive
 				}):Play()
 			end
 		end
@@ -294,13 +297,13 @@ function Library.new(name, theme)
 			for i,v in next, TabContainer:GetChildren() do
 				if v:IsA("TextButton") then
 					game.TweenService:Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-						BackgroundColor3 = Library.chosenTheme.ButtonActive
+						BackgroundColor3 = chosenTheme.ButtonActive
 					}):Play()
 				end
 			end
 
 			game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-				BackgroundColor3 = Library.chosenTheme.Button
+				BackgroundColor3 = chosenTheme.Button
 			}):Play()
 		end)
 
@@ -315,13 +318,13 @@ function Library.new(name, theme)
 
 			Button.Name = "Button"
 			Button.Parent = Container2
-			Button.BackgroundColor3 = Library.chosenTheme.Button
+			Button.BackgroundColor3 = chosenTheme.Button
 			Button.BorderSizePixel = 0
 			Button.Position = UDim2.new(0.782999992, 0, 0.0599999987, 0)
 			Button.Size = UDim2.new(0.200000003, 0, 0.899999976, 0)
 			Button.Font = Enum.Font.SourceSans
 			Button.Text = text or "Button"
-			Button.TextColor3 = Library.chosenTheme.TextColor
+			Button.TextColor3 = chosenTheme.TextColor
 			Button.TextSize = 14.000
 			Button.TextXAlignment = Enum.TextXAlignment.Left
 			Button.AutoButtonColor = false
@@ -349,7 +352,7 @@ function Library.new(name, theme)
 			Label.BackgroundTransparency = 1.000
 			Label.Size = UDim2.new(0, 200, 0, 50)
 			Label.Font = Enum.Font.SourceSans
-			Label.TextColor3 = Library.chosenTheme.TextColor
+			Label.TextColor3 = chosenTheme.TextColor
 			Label.TextSize = 14.000
 			Label.Text = text or "Label"
 			return Label
@@ -377,7 +380,7 @@ function Library.new(name, theme)
 
 			Label.Name = "Label"
 			Label.Parent = Toggle
-			Label.BackgroundColor3 = Library.chosenTheme.TextColor
+			Label.BackgroundColor3 = chosenTheme.TextColor
 			Label.BackgroundTransparency = 1.000
 			Label.BorderSizePixel = 0
 			Label.Size = UDim2.new(0.76296705, 0, 1, 0)
@@ -395,7 +398,7 @@ function Library.new(name, theme)
 
 			Bool.Name = "Bool"
 			Bool.Parent = ToggleFrame
-			Bool.BackgroundColor3 = Library.chosenTheme.Button
+			Bool.BackgroundColor3 = chosenTheme.Button
 			Bool.Size = UDim2.new(0.5, 0, 1, 0)
 
 			UICorner.CornerRadius = UDim.new(0, 6)
@@ -429,7 +432,6 @@ function Library.new(name, theme)
 		end
 
 		function Options:AddSlider(text: string, callback, options: table)
-			text = text or "Slider"
 			options.min = options.min or 0
 			options.max = options.max or 100
 
@@ -437,103 +439,99 @@ function Library.new(name, theme)
 
 			local mouse = game:GetService("Players").LocalPlayer:GetMouse ()
 			local uis = game:GetService("UserInputService")
-			local Value;
+			local val;
 
-			local Slider = Instance.new("Frame")
+			local Slider = Instance.new("TextButton")
 			local OptionText = Instance.new("TextLabel")
 			local SliderFrame = Instance.new("Frame")
 			local UICorner = Instance.new("UICorner")
-			local sliderInner = Instance.new("Frame")
+			local sliderImg = Instance.new("Frame")
 			local UICorner_2 = Instance.new("UICorner")
 			local valueText = Instance.new("TextLabel")
-			local SliderButton = Instance.new("TextButton")
 
 			Slider.Name = "Slider"
 			Slider.Parent = Container2
-			Slider.BackgroundColor3 = Library.chosenTheme.Button
+			Slider.Active = false
+			Slider.BackgroundColor3 = Color3.fromRGB(110, 110, 110)
+			Slider.BackgroundTransparency = 1.000
 			Slider.BorderColor3 = Color3.fromRGB(27, 42, 53)
 			Slider.BorderSizePixel = 0
+			Slider.Selectable = false
 			Slider.Size = UDim2.new(0, 519, 0, 34)
+			Slider.Text = ""
+			Slider.TextColor3 = Color3.fromRGB(255, 255, 255)
 
 			OptionText.Name = "OptionText"
 			OptionText.Parent = Slider
 			OptionText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			OptionText.BackgroundTransparency = 1.000
-			OptionText.Position = UDim2.new(0.0192307699, 0, 0, 0)
-			OptionText.Size = UDim2.new(0.440769225, 0, 1, 0)
+			OptionText.Size = UDim2.new(0.300000012, 0, 1, 0)
 			OptionText.Font = Enum.Font.SourceSans
-			OptionText.Text = text
-			OptionText.TextColor3 = Library.chosenTheme.TextColor
+			OptionText.Text = " Slider Option"
+			OptionText.TextColor3 = Color3.fromRGB(255, 255, 255)
 			OptionText.TextSize = 15.000
 			OptionText.TextXAlignment = Enum.TextXAlignment.Left
 
 			SliderFrame.Name = "SliderFrame"
 			SliderFrame.Parent = Slider
-			SliderFrame.BackgroundColor3 = Color3.fromRGB(186, 186, 186)
-			SliderFrame.Position = UDim2.new(0.481318712, 0, 0.508474588, 0)
-			SliderFrame.Size = UDim2.new(0, 169, 0, 12)
+			SliderFrame.BackgroundColor3 = Color3.fromRGB(112, 112, 112)
+			SliderFrame.Position = UDim2.new(0.600000024, 0, 0.349999994, 2)
+			SliderFrame.Size = UDim2.new(0.349999994, 0, 0.25, 0)
 
-			UICorner.CornerRadius = UDim.new(0, 4)
+			UICorner.CornerRadius = UDim.new(0, 6)
 			UICorner.Parent = SliderFrame
 
-			sliderInner.Name = "sliderInner"
-			sliderInner.Parent = SliderFrame
-			sliderInner.BackgroundColor3 = Color3.fromRGB(220, 20, 20)
-			sliderInner.BorderSizePixel = 0
-			sliderInner.Size = UDim2.new(0, 0, 1, 0)
+			sliderImg.Name = "sliderImg"
+			sliderImg.Parent = SliderFrame
+			sliderImg.Active = false
+			sliderImg.BackgroundColor3 = Color3.fromRGB(220, 20, 20)
+			sliderImg.BorderSizePixel = 0
+			sliderImg.Selectable = false
+			sliderImg.Size = UDim2.new(0.100000001, 0, 1, 0)
 
-			UICorner_2.CornerRadius = UDim.new(0, 4)
-			UICorner_2.Parent = sliderInner
+			UICorner_2.CornerRadius = UDim.new(0, 6)
+			UICorner_2.Parent = sliderImg
 
 			valueText.Name = "valueText"
 			valueText.Parent = Slider
 			valueText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			valueText.BackgroundTransparency = 1.000
-			valueText.Position = UDim2.new(0.501977921, 95, 0.338983059, -10)
-			valueText.Size = UDim2.new(0.179890037, 0, 0.508474529, 0)
+			valueText.Position = UDim2.new(0.5, 95, 0.25, -10)
+			valueText.Size = UDim2.new(0.179670483, 0, 0.5, 0)
 			valueText.Font = Enum.Font.Roboto
-			valueText.Text = string.format("%s / %s", tostring(options.min, options.max))
+			valueText.Text = ""
 			valueText.TextColor3 = Color3.fromRGB(255, 255, 255)
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Right
 
-			SliderButton.Name = "SliderButton"
-			SliderButton.Parent = Slider
-			SliderButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			SliderButton.BackgroundTransparency = 1.000
-			SliderButton.Position = UDim2.new(0.480999947, 0, 0.507999718, 0)
-			SliderButton.Size = UDim2.new(0, 168, 0, 14)
-			SliderButton.Font = Enum.Font.SourceSans
-			SliderButton.Text = ""
-			SliderButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-			SliderButton.TextSize = 14.000
-
-			SliderButton.MouseButton1Down:Connect(function()
-				Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / SliderFrame.AbsoluteSize.X) * sliderInner.AbsoluteSize.X) + tonumber(options.min)) or 0
-				pcall(function()
-					callback(Value)
-				end)
-				sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, SliderFrame.AbsoluteSize.X), 0, 12)
-				Functions.moveconnection = mouse.Move:Connect(function()
-					valueText.Text = string.fromat("%s / %s", Value, options.max)
-					Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / SliderFrame.AbsoluteSize.X) * sliderInner.AbsoluteSize.X) + tonumber(options.min))
-					pcall(function()
-						callback(Value)
-					end)
-					sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, SliderFrame.AbsoluteSize.X), 0, 12)
-				end)
-				Functions.releaseconnection = uis.InputEnded:Connect(function(Mouse)
-					if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-						Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / SliderFrame.AbsoluteSize.X) * sliderInner.AbsoluteSize.X) + tonumber(options.min))
-						pcall(function()
-							callback(Value)
-						end)
-						sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, SliderFrame.AbsoluteSize.X), 0, 12)
-						Functions.moveconnection:Disconnect()
-						Functions.releaseconnection:Disconnect()
-					end
-				end)
+			Slider.MouseButton1Down:Connect(function()
+			val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 318) * sliderImg.AbsolutePosition.X) + tonumber(options.min)) or 0
+			pcall(function()
+				callback(val)
 			end)
+			sliderImg.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 318), 0, 16)
+			Functions.MoveConnection = mouse.Move:Connect(function()
+				valueText.Text = val
+				val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 318) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
+				pcall(function()
+					callback(val)
+				end)
+				Slider.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 318), 0, 16)
+			end)
+			Functions.ReleaseConnection = uis.InputEnded:Connect(function(Mouse)
+				if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+					val = math.floor((((tonumber(options.max) - tonumber(options.min)) / 318) * sliderImg.AbsolutePosition.X) + tonumber(options.min))
+					pcall(function()
+						callback(val)
+					end)
+					Slider.Size = UDim2.new(0, math.clamp(mouse.X - sliderImg.AbsolutePosition.X, 0, 318), 0, 16)
+					Functions.ReleaseConnection:Disconnect()
+					Functions.MoveConnection:Disconnect()
+				end
+			end)
+		end)
+		end
+
 		return Options
 	end
 
@@ -547,7 +545,7 @@ function Library.new(name, theme)
 		Label.Size = UDim2.new(0.899999976, 0, 0.100000001, 0)
 		Label.Font = Enum.Font.SourceSans
 		Label.Text = text or "Label"
-		Label.TextColor3 = Library.chosenTheme.TextColor
+		Label.TextColor3 = chosenTheme.TextColor
 		Label.TextSize = 14.000
 		return Label
 	end
@@ -602,6 +600,10 @@ Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(func
 			end
 			if Functions.UnsploitExitConnection then
 				Functions.UnsploitExitConnection:Disconnect();
+			end
+			if Functions.ReleaseConnection and Functions.MoveConnection then
+				Functions.ReleaseConnection:Disconnect();
+				Functions.MoveConnection:Disconnect();
 			end
 		end
 	end

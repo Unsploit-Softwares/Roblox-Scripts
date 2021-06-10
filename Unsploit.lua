@@ -643,10 +643,12 @@ function Library.new(name, theme)
 				if isDropped then
 					isDropped = false
 					dropdownContainer.Size = UDim2.new(0, 197, 0, 0)
+					dropdownContainer.Visible = false
 					Button.Image = "rbxassetid://6936536383"
 				else
 					isDropped = true
 					dropdownContainer.Size = UDim2.new(0, 197, 0, 0)
+					dropdownContainer.Visible = true
 					Button.Image = "rbxassetid://6936551482"
 				end
 			end)

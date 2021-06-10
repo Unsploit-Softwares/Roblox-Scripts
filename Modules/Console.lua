@@ -19,6 +19,7 @@ function Console.new(parent: Instance)
     Console._window.BorderSizePixel = 0
     Console._window.Position = UDim2.new(0.792490125, 0, 0.5, 0)
     Console._window.Size = UDim2.new(0, 376, 0, 300)
+    Console._window.Visible = false
 
     TopBar.Name = "TopBar"
     TopBar.Parent = Console._window

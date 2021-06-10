@@ -609,7 +609,7 @@ function Library.new(name, theme)
 			valueText.Position = UDim2.new(0.0202372819, 0, 0, 0)
 			valueText.Size = UDim2.new(0.822524846, -3, 1, 0)
 			valueText.Font = Enum.Font.SourceSans
-			valueText.Text = "Dropdown Value"
+			valueText.Text = data[1]
 			valueText.TextColor3 = Library.chosenTheme.TextColor
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Left

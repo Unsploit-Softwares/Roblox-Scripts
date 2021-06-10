@@ -18,7 +18,6 @@ end, {
 })
 b:AddDropdown("Dropdown", {"One", "Two", "Three"}, function(value)
     print(value)
-    UnsploitConsole:WriteLine("Dropdown Value: " .. value)
 end)
 b:AddButton("Unload Unsploit", function()
     if game:GetService("CoreGui"):FindFirstChild("A") then

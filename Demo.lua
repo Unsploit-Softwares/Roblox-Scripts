@@ -2,6 +2,9 @@ local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsp
 
 local a = Unsploit.new("A", "Dark")
 
+local a = Instance.new("TextLabel")
+a.Size = UDim2.new()
+
 local b = a:AddTab("Testing")
 b:AddLabel("Label")
 b:AddButton("Button", function()

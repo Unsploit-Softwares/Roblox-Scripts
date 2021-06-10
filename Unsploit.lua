@@ -562,7 +562,7 @@ function Library.new(name, theme)
 			local valueText = Instance.new("TextLabel")
 			local dropdownContainer = Instance.new("ScrollingFrame")
 			local UIPadding = Instance.new("UIPadding")
-			--local UIListLayout = Instance.new("UIListLayout")
+			local UIListLayout = Instance.new("UIListLayout")
 
 			Dropdown.Name = text
 			Dropdown.Parent = Container2
@@ -625,9 +625,9 @@ function Library.new(name, theme)
 			dropdownContainer.Visible = false
 			dropdownContainer.ScrollBarThickness = 0
 			
---[[ 			UIListLayout.Parent = dropdownContainer
+ 			UIListLayout.Parent = dropdownContainer
 			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-			UIListLayout.Padding = UDim.new(0, 3) ]]
+			UIListLayout.Padding = UDim.new(0, 3)
 
 			UIPadding.Parent = dropdownContainer
 			UIPadding.PaddingBottom = UDim.new(0, 5)

@@ -573,7 +573,7 @@ function Library.new(name, theme, themeData)
 			Label.Position = UDim2.new(0.0192307699, 0, 0, 0)
 			Label.Size = UDim2.new(0.381098866, 0, 1, 0)
 			Label.Font = Enum.Font.SourceSans
-			Label.Text = "Dropdown"
+			Label.Text = text
 			Label.TextColor3 = Color3.fromRGB(255, 255, 255)
 			Label.TextSize = 14.000
 			Label.TextXAlignment = Enum.TextXAlignment.Left

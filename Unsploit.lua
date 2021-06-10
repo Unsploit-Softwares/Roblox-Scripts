@@ -43,6 +43,8 @@ local toHSV = Color3.toHSV
             (DISABLED) Utility:Create(class: string, properties: table) --> Creates a new instance class with properties
 ]]
 
+--getgenv().GlobalThemes = {}
+
 local Library: Unsploit = {
 	Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))();
 	Draggify = function(Frame)
@@ -89,6 +91,7 @@ local Library: Unsploit = {
 	};
 	chosenTheme = ""
 }
+
 
 local Utility: Utility = {
     CharSets = {};
@@ -557,8 +560,8 @@ function Library.new(name, theme, themeData)
 			local OptionButton = Instance.new("TextButton")
 
 			Dropdown.Name = "Dropdown"
-			Dropdown.Parent = game.StarterGui.Unsploit.Frame["Container2"]
-			Dropdown.BackgroundColor3 = Color3.fromRGB(194, 57, 57)
+			Dropdown.Parent = Container2
+			Dropdown.BackgroundColor3 = Library.chosenTheme.Button
 			Dropdown.BorderSizePixel = 0
 			Dropdown.Size = UDim2.new(0, 100, 0, 100)
 
@@ -644,7 +647,6 @@ function Library.new(name, theme, themeData)
 					Button.Text = "⯅"
 				end
 			end)
-
 		end
 		return Options
 	end

@@ -3,11 +3,19 @@ local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsp
 local a = Unsploit.new("A", "Dark")
 
 local b = a:AddTab("Testing")
-b:AddDropdown("Dropdown Test", {
-    "A",
-    "B",
-    "C",
-    "1"
-}, function(vlaue)
-    print(vlaue)
+b:AddLabel("Label")
+b:AddButton("Button", function()
+    print("Hello world!")
+end)
+b:AddToggle("Toggle", function(bool)
+    print(bool)
+end)
+b:AddSlider("Slider", function(value)
+    print(value)
+end, {
+    min = 100;
+    max = math.random(1100, 10100)
+})
+b:AddDropdown("Dropdown", {"One", "Two", "Three"}, function(value)
+    print(value)
 end)

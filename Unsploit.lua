@@ -569,6 +569,7 @@ function Library.new(name, theme)
 			Dropdown.BackgroundColor3 = Library.chosenTheme.Button
 			Dropdown.BorderSizePixel = 0
 			Dropdown.Size = UDim2.new(0, 100, 0, 100)
+			Dropdown.ZIndex = 2;
 
 			Label.Name = "Label"
 			Label.Parent = Dropdown

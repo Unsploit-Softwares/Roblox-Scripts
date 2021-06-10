@@ -1,7 +1,6 @@
 local Console = {}
 
 function Console.new(parent: Instance)
-    
     Console._window = Instance.new("Frame")
     local TopBar = Instance.new("Frame")
     local TextLabel = Instance.new("TextLabel")

@@ -45,6 +45,10 @@ local toHSV = Color3.toHSV
 
 --getgenv().GlobalThemes = {}
 
+
+-- ARROW_DOWN_WHITE = 	rbxassetid://6936536383
+-- ARROW_UP_WHITE = 	rbxassetid://6936551482
+
 local Library: Unsploit = {
 	Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))();
 	Draggify = function(Frame)
@@ -226,7 +230,7 @@ function Library.new(name, theme)
 	PageContainer.Name = "PageContainer"
 	PageContainer.Parent = Main
 
-	Functions.UnsploitExitConnection = exitBtn.MouseButton1Click:Connect(function()
+	Functions.ExitBtnConnection = exitBtn.MouseButton1Click:Connect(function()
 		if (Library._instance) then
 			Functions:ExitUI()
 		end
@@ -552,7 +556,7 @@ function Library.new(name, theme)
 			local Dropdown = Instance.new("Frame")
 			local Label = Instance.new("TextLabel")
 			local Holder = Instance.new("Frame")
-			local Button = Instance.new("TextButton")
+			local Button = Instance.new("ImageButton")
 			local UICorner = Instance.new("UICorner")
 			local valueText = Instance.new("TextLabel")
 			local dropdownContainer = Instance.new("ScrollingFrame")
@@ -593,8 +597,7 @@ function Library.new(name, theme)
 			Button.Position = UDim2.new(0.862500012, 0, 0.0661021098, 0)
 			Button.Selectable = false
 			Button.Size = UDim2.new(0.113477945, 0, 0.85000056, 0)
-			Button.Text = "v"
-			Button.TextColor3 = Library.chosenTheme.TextColor
+			Button.Image = "rbxassetid://6936536383"
 
 			UICorner.CornerRadius = UDim.new(0, 6)
 			UICorner.Parent = Button
@@ -640,11 +643,11 @@ function Library.new(name, theme)
 				if isDropped then
 					isDropped = false
 					dropdownContainer.Size = UDim2.new(0, 197, 0, 0)
-					Button.Text = "⯆"
+					Button.Image = "rbxassetid://6936536383"
 				else
 					isDropped = true
 					dropdownContainer.Size = UDim2.new(0, 197, 0, 0)
-					Button.Text = "⯅"
+					Button.Image = "rbxassetid://6936551482"
 				end
 			end)
 		end
@@ -728,8 +731,11 @@ Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(func
 			if Functions.ButtonOptionConnection then
 				Functions.ButtonOptionConnection:Disconnect();
 			end
-			if Functions.UnsploitExitConnection then
-				Functions.UnsploitExitConnection:Disconnect();
+			if Functions.ExitBtnConnection then
+				Functions.ExitBtnConnection:Disconnect();
+			end
+			if Functions.DropdownConnection then
+				Functions.DropdownConnection:Disconnect();
 			end
 		end
 	end

@@ -14,7 +14,7 @@ local toHSV = Color3.toHSV
 
     Library
 		Constructors: 
-			Library.new(name: string, theme: string, themeData) -- > Creates a new UI Window. themeData should only be added if theme argument is set to "Custom"
+			Library.new(name: string, gameTitle: string (Optional), theme: string) -- > Creates a new UI Window. themeData should only be added if theme argument is set to "Custom"
 		
 		Functions:
 			-- Tabs
@@ -138,7 +138,8 @@ Library.Themes = {
 	}
 }
 
-function Library.new(name, theme)
+function Library.new(name, gameTitle,theme)
+	gameTitle = gameTitle or "Universal"
 	theme = theme or "Default"
 	Library.Title = name or "Unsploit"
 
@@ -154,6 +155,17 @@ function Library.new(name, theme)
 		Library.chosenTheme = Library.Themes.Unsploit
 	--[[ elseif theme == "Custom" then
 		Library.chosenTheme = themeData ]]
+	end
+
+	local function setTitle()
+		local g_title;
+
+		if gameTitle ~= "Universal" then
+			g_title = name .. " | " .. gameTitle
+		elseif gameTitle == "Universal" then
+			g_title = name
+		end
+		return g_title
 	end
 
 	-- Core Stuff
@@ -199,7 +211,7 @@ function Library.new(name, theme)
 	titleLabel.TextColor3 = Library.chosenTheme.TextColor
 	titleLabel.TextSize = 14.000
 	titleLabel.TextXAlignment = Enum.TextXAlignment.Left
-	titleLabel.Text = name
+	titleLabel.Text = setTitle()
 
 	exitBtn.Name = "exitBtn"
 	exitBtn.Parent = TopBar
@@ -713,6 +725,10 @@ function Library:SetTheme(theme)
 	elseif theme == "Unsploit" then
 		Library.chosenTheme = Library.Themes.Unsploit
 	end
+end
+
+function Library:GetName()
+	return Library._instance.Name
 end
 
 function Library:Destroy()

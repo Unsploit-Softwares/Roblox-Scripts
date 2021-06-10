@@ -658,6 +658,11 @@ function Library.new(name, theme)
 				OptionButton.TextColor3 = Library.chosenTheme.TextColor
 				OptionButton.TextSize = 14.000
 				DropYSize += 30
+
+				Functions.DropdownOptionBtn = OptionButton.MouseButton1Click:Connect(function()
+					valueText.Text = v
+					callback(v)
+				end)
 			end
 		end
 		return Options
@@ -745,6 +750,7 @@ Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(func
 			end
 			if Functions.DropdownConnection then
 				Functions.DropdownConnection:Disconnect();
+				Functions.DropdownOptionBtn:Disconnect();
 			end
 		end
 	end

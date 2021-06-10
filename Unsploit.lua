@@ -8,6 +8,7 @@ local toHSV = Color3.toHSV
 -- NAME: Library._instance UI Library
 -- AUTHOR: Library._instance Softwares
 -- DATE: June 2nd 2021 -- REWRITE #3
+-- SOURCE BUILD: 155
 
 --[[
 
@@ -630,14 +631,16 @@ function Library.new(name, theme)
 			Functions.DropdownConnection = Button.MouseButton1Click:Connect(function()
 				if isDropped then
 					isDropped = false
-					dropdownContainer.Size = UDim2.new(0, 197, 0, 0)
 					dropdownContainer.Visible = false
+					dropdownContainer.Size = UDim2.new(0, 197, 0, 0)
 					Button.Image = "rbxassetid://6936536383"
+					Container2.ScrollingEnabled = true
 				else
 					isDropped = true
-					dropdownContainer.Size = UDim2.new(0, 197, 0, DropYSize)
 					dropdownContainer.Visible = true
+					dropdownContainer.Size = UDim2.new(0, 197, 0, DropYSize)
 					Button.Image = "rbxassetid://6936551482"
+					Container2.ScrollingEnabled = false
 				end
 			end)
 

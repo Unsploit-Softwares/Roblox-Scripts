@@ -1,4 +1,4 @@
-local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/development/Unsploit.lua"))()
+--[[ local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/development/Unsploit.lua"))()
 
 local a = Unsploit.new("UI Library", "Dark")
 
@@ -23,4 +23,4 @@ b:AddButton("Unload Unsploit", function()
     if game:GetService("CoreGui"):FindFirstChild("A") then
         game:GetService("CoreGui"):FindFirstChild("A"):Destroy()
     end
-end)
+end) ]]

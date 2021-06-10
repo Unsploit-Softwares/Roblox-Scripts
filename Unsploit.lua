@@ -310,7 +310,7 @@ function Library.new(name, theme, themeData)
 
 		local Options = {}
 		-- Buttons
-		function Options:AddButton(text, callback)
+		function Options:AddButton(text: string, callback)
 			callback = callback or function () end
 
 			local Button = Instance.new("TextButton")
@@ -343,7 +343,6 @@ function Library.new(name, theme, themeData)
 			end)
 			return Button
 		end
-
 		function Options:AddLabel(text: string)
 			local Label = Instance.new("TextLabel")
 
@@ -358,7 +357,6 @@ function Library.new(name, theme, themeData)
 			Label.Text = text or "Label"
 			return Label
 		end
-
 		function Options:AddToggle(text: string, callback, default)
 			local actions = {}
 			local enabled = default or false
@@ -431,7 +429,6 @@ function Library.new(name, theme, themeData)
 				pcall(callback, args)
 			end
 		end
-
 		function Options:AddSlider(text: string, callback, options: table)
 			text = text or "Slider"
 			options.min = options.min or 0
@@ -539,9 +536,8 @@ function Library.new(name, theme, themeData)
 				end)
 			end)
 		end
+		function Options:AddDropdown(text: string, data: table, callback)
 
-		function Options:AddDropdown(text, data, callback)
-			
 			local DropYSize = 0
 			local isDropped = false
 

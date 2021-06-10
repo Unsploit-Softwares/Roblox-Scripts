@@ -501,7 +501,7 @@ function Library.new(name, theme)
 			valueText.Position = UDim2.new(0.501977921, 95, 0.338983059, -10)
 			valueText.Size = UDim2.new(0.179890037, 0, 0.508474529, 0)
 			valueText.Font = Enum.Font.Roboto
-			valueText.Text = string.format("%s / %s", tostring(options.min, options.max))
+			valueText.Text = string.format("%s / %s", tostring(options.min), tostring(options.max))
 			valueText.TextColor3 = Library.chosenTheme.TextColor
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Right
@@ -524,7 +524,7 @@ function Library.new(name, theme)
 				end)
 				sliderInner.Size = UDim2.new(0, math.clamp(mouse.X - sliderInner.AbsolutePosition.X, 0, SliderFrame.AbsoluteSize.X), 0, 12)
 				Functions.moveconnection = mouse.Move:Connect(function()
-					valueText.Text = string.fromat("%s / %s", Value, options.max)
+					valueText.Text = string.format("%s / %s", Value, options.max)
 					Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / SliderFrame.AbsoluteSize.X) * sliderInner.AbsoluteSize.X) + tonumber(options.min))
 					pcall(function()
 						callback(Value)

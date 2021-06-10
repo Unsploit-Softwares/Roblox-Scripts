@@ -13,7 +13,7 @@ local toHSV = Color3.toHSV
 
     Library
 		Constructors: 
-			Library.new(name: string, theme: string) -- > Creates a new UI Window
+			Library.new(name: string, theme: string, themeData) -- > Creates a new UI Window. themeData should only be added if theme argument is set to "Custom"
 		
 		Functions:
 			-- Tabs
@@ -25,13 +25,14 @@ local toHSV = Color3.toHSV
 			Options:AddLabel(text: string) --> Creates a new label
 			Options:AddToggle(text: string, callback: function) --> Creates a new Toggle
 			Options:AddDropdown(text: string) --> Creates a new Dropdown
-			Options:AddSlider(text: string, min: number, default: number, max: number, callback: function) --> Creates a new Slider
+			Options:AddSlider(text: string, callback: function, options: table) --> Creates a new Slider, Options table includes "min" and "max" values.
 
 		Themes:
 			Default,
 			Dark,
 			Light,
-			Unsploit
+			Unsploit,
+			Custom
 
 		Methods: 
 			Library:Destroy() --> Destroys the UI Object
@@ -129,9 +130,11 @@ Library.Themes = {
 	}
 }
 
-function Library.new(name, theme)
+function Library.new(name, theme, themeData)
 	theme = theme or "Default"
 	Library.Title = name or "Unsploit"
+
+	if not themeData then return; end
 
 	if theme == "Default" then
 		Library.chosenTheme = Library.Themes.Default
@@ -141,6 +144,8 @@ function Library.new(name, theme)
 		Library.chosenTheme = Library.Themes.Dark
 	elseif theme == "Unsploit" then
 		Library.chosenTheme = Library.Themes.Unsploit
+	elseif theme == "Custom" then
+		Library.chosenTheme = themeData
 	end
 
 	-- Core Stuff
@@ -305,7 +310,7 @@ function Library.new(name, theme)
 
 		local Options = {}
 		-- Buttons
-		function Options:AddButton(text, callback)
+		function Options:AddButton(text: string, callback)
 			callback = callback or function () end
 
 			local Button = Instance.new("TextButton")
@@ -531,6 +536,116 @@ function Library.new(name, theme)
 				end)
 			end)
 		end
+		function Options:AddDropdown(text: string, data: table, callback)
+
+			local DropYSize = 0
+			local isDropped = false
+
+			text = text or "Dropdown"
+			data = data or {}
+
+			callback = callback or function () end
+
+			local Dropdown = Instance.new("Frame")
+			local Label = Instance.new("TextLabel")
+			local Holder = Instance.new("Frame")
+			local Button = Instance.new("TextButton")
+			local UICorner = Instance.new("UICorner")
+			local valueText = Instance.new("TextLabel")
+			local dropdownContainer = Instance.new("ScrollingFrame")
+			local UIListLayout = Instance.new("UIListLayout")
+			local OptionButton = Instance.new("TextButton")
+
+			Dropdown.Name = "Dropdown"
+			Dropdown.Parent = game.StarterGui.Unsploit.Frame["Container2"]
+			Dropdown.BackgroundColor3 = Color3.fromRGB(194, 57, 57)
+			Dropdown.BorderSizePixel = 0
+			Dropdown.Size = UDim2.new(0, 100, 0, 100)
+
+			Label.Name = "Label"
+			Label.Parent = Dropdown
+			Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Label.BackgroundTransparency = 1.000
+			Label.BorderSizePixel = 0
+			Label.Position = UDim2.new(0.0192307699, 0, 0, 0)
+			Label.Size = UDim2.new(0.381098866, 0, 1, 0)
+			Label.Font = Enum.Font.SourceSans
+			Label.Text = "Dropdown"
+			Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Label.TextSize = 14.000
+			Label.TextXAlignment = Enum.TextXAlignment.Left
+
+			Holder.Name = "Holder"
+			Holder.Parent = Dropdown
+			Holder.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			Holder.BorderSizePixel = 0
+			Holder.Position = UDim2.new(0.424758226, 0, 0.0677966028, 2)
+			Holder.Size = UDim2.new(0.543000042, 0, 0.678711653, 0)
+
+			Button.Name = "Button"
+			Button.Parent = Holder
+			Button.Active = false
+			Button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			Button.BorderSizePixel = 0
+			Button.Position = UDim2.new(0.862500012, 0, 0.0661021098, 0)
+			Button.Selectable = false
+			Button.Size = UDim2.new(0.113477945, 0, 0.85000056, 0)
+			Button.Text = "v"
+			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+			UICorner.CornerRadius = UDim.new(0, 6)
+			UICorner.Parent = Button
+
+			valueText.Name = "valueText"
+			valueText.Parent = Holder
+			valueText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			valueText.BackgroundTransparency = 1.000
+			valueText.Position = UDim2.new(0.0202372819, 0, 0, 0)
+			valueText.Size = UDim2.new(0.822524846, -3, 1, 0)
+			valueText.Font = Enum.Font.SourceSans
+			valueText.Text = "Dropdown Value"
+			valueText.TextColor3 = Color3.fromRGB(255, 255, 255)
+			valueText.TextSize = 14.000
+			valueText.TextXAlignment = Enum.TextXAlignment.Left
+
+			dropdownContainer.Name = "dropdownContainer"
+			dropdownContainer.Parent = Holder
+			dropdownContainer.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			dropdownContainer.BorderSizePixel = 0
+			dropdownContainer.Position = UDim2.new(0, 0, 1.00000048, 0)
+			dropdownContainer.Selectable = false
+			dropdownContainer.Size = UDim2.new(1, 0, 0, 0)
+			dropdownContainer.Visible = false
+			dropdownContainer.ScrollBarThickness = 0
+
+			UIListLayout.Parent = dropdownContainer
+			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+			UIListLayout.Padding = UDim.new(0, 3)
+
+			OptionButton.Name = "OptionButton"
+			OptionButton.Parent = dropdownContainer
+			OptionButton.BackgroundColor3 = Color3.fromRGB(194, 57, 57)
+			OptionButton.BorderSizePixel = 0
+			OptionButton.Size = UDim2.new(1, 0, 0.25, 0)
+			OptionButton.AutoButtonColor = false
+			OptionButton.Font = Enum.Font.SourceSans
+			OptionButton.Text = "Option 2"
+			OptionButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			OptionButton.TextSize = 14.000
+
+			Functions.DropdownConnection = Button.MouseButton1Click:Connect(function()
+				if isDropped then
+					isDropped = false
+					dropdownContainer.Size = UDim2.new(0, 197, 0, 0)
+					Button.Text = "⯆"
+				else
+					isDropped = true
+					dropdownContainer.Size = UDim2.new(0, 197, 0, 0)
+					Button.Text = "⯅"
+				end
+			end)
+
+		end
 		return Options
 	end
 
@@ -550,6 +665,20 @@ function Library.new(name, theme)
 	end
 	Library.Notification.Notify("Unsploit UI Library", "Unsploit UI Library has successfully loaded!", "rbxassetid://4914902889")
 	return TabLibrary
+end
+
+function Library:SetTheme(theme)
+	theme = theme or "Default"
+
+	if theme == "Default" then
+		Library.chosenTheme = Library.Themes.Default
+	elseif theme == "Light" then
+		Library.chosenTheme = Library.Themes.Light
+	elseif theme == "Dark" then
+		Library.chosenTheme = Library.Themes.Dark
+	elseif theme == "Unsploit" then
+		Library.chosenTheme = Library.Themes.Unsploit
+	end
 end
 
 function Library:Destroy()

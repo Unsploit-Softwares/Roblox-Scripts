@@ -10,7 +10,7 @@ function Console.new(parent: Instance)
     local Borders_4 = Instance.new("Frame")
     local consoleText = Instance.new("TextLabel")
     
-    Console._window.Name = "- Console"
+    Console._window.Name = "Console"
     Console._window.Parent = parent
     Console._window.AnchorPoint = Vector2.new(0.5, 0.5)
     Console._window.BackgroundColor3 = Color3.fromRGB(147, 147, 147)

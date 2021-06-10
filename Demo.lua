@@ -10,6 +10,6 @@ b:AddDropdown("Dropdown Test", {
     "1",
     "2",
     "3"
-}, function()
-    print("Vlaue")
+}, function(vlaue)
+    print(vlaue)
 end)

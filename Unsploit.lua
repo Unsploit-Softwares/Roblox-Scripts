@@ -561,7 +561,8 @@ function Library.new(name, theme)
 			local UICorner = Instance.new("UICorner")
 			local valueText = Instance.new("TextLabel")
 			local dropdownContainer = Instance.new("ScrollingFrame")
-			local UIListLayout = Instance.new("UIListLayout")
+			local UIPadding = Instance.new("UIPadding")
+			--local UIListLayout = Instance.new("UIListLayout")
 
 			Dropdown.Name = "Dropdown"
 			Dropdown.Parent = Container2
@@ -623,10 +624,14 @@ function Library.new(name, theme)
 			dropdownContainer.Size = UDim2.new(1, 0, 0, 0)
 			dropdownContainer.Visible = false
 			dropdownContainer.ScrollBarThickness = 0
-
-			UIListLayout.Parent = dropdownContainer
+			
+--[[ 			UIListLayout.Parent = dropdownContainer
 			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-			UIListLayout.Padding = UDim.new(0, 3)
+			UIListLayout.Padding = UDim.new(0, 3) ]]
+
+			UIPadding.Parent = dropdownContainer
+			UIPadding.PaddingBottom = UDim.new(0, 5)
+			UIPadding.PaddingTop = UDim.new(0, 5)
 
 			Functions.DropdownConnection = Button.MouseButton1Click:Connect(function()
 				if isDropped then
@@ -646,17 +651,20 @@ function Library.new(name, theme)
 
 			for i,v in next, data do
 				local OptionButton = Instance.new("TextButton")
+				local Padding = Instance.new("UIPadding")
 
 				OptionButton.Name = "OptionButton"
 				OptionButton.Parent = dropdownContainer
 				OptionButton.BackgroundColor3 = Library.chosenTheme.Button
 				OptionButton.BorderSizePixel = 0
-				OptionButton.Size = UDim2.new(1, 0, 0, 30)
+				OptionButton.Size = UDim2.new(.95, 0, 0, 30)
+				OptionButton.Position = UDim2.new(0, 5, 0, 0, 0)
 				OptionButton.AutoButtonColor = false
 				OptionButton.Font = Enum.Font.SourceSans
 				OptionButton.Text = v
 				OptionButton.TextColor3 = Library.chosenTheme.TextColor
 				OptionButton.TextSize = 14.000
+
 				DropYSize += 30
 
 				Functions.DropdownOptionBtn = OptionButton.MouseButton1Click:Connect(function()

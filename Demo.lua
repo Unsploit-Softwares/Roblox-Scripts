@@ -7,9 +7,7 @@ b:AddDropdown("Dropdown Test", {
     "A",
     "B",
     "C",
-    "1",
-    "2",
-    "3"
+    "1"
 }, function(vlaue)
     print(vlaue)
 end)

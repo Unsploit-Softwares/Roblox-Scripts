@@ -247,7 +247,7 @@ function Library.new(name, theme)
 		local UIGridLayout = Instance.new("UIGridLayout")
 		local UIPadding_2 = Instance.new("UIPadding")
 
-		TabBtn.Name = "TabBtn"
+		TabBtn.Name = text
 		TabBtn.BackgroundColor3 = Library.chosenTheme.Button
 		TabBtn.Size = UDim2.new(0.899999976, 0, 0.100000001, 0)
 		TabBtn.Font = Enum.Font.SourceSans
@@ -325,7 +325,7 @@ function Library.new(name, theme)
 			local UIPadding = Instance.new("UIPadding")
 			local UICorner = Instance.new("UICorner")
 
-			Button.Name = "Button"
+			Button.Name = text
 			Button.Parent = Container2
 			Button.BackgroundColor3 = Library.chosenTheme.Button
 			Button.BorderSizePixel = 0
@@ -354,7 +354,7 @@ function Library.new(name, theme)
 		function Options:AddLabel(text: string)
 			local Label = Instance.new("TextLabel")
 
-			Label.Name = "Label"
+			Label.Name = text
 			Label.Parent = Container2
 			Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			Label.BackgroundTransparency = 1.000
@@ -378,7 +378,7 @@ function Library.new(name, theme)
 			local UICorner_2 = Instance.new("UICorner")
 			local ToggleBtn = Instance.new("TextButton")
 
-			Toggle.Name = "Toggle"
+			Toggle.Name = text
 			Toggle.Parent = Container2
 			Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			Toggle.BackgroundTransparency = 1.000
@@ -457,7 +457,7 @@ function Library.new(name, theme)
 			local valueText = Instance.new("TextLabel")
 			local SliderButton = Instance.new("TextButton")
 
-			Slider.Name = "Slider"
+			Slider.Name = text
 			Slider.Parent = Container2
 			Slider.BackgroundColor3 = Library.chosenTheme.Button
 			Slider.BorderColor3 = Color3.fromRGB(27, 42, 53)
@@ -564,7 +564,7 @@ function Library.new(name, theme)
 			local UIPadding = Instance.new("UIPadding")
 			--local UIListLayout = Instance.new("UIListLayout")
 
-			Dropdown.Name = "Dropdown"
+			Dropdown.Name = text
 			Dropdown.Parent = Container2
 			Dropdown.BackgroundColor3 = Library.chosenTheme.Button
 			Dropdown.BorderSizePixel = 0
@@ -653,7 +653,7 @@ function Library.new(name, theme)
 				local OptionButton = Instance.new("TextButton")
 				local Padding = Instance.new("UIPadding")
 
-				OptionButton.Name = "OptionButton"
+				OptionButton.Name = v ..  "Btn"
 				OptionButton.Parent = dropdownContainer
 				OptionButton.BackgroundColor3 = Library.chosenTheme.Button
 				OptionButton.BorderSizePixel = 0
@@ -665,7 +665,7 @@ function Library.new(name, theme)
 				OptionButton.TextColor3 = Library.chosenTheme.TextColor
 				OptionButton.TextSize = 14.000
 
-				DropYSize += 30
+				DropYSize = DropYSize + 30
 
 				Functions.DropdownOptionBtn = OptionButton.MouseButton1Click:Connect(function()
 					valueText.Text = v

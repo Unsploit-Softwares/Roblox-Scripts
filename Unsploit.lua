@@ -338,7 +338,6 @@ function Library.new(name, theme)
 			end)
 			return Button
 		end
-
 		function Options:AddLabel(text: string)
 			local Label = Instance.new("TextLabel")
 
@@ -353,7 +352,6 @@ function Library.new(name, theme)
 			Label.Text = text or "Label"
 			return Label
 		end
-
 		function Options:AddToggle(text: string, callback, default)
 			local actions = {}
 			local enabled = default or false
@@ -426,7 +424,6 @@ function Library.new(name, theme)
 				pcall(callback, args)
 			end
 		end
-
 		function Options:AddSlider(text: string, callback, options: table)
 			text = text or "Slider"
 			options.min = options.min or 0

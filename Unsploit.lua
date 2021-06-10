@@ -191,7 +191,7 @@ function Library.new(name, theme)
 	titleLabel.Position = UDim2.new(0.00800000038, 0, 0, 0)
 	titleLabel.Size = UDim2.new(0.912, 0, 1, 0)
 	titleLabel.Font = Enum.Font.SourceSans
-	titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	titleLabel.TextColor3 = Library.chosenTheme.TextColor
 	titleLabel.TextSize = 14.000
 	titleLabel.TextXAlignment = Enum.TextXAlignment.Left
 	titleLabel.Text = name
@@ -204,7 +204,7 @@ function Library.new(name, theme)
 	exitBtn.Size = UDim2.new(0.0799999982, 0, 1, 0)
 	exitBtn.Font = Enum.Font.SourceSans
 	exitBtn.Text = "X"
-	exitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+	exitBtn.TextColor3 = Library.chosenTheme.TextColor
 	exitBtn.TextSize = 14.000
 
 	TabContainer.Name = "TabContainer"
@@ -387,7 +387,7 @@ function Library.new(name, theme)
 			Label.BorderSizePixel = 0
 			Label.Size = UDim2.new(0.76296705, 0, 1, 0)
 			Label.Font = Enum.Font.SourceSans
-			Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Label.TextColor3 = Library.chosenTheme.TextColor
 			Label.TextSize = 14.000
 			Label.TextXAlignment = Enum.TextXAlignment.Left
 			Label.Text = text
@@ -497,7 +497,7 @@ function Library.new(name, theme)
 			valueText.Size = UDim2.new(0.179890037, 0, 0.508474529, 0)
 			valueText.Font = Enum.Font.Roboto
 			valueText.Text = string.format("%s / %s", tostring(options.min, options.max))
-			valueText.TextColor3 = Color3.fromRGB(255, 255, 255)
+			valueText.TextColor3 = Library.chosenTheme.TextColor
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Right
 
@@ -574,7 +574,7 @@ function Library.new(name, theme)
 			Label.Size = UDim2.new(0.381098866, 0, 1, 0)
 			Label.Font = Enum.Font.SourceSans
 			Label.Text = text
-			Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Label.TextColor3 = Library.chosenTheme.TextColor
 			Label.TextSize = 14.000
 			Label.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -594,7 +594,7 @@ function Library.new(name, theme)
 			Button.Selectable = false
 			Button.Size = UDim2.new(0.113477945, 0, 0.85000056, 0)
 			Button.Text = "v"
-			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Button.TextColor3 = Library.chosenTheme.TextColor
 
 			UICorner.CornerRadius = UDim.new(0, 6)
 			UICorner.Parent = Button
@@ -607,7 +607,7 @@ function Library.new(name, theme)
 			valueText.Size = UDim2.new(0.822524846, -3, 1, 0)
 			valueText.Font = Enum.Font.SourceSans
 			valueText.Text = "Dropdown Value"
-			valueText.TextColor3 = Color3.fromRGB(255, 255, 255)
+			valueText.TextColor3 = Library.chosenTheme.TextColor
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -627,13 +627,13 @@ function Library.new(name, theme)
 
 			OptionButton.Name = "OptionButton"
 			OptionButton.Parent = dropdownContainer
-			OptionButton.BackgroundColor3 = Color3.fromRGB(194, 57, 57)
+			OptionButton.BackgroundColor3 = Library.chosenTheme.Button
 			OptionButton.BorderSizePixel = 0
 			OptionButton.Size = UDim2.new(1, 0, 0.25, 0)
 			OptionButton.AutoButtonColor = false
 			OptionButton.Font = Enum.Font.SourceSans
 			OptionButton.Text = "Option 2"
-			OptionButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			OptionButton.TextColor3 = Library.chosenTheme.TextColor
 			OptionButton.TextSize = 14.000
 
 			Functions.DropdownConnection = Button.MouseButton1Click:Connect(function()

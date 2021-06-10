@@ -1,8 +1,8 @@
 local Unsploit = loadstring(game:HttpGet("https://raw.githubusercontent.com/Unsploit-Softwares/Roblox-Scripts/development/Unsploit.lua"))()
 
-local a = Unsploit.new("A", "Dark")
+local a = Unsploit.new("UI Library", "Dark")
 
-local b = a:AddTab("Testing")
+local b = a:AddTab("Tab")
 b:AddLabel("Label")
 b:AddButton("Button", function()
     print("Hello world!")

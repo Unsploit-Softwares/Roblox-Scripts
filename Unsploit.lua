@@ -133,11 +133,11 @@ Library.Themes = {
 	}
 }
 
-function Library.new(name, theme, themeData)
+function Library.new(name, theme)
 	theme = theme or "Default"
 	Library.Title = name or "Unsploit"
 
-	if not themeData then return; end
+	--if not themeData then return; end
 
 	if theme == "Default" then
 		Library.chosenTheme = Library.Themes.Default
@@ -147,8 +147,8 @@ function Library.new(name, theme, themeData)
 		Library.chosenTheme = Library.Themes.Dark
 	elseif theme == "Unsploit" then
 		Library.chosenTheme = Library.Themes.Unsploit
-	elseif theme == "Custom" then
-		Library.chosenTheme = themeData
+	--[[ elseif theme == "Custom" then
+		Library.chosenTheme = themeData ]]
 	end
 
 	-- Core Stuff

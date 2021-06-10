@@ -670,6 +670,12 @@ function Library.new(name, theme)
 				Functions.DropdownOptionBtn = OptionButton.MouseButton1Click:Connect(function()
 					valueText.Text = v
 					callback(v)
+
+					isDropped = false
+					dropdownContainer.Visible = false
+					dropdownContainer.Size = UDim2.new(0, 197, 0, 0)
+					Button.Image = "rbxassetid://6936536383"
+					Container2.ScrollingEnabled = true
 				end)
 			end
 		end

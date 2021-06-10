@@ -191,7 +191,7 @@ function Library.new(name, gameTitle,theme)
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 	Main.Size = UDim2.new(0, 500, 0, 300)
 
-	--Library.Draggify(Main)
+	Library.Draggify(Main)
 
 	TopBar.Name = "TopBar"
 	TopBar.Parent = Main
@@ -448,6 +448,7 @@ function Library.new(name, gameTitle,theme)
 				Bool:TweenPosition(enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(0, 0, 0, 0), "In", "Linear", 0.1)
 				pcall(callback, args)
 			end
+			return Toggle
 		end
 		function Options:AddSlider(text: string, callback, options: table)
 			text = text or "Slider"
@@ -555,6 +556,7 @@ function Library.new(name, gameTitle,theme)
 					end
 				end)
 			end)
+			return Slider
 		end
 		function Options:AddDropdown(text: string, data: table, callback)
 
@@ -691,6 +693,7 @@ function Library.new(name, gameTitle,theme)
 					Container2.ScrollingEnabled = true
 				end)
 			end
+			return Dropdown
 		end
 		return Options
 	end

@@ -1,8 +1,7 @@
 local Console = {}
 
 function Console.new(parent: Instance)
-    local consoleName = Console._window.Parent.Name
-
+    
     Console._window = Instance.new("Frame")
     local TopBar = Instance.new("Frame")
     local TextLabel = Instance.new("TextLabel")
@@ -11,8 +10,8 @@ function Console.new(parent: Instance)
     local Borders_3 = Instance.new("Frame")
     local Borders_4 = Instance.new("Frame")
     local consoleText = Instance.new("TextLabel")
-
-    Console._window.Name = consoleName .. "- Console"
+    
+    Console._window.Name = parent.Name .. "- Console"
     Console._window.Parent = parent
     Console._window.AnchorPoint = Vector2.new(0.5, 0.5)
     Console._window.BackgroundColor3 = Color3.fromRGB(147, 147, 147)

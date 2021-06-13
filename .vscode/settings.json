@@ -2,5 +2,19 @@
     "Lua.diagnostics.disable": [
         "missing-module-return",
         "unused-local"
+    ],
+    "Lua.diagnostics.globals": [
+        "UDim2",
+        "Enum",
+        "Rect",
+        "Color3",
+        "spawn",
+        "wait",
+        "Instance",
+        "game",
+        "Vector2",
+        "typeof",
+        "function",
+        "local",
     ]
 }

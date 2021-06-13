@@ -290,6 +290,11 @@ function Library.new(name, gameTitle,theme)
 		UIPadding_2.PaddingRight = UDim.new(0, 6)
 		UIPadding_2.PaddingTop = UDim.new(0, 5)
 		
+		Functions.UpdateTabs = function()
+			TabBtn.BackgroundColor3 = Library.chosenTheme.Button
+			TabBtn.TextColor3 = Library.chosenTheme.TextColor
+		end
+
 		table.insert(Utility.Pages, text)
 		
 		for _,v in pairs(PageContainer:GetChildren()) do
@@ -361,6 +366,12 @@ function Library.new(name, gameTitle,theme)
 			Functions.ButtonOptionConnection = Button.MouseButton1Click:Connect(function()
 				Functions:Execute(callback)
 			end)
+
+			Functions.UpdateButton = function()
+				Button.BackgroundColor3 = Library.chosenTheme.Button
+				Button.TextColor3 = Library.chosenTheme.TextColor
+			end
+
 			return Button
 		end
 		function Options:AddLabel(text: string)
@@ -375,6 +386,10 @@ function Library.new(name, gameTitle,theme)
 			Label.TextColor3 = Library.chosenTheme.TextColor
 			Label.TextSize = 14.000
 			Label.Text = text or "Label"
+
+			Functions.UpdateLabel = function()
+				Label.TextColor3 = Library.chosenTheme.TextColor
+			end
 			return Label
 		end
 		function Options:AddToggle(text: string, callback, default)
@@ -399,7 +414,7 @@ function Library.new(name, gameTitle,theme)
 
 			Label.Name = "Label"
 			Label.Parent = Toggle
-			Label.BackgroundColor3 = Library.chosenTheme.TextColor
+			Label.BackgroundColor3 = Library.chosenTheme.Button
 			Label.BackgroundTransparency = 1.000
 			Label.BorderSizePixel = 0
 			Label.Size = UDim2.new(0.76296705, 0, 1, 0)
@@ -436,6 +451,12 @@ function Library.new(name, gameTitle,theme)
 			ToggleBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
 			ToggleBtn.TextSize = 14.000
 
+			Functions.UpdateToggle = function()
+				Label.BackgroundColor3 = Library.chosenTheme.Button
+				Label.TextColor3 = Library.chosenTheme.TextColor
+				Bool.BackgroundColor3 = Library.chosenTheme.Button
+			end
+
 			local function Fire()
 				enabled = not enabled
 				Bool:TweenPosition(enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(0, 0, 0, 0), "In", "Linear", 0.1)
@@ -448,10 +469,11 @@ function Library.new(name, gameTitle,theme)
 				Bool:TweenPosition(enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(0, 0, 0, 0), "In", "Linear", 0.1)
 				pcall(callback, args)
 			end
-			return Toggle
+			return {GetEnabled = function() return enabled end}
 		end
 		function Options:AddSlider(text: string, callback, options: table)
 			text = text or "Slider"
+			options.default = options.default or 10
 			options.min = options.min or 0
 			options.max = options.max or 100
 
@@ -514,7 +536,7 @@ function Library.new(name, gameTitle,theme)
 			valueText.Position = UDim2.new(0.501977921, 95, 0.338983059, -10)
 			valueText.Size = UDim2.new(0.179890037, 0, 0.508474529, 0)
 			valueText.Font = Enum.Font.Roboto
-			valueText.Text = string.format("%s / %s", tostring(options.min), tostring(options.max))
+			valueText.Text = string.format("%s / %s", tostring(options.default), tostring(options.max))
 			valueText.TextColor3 = Library.chosenTheme.TextColor
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Right
@@ -531,7 +553,7 @@ function Library.new(name, gameTitle,theme)
 			SliderButton.TextSize = 14.000
 
 			SliderButton.MouseButton1Down:Connect(function()
-				Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / SliderFrame.AbsoluteSize.X) * sliderInner.AbsoluteSize.X) + tonumber(options.min)) or 0
+				Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / SliderFrame.AbsoluteSize.X) * sliderInner.AbsoluteSize.X) + tonumber(options.min)) or options.default
 				pcall(function()
 					callback(Value)
 				end)
@@ -556,7 +578,13 @@ function Library.new(name, gameTitle,theme)
 					end
 				end)
 			end)
-			return Slider
+
+			Functions.UpdateSlider = function()
+				Slider.BackgroundColor3 = Library.chosenTheme.Button
+				OptionText.TextColor3 = Library.chosenTheme.TextColor
+				valueText.TextColor3 = Library.chosenTheme.TextColor
+			end
+			return {GetValue = function() return Value end}
 		end
 		function Options:AddDropdown(text: string, data: table, callback)
 
@@ -664,8 +692,10 @@ function Library.new(name, gameTitle,theme)
 				end
 			end)
 
+			local OptionButton
+
 			for i,v in next, data do
-				local OptionButton = Instance.new("TextButton")
+				OptionsButton = Instance.new("TextButton")
 				local Padding = Instance.new("UIPadding")
 
 				OptionButton.Name = v ..  "Btn"
@@ -692,6 +722,14 @@ function Library.new(name, gameTitle,theme)
 					Button.Image = "rbxassetid://6936536383"
 					Container2.ScrollingEnabled = true
 				end)
+
+				Functions.UpdateDropdown = function()
+					OptionButton.BackgroundColor3 = Library.chosenTheme.Button
+					OptionButton.TextColor3 = Library.chosenTheme.TextColor
+					Dropdown.BackgroundColor3 = Library.chosenTheme.Button
+					Label.TextColor3 = Library.chosenTheme.TextColor
+					valueText.TextColor3 = Library.chosenTheme.TextColor
+				end
 			end
 			return Dropdown
 		end
@@ -701,7 +739,7 @@ function Library.new(name, gameTitle,theme)
 	function TabLibrary:AddLabel(text: string)
 		local Label = Instance.new("TextLabel")
 
-		Label.Name = "newLabel"
+		Label.Name = "tLabel"
 		Label.Parent = TabContainer
 		Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Label.BackgroundTransparency = 1.000
@@ -710,24 +748,42 @@ function Library.new(name, gameTitle,theme)
 		Label.Text = text or "Label"
 		Label.TextColor3 = Library.chosenTheme.TextColor
 		Label.TextSize = 14.000
+
+		Functions.UpdateTabLabel = function()
+			Label.TextColor3 = Library.chosenTheme.TextColor
+		end
 		return Label
 	end
-	Library.Notification.Notify("Unsploit UI Library", "Unsploit UI Library has successfully loaded!", "rbxassetid://4914902889")
+
+	Functions.UpdateThemeData = function()
+		Main.BackgroundColor3 = Library.chosenTheme.Accent
+		TopBar.BackgroundColor3 = Library.chosenTheme.Background
+		TabContainer.BackgroundColor3 = Library.chosenTheme.Background
+		titleLabel.TextColor3 = Library.chosenTheme.TextColor
+		exitBtn.TextColor3 = Library.chosenTheme.TextColor
+		
+		Functions.UpdateTabs()
+		Functions.UpdateTabLabel()
+		Functions.UpdateButton()
+		Functions.UpdateLabel()
+		Functions.UpdateToggle()
+		Functions.UpdateSlider()
+		Functions.UpdateDropdown()
+	end
+
 	return TabLibrary
 end
 
 function Library:SetTheme(theme)
-	theme = theme or "Default"
+	Library.chosenTheme = theme
+end
 
-	if theme == "Default" then
-		Library.chosenTheme = Library.Themes.Default
-	elseif theme == "Light" then
-		Library.chosenTheme = Library.Themes.Light
-	elseif theme == "Dark" then
-		Library.chosenTheme = Library.Themes.Dark
-	elseif theme == "Unsploit" then
-		Library.chosenTheme = Library.Themes.Unsploit
-	end
+function Library:AddTheme(name, data)
+	name = name or "Custom Theme"
+	data = data or  {}
+
+	Library.Themes[name] = data
+	Functions.UpdateThemeData();
 end
 
 function Library:GetName()
@@ -737,6 +793,12 @@ end
 function Library:Destroy()
 	self._instance:Destroy()
 end
+
+Functions.RenderStepped = game:GetService("RunService").RenderStepped:Connect(function()
+	coroutine.wrap(function()
+		Functions.UpdateThemeData()
+	end)
+end)
 
 function Utility:GenerateName(...)
 	local a = {...}
@@ -785,6 +847,9 @@ Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(func
 			if Functions.DropdownConnection then
 				Functions.DropdownConnection:Disconnect();
 				Functions.DropdownOptionBtn:Disconnect();
+			end
+			if Functions.RenderStepped then
+				Functions.RenderStepped:Disconnect()
 			end
 		end
 	end

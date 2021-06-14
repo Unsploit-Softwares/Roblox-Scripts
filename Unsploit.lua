@@ -776,6 +776,7 @@ end
 
 function Library:SetTheme(theme)
 	Library.chosenTheme = theme
+	Functions.UpdateThemeData()
 end
 
 function Library:AddTheme(name, data)
@@ -796,7 +797,9 @@ end
 
 Functions.RenderStepped = game:GetService("RunService").RenderStepped:Connect(function()
 	coroutine.wrap(function()
-		Functions.UpdateThemeData()
+		while wait(0.5) do
+			Functions.UpdateThemeData()
+		end
 	end)
 end)
 

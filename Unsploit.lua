@@ -140,22 +140,26 @@ Library.Themes = {
 
 function Library.new(name, gameTitle,theme)
 	gameTitle = gameTitle or "Universal"
-	theme = theme or "Default"
+	Library.currTheme = theme or "Default"
 	Library.Title = name or "Unsploit"
 
-	--if not themeData then return; end
 
-	if theme == "Default" then
-		Library.chosenTheme = Library.Themes.Default
-	elseif theme == "Light" then
-		Library.chosenTheme = Library.Themes.Light
-	elseif theme == "Dark" then
-		Library.chosenTheme = Library.Themes.Dark
-	elseif theme == "Unsploit" then
-		Library.chosenTheme = Library.Themes.Unsploit
-	--[[ elseif theme == "Custom" then
-		Library.chosenTheme = themeData ]]
-	end
+	--if not themeData then return; end
+	pcall(function()
+		while wait(0.45) do
+			if Library.currTheme == "Default" then
+				Library.chosenTheme = Library.Themes.Default
+			elseif Library.currTheme == "Light" then
+				Library.currTheme.chosenTheme = Library.Themes.Light
+			elseif Library.currTheme == "Dark" then
+				Library.currTheme.chosenTheme = Library.Themes.Dark
+			elseif Library.currTheme == "Unsploit" then
+				Library.currTheme.chosenTheme = Library.Themes.Unsploit
+			--[[ elseif theme == "Custom" then
+				Library.chosenTheme = themeData ]]
+			end
+		end
+	end)
 
 	local function setTitle()
 		local g_title;
@@ -586,12 +590,13 @@ function Library.new(name, gameTitle,theme)
 			end
 			return {GetValue = function() return Value end}
 		end
-		function Options:AddDropdown(text: string, data: table, callback)
+		function Options:AddDropdown(text: string, data: table, callback, default)
 
 			local DropYSize = 0
 			local isDropped = false
 
 			text = text or "Dropdown"
+			default = default or "Dropdown"
 			data = data or {}
 
 			callback = callback or function () end
@@ -653,7 +658,7 @@ function Library.new(name, gameTitle,theme)
 			valueText.Position = UDim2.new(0.0202372819, 0, 0, 0)
 			valueText.Size = UDim2.new(0.822524846, -3, 1, 0)
 			valueText.Font = Enum.Font.SourceSans
-			valueText.Text = data[1]
+			valueText.Text = default
 			valueText.TextColor3 = Library.chosenTheme.TextColor
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Left
@@ -711,7 +716,7 @@ function Library.new(name, gameTitle,theme)
 
 				DropYSize = DropYSize + 30
 
-				Functions.DropdownOptionBtn = OptionButton.MouseButton1Click:Connect(function()
+				OptionButton.MouseButton1Click:Connect(function()
 					valueText.Text = v
 					callback(v)
 

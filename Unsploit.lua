@@ -554,7 +554,7 @@ function Library.new(name, gameTitle,theme)
 			SliderButton.TextSize = 14.000
 
 			SliderButton.MouseButton1Down:Connect(function()
-				Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / SliderFrame.AbsoluteSize.X) * sliderInner.AbsoluteSize.X) + tonumber(options.min)) or options.default
+				Value = math.floor((((tonumber(options.max) - tonumber(options.min)) / SliderFrame.AbsoluteSize.X) * sliderInner.AbsoluteSize.X) + tonumber(options.min)) or 0
 				pcall(function()
 					callback(Value)
 				end)
@@ -593,7 +593,7 @@ function Library.new(name, gameTitle,theme)
 			local isDropped = false
 
 			text = text or "Dropdown"
-			default = default or "Dropdown"
+			default = default or "Option"
 			data = data or {}
 
 			callback = callback or function () end

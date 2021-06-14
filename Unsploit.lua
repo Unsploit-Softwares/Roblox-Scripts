@@ -680,8 +680,6 @@ function Library.new(name, gameTitle,theme)
 			UIPadding.PaddingTop = UDim.new(0, 5)
 			UIPadding.PaddingLeft = UDim.new(0, 10)
 
-			
-			
 			for i,v in next, data do
 				local OptionButton = Instance.new("TextButton")
 				
@@ -725,7 +723,7 @@ function Library.new(name, gameTitle,theme)
 						Container2.ScrollingEnabled = false
 					end
 				end)
-				
+
 				Functions.UpdateDropdown = function()
 					OptionButton.BackgroundColor3 = getgenv().chosenTheme.Button
 					OptionButton.TextColor3 = getgenv().chosenTheme.TextColor

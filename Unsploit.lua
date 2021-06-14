@@ -5,8 +5,8 @@ local HSV = Color3.fromHSV
 local Color = Color3.new
 local toHSV = Color3.toHSV
 
--- NAME: Library._instance UI Library
--- AUTHOR: Library._instance Softwares
+-- NAME: Unsploit UI Library
+-- AUTHOR: Unsploit Softwares
 -- DATE: June 2nd 2021 -- REWRITE #3
 -- SOURCE BUILD: 155
 

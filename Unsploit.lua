@@ -94,8 +94,8 @@ local Library: Unsploit = {
 		min = 1,
 		submin = 12
 	};
-	chosenTheme = ""
 }
+getgenv().chosenTheme = "Default"
 
 
 local Utility: Utility = {
@@ -107,7 +107,7 @@ local Utility: Utility = {
 }
 local Functions = {}
 
-Library.Themes = {
+getgenv().Themes = {
 	Default = {
 		["Background"] = RGB(59, 59, 59),
 		["Accent"] =  RGB(117, 117, 117),
@@ -147,15 +147,15 @@ function Library.new(name, gameTitle,theme)
 	--if not themeData then return; end
 
 	if theme == "Default" then
-		Library.chosenTheme = Library.Themes.Default
+		getgenv().chosenTheme = getgenv().Themes.Default
 	elseif theme == "Light" then
-		Library.chosenTheme = Library.Themes.Light
+		getgenv().chosenTheme = getgenv().Themes.Light
 	elseif theme == "Dark" then
-		Library.chosenTheme = Library.Themes.Dark
+		getgenv().chosenTheme = getgenv().Themes.Dark
 	elseif theme == "Unsploit" then
-		Library.chosenTheme = Library.Themes.Unsploit
+		getgenv().chosenTheme = getgenv().Themes.Unsploit
 	--[[ elseif theme == "Custom" then
-		Library.chosenTheme = themeData ]]
+		getgenv().chosenTheme = themeData ]]
 	end
 
 	local function setTitle()
@@ -187,7 +187,7 @@ function Library.new(name, gameTitle,theme)
 	Main.Name = "Main"
 	Main.Parent = Library._instance
 	Main.AnchorPoint = Vector2.new(0.5, 0.5)
-	Main.BackgroundColor3 = Library.chosenTheme.Accent
+	Main.BackgroundColor3 = getgenv().chosenTheme.Accent
 	Main.BorderSizePixel = 0
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 	Main.Size = UDim2.new(0, 500, 0, 300)
@@ -196,7 +196,7 @@ function Library.new(name, gameTitle,theme)
 
 	TopBar.Name = "TopBar"
 	TopBar.Parent = Main
-	TopBar.BackgroundColor3 = Library.chosenTheme.Background
+	TopBar.BackgroundColor3 = getgenv().chosenTheme.Background
 	TopBar.BorderSizePixel = 0
 	TopBar.Position = UDim2.new(0, 0, 0, -19)
 	TopBar.Size = UDim2.new(1, 0, 0.0649999976, 0)
@@ -209,7 +209,7 @@ function Library.new(name, gameTitle,theme)
 	titleLabel.Position = UDim2.new(0.00800000038, 0, 0, 0)
 	titleLabel.Size = UDim2.new(0.912, 0, 1, 0)
 	titleLabel.Font = Enum.Font.SourceSans
-	titleLabel.TextColor3 = Library.chosenTheme.TextColor
+	titleLabel.TextColor3 = getgenv().chosenTheme.TextColor
 	titleLabel.TextSize = 14.000
 	titleLabel.TextXAlignment = Enum.TextXAlignment.Left
 	titleLabel.Text = setTitle()
@@ -222,12 +222,12 @@ function Library.new(name, gameTitle,theme)
 	exitBtn.Size = UDim2.new(0.0799999982, 0, 1, 0)
 	exitBtn.Font = Enum.Font.SourceSans
 	exitBtn.Text = "X"
-	exitBtn.TextColor3 = Library.chosenTheme.TextColor
+	exitBtn.TextColor3 = getgenv().chosenTheme.TextColor
 	exitBtn.TextSize = 14.000
 
 	TabContainer.Name = "TabContainer"
 	TabContainer.Parent = Main
-	TabContainer.BackgroundColor3 = Library.chosenTheme.Background
+	TabContainer.BackgroundColor3 = getgenv().chosenTheme.Background
 	TabContainer.BorderSizePixel = 0
 	TabContainer.LayoutOrder = 1
 	TabContainer.Size = UDim2.new(0, 124, 0, 300)
@@ -261,10 +261,10 @@ function Library.new(name, gameTitle,theme)
 		local UIPadding_2 = Instance.new("UIPadding")
 
 		TabBtn.Name = text
-		TabBtn.BackgroundColor3 = Library.chosenTheme.Button
+		TabBtn.BackgroundColor3 = getgenv().chosenTheme.Button
 		TabBtn.Size = UDim2.new(0.899999976, 0, 0.100000001, 0)
 		TabBtn.Font = Enum.Font.SourceSans
-		TabBtn.TextColor3 = Library.chosenTheme.TextColor
+		TabBtn.TextColor3 = getgenv().chosenTheme.TextColor
 		TabBtn.TextSize = 14.000
 		TabBtn.Text = text or "Tab"
 		TabBtn.Parent = TabContainer
@@ -292,8 +292,8 @@ function Library.new(name, gameTitle,theme)
 		UIPadding_2.PaddingTop = UDim.new(0, 5)
 		
 		Functions.UpdateTabs = function()
-			TabBtn.BackgroundColor3 = Library.chosenTheme.Button
-			TabBtn.TextColor3 = Library.chosenTheme.TextColor
+			TabBtn.BackgroundColor3 = getgenv().chosenTheme.Button
+			TabBtn.TextColor3 = getgenv().chosenTheme.TextColor
 		end
 
 		table.insert(Utility.Pages, text)
@@ -302,12 +302,12 @@ function Library.new(name, gameTitle,theme)
 			if v.Name == Utility.Pages[1] then
 				v.Visible = true
 				game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-					BackgroundColor3 = Library.chosenTheme.Button
+					BackgroundColor3 = getgenv().chosenTheme.Button
 				}):Play()
 			else
 				v.Visible = false
 				game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-					BackgroundColor3 = Library.chosenTheme.ButtonActive
+					BackgroundColor3 = getgenv().chosenTheme.ButtonActive
 				}):Play()
 			end
 		end
@@ -324,13 +324,13 @@ function Library.new(name, gameTitle,theme)
 			for i,v in next, TabContainer:GetChildren() do
 				if v:IsA("TextButton") then
 					game.TweenService:Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-						BackgroundColor3 = Library.chosenTheme.ButtonActive
+						BackgroundColor3 = getgenv().chosenTheme.ButtonActive
 					}):Play()
 				end
 			end
 
 			game.TweenService:Create(TabBtn, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-				BackgroundColor3 = Library.chosenTheme.Button
+				BackgroundColor3 = getgenv().chosenTheme.Button
 			}):Play()
 		end)
 
@@ -345,13 +345,13 @@ function Library.new(name, gameTitle,theme)
 
 			Button.Name = text
 			Button.Parent = Container2
-			Button.BackgroundColor3 = Library.chosenTheme.Button
+			Button.BackgroundColor3 = getgenv().chosenTheme.Button
 			Button.BorderSizePixel = 0
 			Button.Position = UDim2.new(0.782999992, 0, 0.0599999987, 0)
 			Button.Size = UDim2.new(0.200000003, 0, 0.899999976, 0)
 			Button.Font = Enum.Font.SourceSans
 			Button.Text = text or "Button"
-			Button.TextColor3 = Library.chosenTheme.TextColor
+			Button.TextColor3 = getgenv().chosenTheme.TextColor
 			Button.TextSize = 14.000
 			Button.TextXAlignment = Enum.TextXAlignment.Left
 			Button.AutoButtonColor = false
@@ -369,8 +369,8 @@ function Library.new(name, gameTitle,theme)
 			end)
 
 			Functions.UpdateButton = function()
-				Button.BackgroundColor3 = Library.chosenTheme.Button
-				Button.TextColor3 = Library.chosenTheme.TextColor
+				Button.BackgroundColor3 = getgenv().chosenTheme.Button
+				Button.TextColor3 = getgenv().chosenTheme.TextColor
 			end
 
 			return Button
@@ -384,12 +384,12 @@ function Library.new(name, gameTitle,theme)
 			Label.BackgroundTransparency = 1.000
 			Label.Size = UDim2.new(0, 200, 0, 50)
 			Label.Font = Enum.Font.SourceSans
-			Label.TextColor3 = Library.chosenTheme.TextColor
+			Label.TextColor3 = getgenv().chosenTheme.TextColor
 			Label.TextSize = 14.000
 			Label.Text = text or "Label"
 
 			Functions.UpdateLabel = function()
-				Label.TextColor3 = Library.chosenTheme.TextColor
+				Label.TextColor3 = getgenv().chosenTheme.TextColor
 			end
 			return Label
 		end
@@ -415,12 +415,12 @@ function Library.new(name, gameTitle,theme)
 
 			Label.Name = "Label"
 			Label.Parent = Toggle
-			Label.BackgroundColor3 = Library.chosenTheme.Button
+			Label.BackgroundColor3 = getgenv().chosenTheme.Button
 			Label.BackgroundTransparency = 1.000
 			Label.BorderSizePixel = 0
 			Label.Size = UDim2.new(0.76296705, 0, 1, 0)
 			Label.Font = Enum.Font.SourceSans
-			Label.TextColor3 = Library.chosenTheme.TextColor
+			Label.TextColor3 = getgenv().chosenTheme.TextColor
 			Label.TextSize = 14.000
 			Label.TextXAlignment = Enum.TextXAlignment.Left
 			Label.Text = text
@@ -433,7 +433,7 @@ function Library.new(name, gameTitle,theme)
 
 			Bool.Name = "Bool"
 			Bool.Parent = ToggleFrame
-			Bool.BackgroundColor3 = Library.chosenTheme.Button
+			Bool.BackgroundColor3 = getgenv().chosenTheme.Button
 			Bool.Size = UDim2.new(0.5, 0, 1, 0)
 
 			UICorner.CornerRadius = UDim.new(0, 6)
@@ -453,9 +453,9 @@ function Library.new(name, gameTitle,theme)
 			ToggleBtn.TextSize = 14.000
 
 			Functions.UpdateToggle = function()
-				Label.BackgroundColor3 = Library.chosenTheme.Button
-				Label.TextColor3 = Library.chosenTheme.TextColor
-				Bool.BackgroundColor3 = Library.chosenTheme.Button
+				Label.BackgroundColor3 = getgenv().chosenTheme.Button
+				Label.TextColor3 = getgenv().chosenTheme.TextColor
+				Bool.BackgroundColor3 = getgenv().chosenTheme.Button
 			end
 
 			local function Fire()
@@ -495,7 +495,7 @@ function Library.new(name, gameTitle,theme)
 
 			Slider.Name = text
 			Slider.Parent = Container2
-			Slider.BackgroundColor3 = Library.chosenTheme.Button
+			Slider.BackgroundColor3 = getgenv().chosenTheme.Button
 			Slider.BorderColor3 = Color3.fromRGB(27, 42, 53)
 			Slider.BorderSizePixel = 0
 			Slider.Size = UDim2.new(0, 519, 0, 34)
@@ -508,7 +508,7 @@ function Library.new(name, gameTitle,theme)
 			OptionText.Size = UDim2.new(0.440769225, 0, 1, 0)
 			OptionText.Font = Enum.Font.SourceSans
 			OptionText.Text = text
-			OptionText.TextColor3 = Library.chosenTheme.TextColor
+			OptionText.TextColor3 = getgenv().chosenTheme.TextColor
 			OptionText.TextSize = 15.000
 			OptionText.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -538,7 +538,7 @@ function Library.new(name, gameTitle,theme)
 			valueText.Size = UDim2.new(0.179890037, 0, 0.508474529, 0)
 			valueText.Font = Enum.Font.Roboto
 			valueText.Text = string.format("%s / %s", tostring(options.default), tostring(options.max))
-			valueText.TextColor3 = Library.chosenTheme.TextColor
+			valueText.TextColor3 = getgenv().chosenTheme.TextColor
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Right
 
@@ -581,9 +581,9 @@ function Library.new(name, gameTitle,theme)
 			end)
 
 			Functions.UpdateSlider = function()
-				Slider.BackgroundColor3 = Library.chosenTheme.Button
-				OptionText.TextColor3 = Library.chosenTheme.TextColor
-				valueText.TextColor3 = Library.chosenTheme.TextColor
+				Slider.BackgroundColor3 = getgenv().chosenTheme.Button
+				OptionText.TextColor3 = getgenv().chosenTheme.TextColor
+				valueText.TextColor3 = getgenv().chosenTheme.TextColor
 			end
 			return {GetValue = function() return Value end}
 		end
@@ -610,7 +610,7 @@ function Library.new(name, gameTitle,theme)
 
 			Dropdown.Name = text
 			Dropdown.Parent = Container2
-			Dropdown.BackgroundColor3 = Library.chosenTheme.Button
+			Dropdown.BackgroundColor3 = getgenv().chosenTheme.Button
 			Dropdown.BorderSizePixel = 0
 			Dropdown.Size = UDim2.new(0, 100, 0, 100)
 			Dropdown.ZIndex = 2;
@@ -624,7 +624,7 @@ function Library.new(name, gameTitle,theme)
 			Label.Size = UDim2.new(0.381098866, 0, 1, 0)
 			Label.Font = Enum.Font.SourceSans
 			Label.Text = text
-			Label.TextColor3 = Library.chosenTheme.TextColor
+			Label.TextColor3 = getgenv().chosenTheme.TextColor
 			Label.TextSize = 14.000
 			Label.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -656,7 +656,7 @@ function Library.new(name, gameTitle,theme)
 			valueText.Size = UDim2.new(0.822524846, -3, 1, 0)
 			valueText.Font = Enum.Font.SourceSans
 			valueText.Text = default
-			valueText.TextColor3 = Library.chosenTheme.TextColor
+			valueText.TextColor3 = getgenv().chosenTheme.TextColor
 			valueText.TextSize = 14.000
 			valueText.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -701,14 +701,14 @@ function Library.new(name, gameTitle,theme)
 
 				OptionButton.Name = v ..  "Btn"
 				OptionButton.Parent = dropdownContainer
-				OptionButton.BackgroundColor3 = Library.chosenTheme.Button
+				OptionButton.BackgroundColor3 = getgenv().chosenTheme.Button
 				OptionButton.BorderSizePixel = 0
 				OptionButton.Size = UDim2.new(.95, 0, 0, 30)
 				OptionButton.Position = UDim2.new(0, 5, 0, 0, 0)
 				OptionButton.AutoButtonColor = false
 				OptionButton.Font = Enum.Font.SourceSans
 				OptionButton.Text = v
-				OptionButton.TextColor3 = Library.chosenTheme.TextColor
+				OptionButton.TextColor3 = getgenv().chosenTheme.TextColor
 				OptionButton.TextSize = 14.000
 
 				DropYSize = DropYSize + 30
@@ -725,11 +725,11 @@ function Library.new(name, gameTitle,theme)
 				end)
 
 				Functions.UpdateDropdown = function()
-					OptionButton.BackgroundColor3 = Library.chosenTheme.Button
-					OptionButton.TextColor3 = Library.chosenTheme.TextColor
-					Dropdown.BackgroundColor3 = Library.chosenTheme.Button
-					Label.TextColor3 = Library.chosenTheme.TextColor
-					valueText.TextColor3 = Library.chosenTheme.TextColor
+					OptionButton.BackgroundColor3 = getgenv().chosenTheme.Button
+					OptionButton.TextColor3 = getgenv().chosenTheme.TextColor
+					Dropdown.BackgroundColor3 = getgenv().chosenTheme.Button
+					Label.TextColor3 = getgenv().chosenTheme.TextColor
+					valueText.TextColor3 = getgenv().chosenTheme.TextColor
 				end
 			end
 			return Dropdown
@@ -747,21 +747,21 @@ function Library.new(name, gameTitle,theme)
 		Label.Size = UDim2.new(0.899999976, 0, 0.100000001, 0)
 		Label.Font = Enum.Font.SourceSans
 		Label.Text = text or "Label"
-		Label.TextColor3 = Library.chosenTheme.TextColor
+		Label.TextColor3 = getgenv().chosenTheme.TextColor
 		Label.TextSize = 14.000
 
 		Functions.UpdateTabLabel = function()
-			Label.TextColor3 = Library.chosenTheme.TextColor
+			Label.TextColor3 = getgenv().chosenTheme.TextColor
 		end
 		return Label
 	end
 
 	Functions.UpdateThemeData = function()
-		Main.BackgroundColor3 = Library.chosenTheme.Accent
-		TopBar.BackgroundColor3 = Library.chosenTheme.Background
-		TabContainer.BackgroundColor3 = Library.chosenTheme.Background
-		titleLabel.TextColor3 = Library.chosenTheme.TextColor
-		exitBtn.TextColor3 = Library.chosenTheme.TextColor
+		Main.BackgroundColor3 = getgenv().chosenTheme.Accent
+		TopBar.BackgroundColor3 = getgenv().chosenTheme.Background
+		TabContainer.BackgroundColor3 = getgenv().chosenTheme.Background
+		titleLabel.TextColor3 = getgenv().chosenTheme.TextColor
+		exitBtn.TextColor3 = getgenv().chosenTheme.TextColor
 		
 		Functions.UpdateTabs()
 		Functions.UpdateTabLabel()
@@ -776,7 +776,7 @@ function Library.new(name, gameTitle,theme)
 end
 
 function Library:SetTheme(theme)
-	Library.chosenTheme = theme
+	getgenv().chosenTheme = theme
 	Functions.UpdateThemeData()
 end
 
@@ -784,7 +784,7 @@ function Library:AddTheme(name, data)
 	name = name or "Custom Theme"
 	data = data or  {}
 
-	Library.Themes[name] = data
+	getgenv().Themes[name] = data
 	Functions.UpdateThemeData();
 end
 

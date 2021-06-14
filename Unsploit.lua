@@ -140,9 +140,10 @@ Library.Themes = {
 
 function Library.new(name, gameTitle,theme)
 	gameTitle = gameTitle or "Universal"
-	Library.currTheme = theme or "Default"
+	theme = theme or "Default"
 	Library.Title = name or "Unsploit"
 
+	Library.currTheme = theme
 
 	--if not themeData then return; end
 	pcall(function()
@@ -853,7 +854,6 @@ Functions.UnsploitLeaving = game:GetService("CoreGui").ChildRemoved:Connect(func
 			end
 			if Functions.DropdownConnection then
 				Functions.DropdownConnection:Disconnect();
-				Functions.DropdownOptionBtn:Disconnect();
 			end
 			if Functions.RenderStepped then
 				Functions.RenderStepped:Disconnect()

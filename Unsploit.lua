@@ -692,10 +692,9 @@ function Library.new(name, gameTitle,theme)
 				end
 			end)
 
-			local OptionButton
 
 			for i,v in next, data do
-				OptionsButton = Instance.new("TextButton")
+				local OptionButton = Instance.new("TextButton")
 				local Padding = Instance.new("UIPadding")
 
 				OptionButton.Name = v ..  "Btn"

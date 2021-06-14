@@ -143,24 +143,20 @@ function Library.new(name, gameTitle,theme)
 	theme = theme or "Default"
 	Library.Title = name or "Unsploit"
 
-	Library.currTheme = theme
-
+	
 	--if not themeData then return; end
-	pcall(function()
-		while wait(0.45) do
-			if Library.currTheme == "Default" then
-				Library.chosenTheme = Library.Themes.Default
-			elseif Library.currTheme == "Light" then
-				Library.currTheme.chosenTheme = Library.Themes.Light
-			elseif Library.currTheme == "Dark" then
-				Library.currTheme.chosenTheme = Library.Themes.Dark
-			elseif Library.currTheme == "Unsploit" then
-				Library.currTheme.chosenTheme = Library.Themes.Unsploit
-			--[[ elseif theme == "Custom" then
-				Library.chosenTheme = themeData ]]
-			end
-		end
-	end)
+
+	if theme == "Default" then
+		Library.chosenTheme = Library.Themes.Default
+	elseif theme == "Light" then
+		Library.chosenTheme = Library.Themes.Light
+	elseif theme == "Dark" then
+		Library.chosenTheme = Library.Themes.Dark
+	elseif theme == "Unsploit" then
+		Library.chosenTheme = Library.Themes.Unsploit
+	--[[ elseif theme == "Custom" then
+		Library.chosenTheme = themeData ]]
+	end
 
 	local function setTitle()
 		local g_title;

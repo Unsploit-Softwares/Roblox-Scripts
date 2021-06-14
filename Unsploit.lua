@@ -680,26 +680,11 @@ function Library.new(name, gameTitle,theme)
 			UIPadding.PaddingTop = UDim.new(0, 5)
 			UIPadding.PaddingLeft = UDim.new(0, 10)
 
-			Functions.DropdownConnection = Button.MouseButton1Click:Connect(function()
-				if isDropped then
-					isDropped = false
-					dropdownContainer.Visible = false
-					dropdownContainer.Size = UDim2.new(0, 197, 0, 0)
-					Button.Image = "rbxassetid://6936536383"
-					Container2.ScrollingEnabled = true
-				else
-					isDropped = true
-					dropdownContainer.Visible = true
-					dropdownContainer.Size = UDim2.new(0, 197, 0, DropYSize)
-					Button.Image = "rbxassetid://6936551482"
-					Container2.ScrollingEnabled = false
-				end
-			end)
-
-
+			
+			
 			for i,v in next, data do
 				local OptionButton = Instance.new("TextButton")
-
+				
 				OptionButton.Name = v ..  "Btn"
 				OptionButton.Parent = dropdownContainer
 				OptionButton.BackgroundColor3 = getgenv().chosenTheme.Button
@@ -711,20 +696,36 @@ function Library.new(name, gameTitle,theme)
 				OptionButton.Text = v
 				OptionButton.TextColor3 = getgenv().chosenTheme.TextColor
 				OptionButton.TextSize = 14.000
-
+				
 				DropYSize = DropYSize + 30
-
+				
 				OptionButton.MouseButton1Click:Connect(function()
 					valueText.Text = v
 					callback(v)
-
+					
 					isDropped = false
 					dropdownContainer.Visible = false
 					dropdownContainer.Size = UDim2.new(0, 197, 0, 0)
 					Button.Image = "rbxassetid://6936536383"
 					Container2.ScrollingEnabled = true
 				end)
-
+				
+				Functions.DropdownConnection = Button.MouseButton1Click:Connect(function()
+					if isDropped then
+						isDropped = false
+						dropdownContainer.Visible = false
+						dropdownContainer.Size = UDim2.new(0, 197, 0, 0)
+						Button.Image = "rbxassetid://6936536383"
+						Container2.ScrollingEnabled = true
+					else
+						isDropped = true
+						dropdownContainer.Visible = true
+						dropdownContainer.Size = UDim2.new(0, 197, 0, DropYSize)
+						Button.Image = "rbxassetid://6936551482"
+						Container2.ScrollingEnabled = false
+					end
+				end)
+				
 				Functions.UpdateDropdown = function()
 					OptionButton.BackgroundColor3 = getgenv().chosenTheme.Button
 					OptionButton.TextColor3 = getgenv().chosenTheme.TextColor

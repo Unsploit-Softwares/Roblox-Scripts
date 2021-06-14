@@ -678,6 +678,7 @@ function Library.new(name, gameTitle,theme)
 			UIPadding.Parent = dropdownContainer
 			UIPadding.PaddingBottom = UDim.new(0, 5)
 			UIPadding.PaddingTop = UDim.new(0, 5)
+			UIPadding.PaddingLeft = UDim.new(0, 10)
 
 			Functions.DropdownConnection = Button.MouseButton1Click:Connect(function()
 				if isDropped then

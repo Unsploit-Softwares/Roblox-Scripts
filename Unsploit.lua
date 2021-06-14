@@ -673,7 +673,8 @@ function Library.new(name, gameTitle,theme)
  			UIListLayout.Parent = dropdownContainer
 			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 			UIListLayout.Padding = UDim.new(0, 3)
-
+			
+			local Padding = Instance.new("UIPadding")
 			UIPadding.Parent = dropdownContainer
 			UIPadding.PaddingBottom = UDim.new(0, 5)
 			UIPadding.PaddingTop = UDim.new(0, 5)
@@ -697,7 +698,6 @@ function Library.new(name, gameTitle,theme)
 
 			for i,v in next, data do
 				local OptionButton = Instance.new("TextButton")
-				local Padding = Instance.new("UIPadding")
 
 				OptionButton.Name = v ..  "Btn"
 				OptionButton.Parent = dropdownContainer
